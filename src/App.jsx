@@ -1,5 +1,5 @@
 function App() {
-  return <div></div>;
+  return <h1 className="text-2xl font-bold">Premium Motors</h1>;
 }
 
 export default App;
