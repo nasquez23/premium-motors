@@ -2,8 +2,8 @@ import Hero from "../components/Hero";
 
 export default function Home() {
   return (
-    <main className="p-4">
+    <div className="px-4">
       <Hero />
-    </main>
+    </div>
   );
 }
