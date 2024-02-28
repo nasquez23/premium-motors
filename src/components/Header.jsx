@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
-    <header className="flex flex-row justify-between p-4">
+    <header className="flex flex-row justify-between p-5 h-20 w-full text-black">
       <h1 className="text-2xl font-bold">Premium Motors</h1>
       <nav>
         <ul className="flex flex-row gap-8 mr-4">
