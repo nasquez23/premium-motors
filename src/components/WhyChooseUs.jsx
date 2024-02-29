@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheckCircle,
   faHandshake,
-  faTag,
+  faTag, 
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function WhyChooseUs() {
@@ -18,8 +18,8 @@ export default function WhyChooseUs() {
           We offer the best experience with our deals
         </h1>
         <div className="mb-10 flex flex-row">
-          <div className="w-12 h-12 text-center mr-4 mt-4 pt-3 bg-gray-200 rounded-lg">
-            <FontAwesomeIcon icon={faCheckCircle} className=" text-blue-600" />
+          <div className="w-12 h-12 text-center mr-4 mt-4 pt-3 bg-blue-100 rounded-lg">
+            <FontAwesomeIcon icon={faCheckCircle} className="text-blue-600" />
           </div>
           <div>
             <h3 className="text-xl font-bold text-gray-700">
@@ -32,7 +32,7 @@ export default function WhyChooseUs() {
           </div>
         </div>
         <div className="mb-10 flex flex-row">
-          <div className="w-12 h-12 text-center mr-4 mt-4 pt-3 bg-gray-200 rounded-lg">
+          <div className="w-12 h-12 text-center mr-4 mt-4 pt-3 bg-blue-100 rounded-lg">
             <FontAwesomeIcon icon={faHandshake} className=" text-blue-600" />
           </div>
           <div>
@@ -46,7 +46,7 @@ export default function WhyChooseUs() {
           </div>
         </div>
         <div className="flex flex-row">
-          <div className="w-12 h-12 text-center mr-4 mt-4 pt-3 bg-gray-200 rounded-lg">
+          <div className="w-12 h-12 text-center mr-4 mt-4 pt-3 bg-blue-100 rounded-lg">
             <FontAwesomeIcon icon={faTag} className=" text-blue-600" />
           </div>
           <div>

@@ -4,7 +4,7 @@ import Koenigsegg from "../assets/koenigsegg.jpg";
 
 export default function Hero() {
   return (
-    <section className="flex flex-row overflow-x-hidden border-b-2 mt-10 w-full">
+    <section className="flex flex-row overflow-x-hidden mt-10 w-full">
       <div className="w-1/2 ml-20">
         <h2 className="text-6xl text-gray-900 font-semibold mt-10">
           Find Your Perfect Ride
