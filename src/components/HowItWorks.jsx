@@ -5,6 +5,8 @@ import {
   faClipboardCheck,
   faCarSide,
   faCalendarPlus,
+  faUserAlt,
+  faUser
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function HowItWorks() {
@@ -89,7 +91,7 @@ export default function HowItWorks() {
           <article className="w-3/4 text-center">
             <div className="w-20 h-20 bg-blue-100 text-center items-center rounded-lg text-3xl pt-6 mb-8 ml-[72px]">
               <FontAwesomeIcon
-                icon={faClipboardCheck}
+                icon={faUserAlt}
                 className="text-blue-600"
               />
             </div>
