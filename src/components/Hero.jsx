@@ -1,17 +1,27 @@
 import { Link } from "react-router-dom";
 
+import Koenigsegg from "../assets/koenigsegg.jpg";
+
 export default function Hero() {
   return (
-    <div className="w-full items-center text-center h-56 bg-blue-300 px-4 text-black">
-      <h3 className="text-3xl my-5 font-bold pt-5">
-        Welcome to Premium Motors
-      </h3>
-      <p className="text-xl mb-6">Your ultimate destionation for cars</p>
-      <p>
-        <button className="bg-stone-900 text-slate-50 h-12 w-32 rounded-lg hover:bg-stone-800">
-          <Link to="/cars">Explore Cars</Link>
+    <section className="flex flex-row overflow-x-hidden border-b-2 mt-10 w-full">
+      <div className="w-1/2 ml-20">
+        <h2 className="text-6xl text-gray-900 font-semibold mt-10">
+          Find Your Perfect Ride
+        </h2>
+        <p className="text-2xl text-gray-800 mt-6">
+          Explore a wide range of high-quality cars at affordable prices. Your
+          dream car awaits.
+        </p>
+        <button className="w-1/3 h-12 bg-blue-600 mt-10 text-white rounded font-semibold shadow-blue-900 shadow-md hover:bg-blue-800">
+          <Link to="/cars">Browse Cars</Link>
         </button>
-      </p>
-    </div>
+      </div>
+      <img
+        src={Koenigsegg}
+        alt="Koenigsegg"
+        className="h-2/3 w-2/3 -mr-24"
+      />
+    </section>
   );
 }

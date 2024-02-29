@@ -1,10 +1,14 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebook } from "@fortawesome/free-brands-svg-icons";
-import { faInstagram } from "@fortawesome/free-brands-svg-icons";
-import { faTwitter } from "@fortawesome/free-brands-svg-icons";
-import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import { faPhone } from "@fortawesome/free-solid-svg-icons";
+import {
+  faFacebook,
+  faInstagram,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons";
+import {
+  faMapMarkerAlt,
+  faEnvelope,
+  faPhone,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function Footer() {
   return (
@@ -13,14 +17,16 @@ export default function Footer() {
         <div className="w-1/3">
           <h3 className="text-2xl pb-4 text-bold text-left">Premium Motors</h3>
           <p className="text-md py-2 text-left">
-            <FontAwesomeIcon icon={faMapMarkerAlt} className="pr-3" /> 2220 Sveti Nikole,
-            Macedonia
+            <FontAwesomeIcon icon={faMapMarkerAlt} className="pr-3" /> 2220
+            Sveti Nikole, Macedonia
           </p>
           <p className="text-md py-2 text-left">
-            <FontAwesomeIcon icon={faPhone} className="pr-3" />+389 00 000 000
+            <FontAwesomeIcon icon={faPhone} className="pr-3" />
+            +389 00 000 000
           </p>
           <p className="text-md py-2 text-left">
-            <FontAwesomeIcon icon={faEnvelope} className="pr-3" /> premiummotors@gmail.com
+            <FontAwesomeIcon icon={faEnvelope} className="pr-3" />{" "}
+            premiummotors@gmail.com
           </p>
         </div>
         <div className="w-1/4">

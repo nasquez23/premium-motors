@@ -1,22 +1,34 @@
 import { Link } from "react-router-dom";
 
+import logo from "../assets/logo.png";
+
 export default function Header() {
   return (
-    <header className="flex flex-row justify-between items-center px-5 m-auto mt-5 max-w-[98%] bg-red-100 h-20 text-black">
-      <h1 className="text-3xl font-bold">Premium Motors</h1>
+    <header className="flex flex-row justify-between items-center px-5 mt-auto mx-12 h-30">
+      <Link to="/">
+        <img src={logo} alt="Premium Motors Logo" className="h-28" />
+      </Link>
       <nav>
-        <ul className="flex flex-row gap-8 mr-4 text-xl">
+        <ul className="flex flex-row gap-8 mr-4 text-xl text-gray-700 font-semibold">
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/" className="hover:text-blue-500">
+              Home
+            </Link>
           </li>
           <li>
-            <Link to="/about">About</Link>
+            <Link to="/about" className="hover:text-blue-500">
+              About
+            </Link>
           </li>
           <li>
-            <Link to="/cars">Cars</Link>
+            <Link to="/cars" className="hover:text-blue-500">
+              Cars
+            </Link>
           </li>
           <li>
-            <Link to="/contact">Contact</Link>
+            <Link to="/contact" className="hover:text-blue-500">
+              Contact
+            </Link>
           </li>
         </ul>
       </nav>
