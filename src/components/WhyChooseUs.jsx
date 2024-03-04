@@ -11,7 +11,7 @@ export default function WhyChooseUs() {
     <section className="flex flex-row my-16">
       <img src={logo} alt="Lamborghini" className="w-2/3 h-2/3 -ml-52" />
       <div className="w-1/2 ml-20 mt-10">
-        <h2 className="uppercase w-48 h-10 pt-2 font-semibold bg-gray-100 text-center text-blue-500 mb-4 rounded">
+        <h2 className="uppercase w-48 h-10 pt-2 font-semibold bg-gray-200 text-center text-blue-500 mb-4 rounded">
           Why Choose Us
         </h2>
         <h1 className="text-4xl w-3/4 mb-8 text-gray-700 font-semibold">

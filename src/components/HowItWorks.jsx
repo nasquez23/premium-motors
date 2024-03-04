@@ -12,7 +12,7 @@ import {
 export default function HowItWorks() {
   return (
     <>
-      <h2 className="uppercase w-48 h-10 pt-2 font-semibold bg-gray-100 text-center text-blue-500 mt-16 mb-6 mx-auto rounded">
+      <h2 className="uppercase w-48 h-10 pt-2 font-semibold bg-gray-200 text-center text-blue-500 mt-16 mb-6 mx-auto rounded">
         How It Works
       </h2>
       <section>

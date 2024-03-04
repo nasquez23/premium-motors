@@ -15,7 +15,7 @@ export default function Testemonials() {
           backgroundPosition: 'center'
         }}
       ></div>
-      <h2 className="uppercase w-48 h-10 pt-2 font-semibold bg-gray-100 text-center text-blue-500 mt-16 mx-auto rounded relative">
+      <h2 className="uppercase w-48 h-10 pt-2 font-semibold bg-gray-200 text-center text-blue-500 mt-16 mx-auto rounded relative">
         Testemonials
       </h2>
       <h2 className="text-3xl text-gray-700 font-semibold mt-4 mb-20 relative">
