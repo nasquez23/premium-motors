@@ -4,7 +4,7 @@ import logo from "../assets/logo.png";
 
 export default function Header() {
   return (
-    <header className="flex flex-row justify-between items-center px-5 mt-auto mx-12 h-30">
+    <header className="flex flex-row justify-between items-center px-5 mt-auto mx-12 h-30 relative z-10">
       <Link to="/">
         <img src={logo} alt="Premium Motors Logo" className="h-28" />
       </Link>
