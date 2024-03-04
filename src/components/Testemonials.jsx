@@ -1,12 +1,12 @@
-import TestemonialCard from "./TestemonialCard";
 import LebronJames from "../assets/lebron-james.jpg";
 import DonaldTrump from "../assets/donald-trump.jpg";
 import quotes from "../assets/quotes.jpg";
+import TestemonialCard from "./TestemonialCard";
 import Title from "./UI/Title";
 
 export default function Testemonials() {
   return (
-    <section className="text-center pb-20 relative bg-gradient-to-b from-white to-blue-50">
+    <section className="text-center pb-32 relative bg-gradient-to-b from-white to-blue-50 mt-32">
       <div
         className="absolute top-0 left-0 w-full h-full opacity-15 z-0"
         style={{

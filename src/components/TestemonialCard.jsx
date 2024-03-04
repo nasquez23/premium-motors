@@ -1,6 +1,6 @@
 export default function TestemonialCard({ image, stars, text, name, from }) {
   return (
-    <div className="flex flex-row w-[40%] h-96 rounded-xl shadow-gray-500 shadow-md overflow-hidden bg-white">
+    <div className="flex flex-row w-[40%] h-96 rounded-xl shadow-gray-500 shadow-lg overflow-hidden bg-white">
       <img
         src={image}
         className="h-full w-1/2 object-cover"

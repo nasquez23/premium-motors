@@ -9,7 +9,7 @@ import Title from "./UI/Title";
 
 export default function WhyChooseUs() {
   return (
-    <section className="flex flex-row my-16">
+    <section className="flex flex-row my-10">
       <img src={logo} alt="Lamborghini" className="w-2/3 h-2/3 -ml-52" />
       <div className="w-1/2 ml-20 mt-10">
         <Title title="Why choose us" textLeft />

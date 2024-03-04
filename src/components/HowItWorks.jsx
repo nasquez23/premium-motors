@@ -12,8 +12,8 @@ import Title from "./UI/Title";
 export default function HowItWorks() {
   return (
     <>
+      <section className="mt-32">
       <Title title="How It Works" />
-      <section>
         <h3 className="text-gray-700 text-3xl text-center font-semibold mb-16">
           Buy a Car
         </h3>
