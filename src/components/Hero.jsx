@@ -17,11 +17,7 @@ export default function Hero() {
           <Link to="/cars">Browse Cars</Link>
         </button>
       </div>
-      <img
-        src={Koenigsegg}
-        alt="Koenigsegg"
-        className="h-2/3 w-2/3 -mr-24"
-      />
+      <img src={Koenigsegg} alt="Koenigsegg" className="h-2/3 w-2/3 -mr-24" />
     </section>
   );
 }

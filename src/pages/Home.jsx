@@ -1,3 +1,4 @@
+import FeaturedCars from "../components/FeaturedCars";
 import Hero from "../components/Hero";
 import HowItWorks from "../components/HowItWorks";
 import Newsletter from "../components/Newsletter";
@@ -6,12 +7,13 @@ import WhyChooseUs from "../components/WhyChooseUs";
 
 export default function Home() {
   return (
-    <div>
+    <main>
       <Hero />
       <HowItWorks />
       <Newsletter />
       <WhyChooseUs />
+      <FeaturedCars />
       <Testemonials />
-    </div>
+    </main>
   );
 }
