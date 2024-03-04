@@ -6,15 +6,13 @@ import {
   faCarSide,
   faCalendarPlus,
   faUserAlt,
-  faUser
 } from "@fortawesome/free-solid-svg-icons";
+import Title from "./UI/Title";
 
 export default function HowItWorks() {
   return (
     <>
-      <h2 className="uppercase w-48 h-10 pt-2 font-semibold bg-gray-200 text-center text-blue-500 mt-16 mb-6 mx-auto rounded">
-        How It Works
-      </h2>
+      <Title title="How It Works" />
       <section>
         <h3 className="text-gray-700 text-3xl text-center font-semibold mb-16">
           Buy a Car

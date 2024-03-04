@@ -5,15 +5,14 @@ import {
   faHandshake,
   faTag, 
 } from "@fortawesome/free-solid-svg-icons";
+import Title from "./UI/Title";
 
 export default function WhyChooseUs() {
   return (
     <section className="flex flex-row my-16">
       <img src={logo} alt="Lamborghini" className="w-2/3 h-2/3 -ml-52" />
       <div className="w-1/2 ml-20 mt-10">
-        <h2 className="uppercase w-48 h-10 pt-2 font-semibold bg-gray-200 text-center text-blue-500 mb-4 rounded">
-          Why Choose Us
-        </h2>
+        <Title title="Why choose us" textLeft />
         <h1 className="text-4xl w-3/4 mb-8 text-gray-700 font-semibold">
           We offer the best experience with our deals
         </h1>

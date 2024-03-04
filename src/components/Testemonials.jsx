@@ -2,6 +2,7 @@ import TestemonialCard from "./TestemonialCard";
 import LebronJames from "../assets/lebron-james.jpg";
 import DonaldTrump from "../assets/donald-trump.jpg";
 import quotes from "../assets/quotes.jpg";
+import Title from "./UI/Title";
 
 export default function Testemonials() {
   return (
@@ -15,9 +16,7 @@ export default function Testemonials() {
           backgroundPosition: 'center'
         }}
       ></div>
-      <h2 className="uppercase w-48 h-10 pt-2 font-semibold bg-gray-200 text-center text-blue-500 mt-16 mx-auto rounded relative">
-        Testemonials
-      </h2>
+      <Title title="Testemonials" />
       <h2 className="text-3xl text-gray-700 font-semibold mt-4 mb-20 relative">
         What our customers say about us?
       </h2>
