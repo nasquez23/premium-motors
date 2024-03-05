@@ -4,7 +4,7 @@ import Title from "../components/UI/Title";
 export default function Cars() {
   return (
     <>
-      <PageHeader title="Cars" />
+      <PageHeader title="Discover Your Dream Ride" />
       <div>
         <Title title="Cars" />
       </div>

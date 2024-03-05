@@ -12,7 +12,7 @@ export default function Newsletter() {
             placeholder="Your Email Address"
             className="bg-white text-gray-700 border border-gray-300 p-3 px-6 rounded-l-md focus:outline-none"
           />
-          <button className="bg-blue-600 text-white p-[13px] rounded-r-md hover:bg-blue-800">
+          <button className="bg-blue-600 text-white p-[13px] rounded-r-md hover:bg-blue-800 transition duration-300">
             Subscribe
           </button>
         </div>

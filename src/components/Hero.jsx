@@ -13,7 +13,7 @@ export default function Hero() {
           Explore a wide range of high-quality cars at affordable prices. Your
           dream car awaits.
         </p>
-        <button className="w-1/3 h-12 bg-blue-600 mt-10 text-white rounded font-semibold shadow-blue-900 shadow-md hover:bg-blue-800">
+        <button className="w-1/3 h-12 bg-blue-600 mt-10 text-white rounded font-semibold shadow-blue-900 shadow-md hover:bg-blue-800 transition duration-300 hover:shadow-blue-600">
           <Link to="/cars">Browse Cars</Link>
         </button>
       </div>
