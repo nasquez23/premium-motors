@@ -1,3 +1,13 @@
+import PageHeader from "../components/UI/PageHeader";
+import Title from "../components/UI/Title";
+
 export default function Cars() {
-  return <h1 className="text-black">Cars</h1>;
+  return (
+    <>
+      <PageHeader title="Cars" />
+      <div>
+        <Title title="Cars" />
+      </div>
+    </>
+  );
 }

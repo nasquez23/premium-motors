@@ -1,21 +1,10 @@
-import BackgroundImage from "../assets/about.jpg";
+import PageHeader from "../components/UI/PageHeader";
 import Title from "../components/UI/Title";
 
 export default function About() {
   return (
     <>
-      <div
-        className="absolute top-0 left-0 w-full h-1/2 opacity-10 z-0"
-        style={{
-          backgroundImage: `url(${BackgroundImage})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          backgroundPosition: "100% 30%",
-        }}
-      ></div>
-      <h1 className="text-4xl text-gray-900 font-semibold text-center uppercase mt-24 mb-32">
-        About Premium Motors
-      </h1>
+      <PageHeader title="About Premium Motors" />
       <div className="pt-6 w-2/3 mx-auto mb-32">
         <Title title="About Us" />
         <div className="text-gray-600 text-xl font-semibold">
