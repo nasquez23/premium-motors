@@ -35,7 +35,7 @@ export default function CarCard({ car }) {
 
   return (
     <div className="w-full h-[32rem] text-left rounded-lg overflow-hidden shadow-lg shadow-gray-500">
-      <img src={carImage} className="h-[45%] w-full object-cover" />
+      <img src={carImage} className="h-[45%] w-full object-cover" alt={`${car.manufacturer} ${car.model}`} />
       <h3 className="text-gray-800 text-2xl font-semibold my-4 pl-6">
         {car.manufacturer} {car.model}
       </h3>
