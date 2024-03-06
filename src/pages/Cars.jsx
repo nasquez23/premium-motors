@@ -15,7 +15,7 @@ export default function Cars() {
           ))}
         </div>
         <Title title="Cars For Rent" />
-        <div className="w-3/4 mx-auto grid grid-cols-3 gap-6 mt-20 mb-32">
+        <div className="w-3/4 mx-auto grid grid-cols-3 gap-8 mt-20 mb-32">
           {carsForRent.map((car, index) => (
             <CarCard key={index} car={car} />
           ))}
