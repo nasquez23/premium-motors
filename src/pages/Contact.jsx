@@ -65,7 +65,7 @@ export default function Contact() {
               Full Name
             </label>
             <input
-              className="bg-gray-200 h-10 text-gray-700 focus:outline-none py-6 px-8 rounded"
+              className="bg-gray-200 h-10 text-gray-700 focus:outline-blue-500 py-6 px-8 rounded"
               id="name"
               name="name"
               type="text"
@@ -76,7 +76,7 @@ export default function Contact() {
               Email
             </label>
             <input
-              className="bg-gray-200 h-10 text-gray-700 focus:outline-none py-6 px-8 rounded"
+              className="bg-gray-200 h-10 text-gray-700 focus:outline-blue-500 py-6 px-8 rounded"
               id="email"
               name="email"
               type="email"
@@ -87,7 +87,7 @@ export default function Contact() {
               Tell Us More
             </label>
             <textarea
-              className="bg-gray-200 h-40 text-gray-700 focus:outline-none py-4 px-8 rounded"
+              className="bg-gray-200 h-40 text-gray-700 focus:outline-blue-500 py-4 px-8 rounded"
               id="message"
               name="message"
               placeholder="Your Message"
