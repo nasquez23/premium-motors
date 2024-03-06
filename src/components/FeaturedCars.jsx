@@ -31,13 +31,13 @@ export default function FeaturedCars() {
       <div className="relative flex items-center justify-center h-96">
         <button
           onClick={handlePrevCar}
-          className="absolute text-white bg-blue-500 p-3 rounded-full top-1/2 left-[30%] hover:bg-blue-700 transition duration-200"
+          className="absolute text-white bg-blue-500 p-3 rounded-full top-[60%] left-[30%] hover:bg-blue-700 transition duration-200"
         >
           {"<"}
         </button>
         <button
           onClick={handleNextCar}
-          className="absolute text-white bg-blue-500 p-3 rounded-full top-1/2 right-[30%] hover:bg-blue-700 transition duration-200"
+          className="absolute text-white bg-blue-500 p-3 rounded-full top-[60%] right-[30%] hover:bg-blue-700 transition duration-200"
         >
           {">"}
         </button>
