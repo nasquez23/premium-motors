@@ -6,7 +6,7 @@ import Title from "./UI/Title";
 
 export default function Testemonials() {
   return (
-    <section className="text-center pb-32 relative bg-gradient-to-b from-white to-blue-50 mt-32">
+    <section className="text-center pb-32 relative bg-gradient-to-b from-white to-blue-50 mt-48">
       <div
         className="absolute top-0 left-0 w-full h-full opacity-15 z-0"
         style={{

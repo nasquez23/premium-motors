@@ -1,8 +1,10 @@
 export default function Newsletter() {
   return (
-    <section className="bg-gray-700 mt-16 py-10">
+    <section className="bg-gray-700 mt-24 py-10">
       <div className="container mx-auto text-center">
-        <h2 className="text-4xl text-white font-bold mb-8">Subscribe to Our Newsletter</h2>
+        <h2 className="text-4xl text-white font-bold mb-8">
+          Subscribe to Our Newsletter
+        </h2>
         <p className="text-white mb-8">
           Stay updated with the latest news, promotions, and car releases.
         </p>

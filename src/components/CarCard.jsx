@@ -34,27 +34,27 @@ export default function CarCard({ car }) {
   const carImage = carImages[`${car.manufacturer} ${car.model}`];
 
   return (
-    <div className="w-1/4 h-96 text-left rounded-lg overflow-hidden shadow-lg shadow-gray-500">
-      <img src={carImage} className="h-[40%] w-full object-cover" />
-      <h3 className="text-gray-800 text-xl font-semibold my-4 ml-4">
+    <div className="w-full h-[32rem] text-left rounded-lg overflow-hidden shadow-lg shadow-gray-500">
+      <img src={carImage} className="h-[45%] w-full object-cover" />
+      <h3 className="text-gray-800 text-2xl font-semibold my-4 pl-6">
         {car.manufacturer} {car.model}
       </h3>
-      <div className="text-gray-500 border-b-2 mx-4">
-        <div className="flex gap-2 text-xl pt-2 pb-4">
+      <div className="text-gray-500 border-b-2 mx-4 pb-4 pl-2">
+        <div className="flex gap-2 text-2xl pt-2 pb-6">
           <FontAwesomeIcon icon={faCalendar} className="h-6" />
           {car.year}
-          <FontAwesomeIcon icon={faWrench} className="h-6 ml-8" /> {car.engine}
+          <FontAwesomeIcon icon={faWrench} className="h-6 ml-16" /> {car.engine}
         </div>
-        <div className="flex gap-2 text-xl pb-6">
+        <div className="flex gap-2 text-2xl pb-6">
           <FontAwesomeIcon icon={faBolt} className="h-6" />
           {car.power}
-          <FontAwesomeIcon icon={faGear} className="h-6 ml-5" />
+          <FontAwesomeIcon icon={faGear} className="h-6 ml-12" />
           {car.gearbox}
         </div>
       </div>
       <div className="flex justify-between mx-4 pt-6">
-        <span className="text-gray-500 text-xl font-semibold">Price</span>
-        <span className="text-gray-700 text-xl font-bold">
+        <span className="text-gray-500 text-2xl font-semibold">Price</span>
+        <span className="text-gray-700 text-2xl font-bold">
           {car.price ?? car.pricePerDay}
           {car.pricePerDay && (
             <span className="text-gray-500 font-semibold"> /day</span>
