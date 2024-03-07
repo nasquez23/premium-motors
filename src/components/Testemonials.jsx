@@ -20,7 +20,7 @@ export default function Testemonials() {
       <h2 className="text-3xl text-gray-700 font-semibold mt-4 mb-20 relative">
         What our customers say about us?
       </h2>
-      <div className="flex flex-row justify-center gap-8 relative">
+      <div className="grid grid-cols-1 md:grid-cols-1 md:gap-y-12 lg:grid-cols-2 xl:grid-cols-2 justify-center relative w-[90%] mx-auto">
         <TestemonialCard
           image={LebronJames}
           stars="5.0"

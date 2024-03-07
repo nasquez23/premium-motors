@@ -43,8 +43,11 @@ export default function FeaturedCars() {
         </button>
         <div className="w-1/4 h-full">
           <CarCard key={currentCar} car={allCars[currentCar]} />
-          <button className="text-gray-600 font-semibold mt-16 h-12 w-[60%] border-gray-400 border rounded-lg pb-2 hover:text-gray-800 hover:border-gray-600">
-            <Link to="/cars">
+          <button
+            onClick={() => window.scrollTo(0, 0)}
+            className="text-gray-600 font-semibold mt-16 h-12 w-[60%] border-gray-400 border rounded-lg pb-2 hover:text-gray-800 hover:border-gray-600 hover:border-2"
+          >
+            <Link to="/cars" onClick={() => window.scrollTo(0, 0)}>
               <span>Show All Vehicles</span>{" "}
               <span className="text-3xl">&rarr;</span>
             </Link>
