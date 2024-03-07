@@ -19,7 +19,7 @@ import {
   faGear,
   faMapMarkerAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import Modal from "./Modal";
+import Modal from "./UI/Modal";
 
 export default function CarCard({ car }) {
   const carImages = {
@@ -84,10 +84,14 @@ export default function CarCard({ car }) {
                   <FontAwesomeIcon className="mr-2" icon={faCalendar} />
                   Pick-up Date & Time
                 </label>
-                <input className="bg-gray-200 h-10 p-4 focus:outline-blue-500 rounded" type="datetime-local" id="date-time" />
+                <input
+                  className="bg-gray-200 h-10 p-4 focus:outline-blue-500 rounded"
+                  type="datetime-local"
+                  id="date-time"
+                />
               </div>
             </div>
-            <div className="w-1/2">
+            <div className="w-1/2 flex flex-col mx-auto items-center text-left">
               <h2 className="text-gray-900 font-bold text-lg">
                 Car -{" "}
                 <span className="text-blue-500">
