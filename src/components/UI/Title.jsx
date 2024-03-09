@@ -6,5 +6,9 @@ export default function Title({ title, textLeft }) {
     classes += " mx-auto";
   }
 
+  if (textLeft) {
+    classes += " mx-auto lg:mx-0 xl:mx-0";
+  }
+
   return <h2 className={classes}>{title}</h2>;
 }

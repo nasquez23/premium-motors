@@ -17,9 +17,9 @@ export default function HowItWorks() {
         <h3 className="text-gray-700 text-3xl text-center font-semibold mb-16">
           Buy a Car
         </h3>
-        <div className="flex flex-row w-2/3 justify-between m-auto gap-40 text-gray-700">
-          <article className="w-3/4 text-center">
-            <div className="w-20 h-20 bg-blue-100 text-center items-center rounded-lg text-3xl pt-6 mb-8 ml-[72px]">
+        <div className="flex flex-col lg:flex-row w-2/3 sm:w-full md:w-full lg:w-2/3 lg:justify-between m-auto gap-20 lg:gap-40 xl:gap-40 text-gray-700">
+          <article className="w-full lg:w-3/4 text-center">
+            <div className="w-20 h-20 bg-blue-100 text-center items-center rounded-lg text-3xl pt-6 mb-8 lg:ml-[72px] mx-auto">
               <FontAwesomeIcon icon={faCar} className="text-blue-600" />
             </div>
             <h3 className="text-2xl font-semibold mb-4">
@@ -29,8 +29,8 @@ export default function HowItWorks() {
               Discover a diverse range of high-quality cars in our inventory.
             </p>
           </article>
-          <article className="w-3/4 text-center">
-            <div className="w-20 h-20 bg-blue-100 text-center rounded-lg text-3xl pt-6 mb-8 ml-16">
+          <article className="w-full lg:w-3/4 text-center">
+            <div className="w-20 h-20 bg-blue-100 text-center rounded-lg text-3xl pt-6 mb-8 mx-auto lg:ml-16">
               <FontAwesomeIcon icon={faCalendarAlt} className="text-blue-600" />
             </div>
             <h3 className="text-2xl font-semibold mb-12">
@@ -41,8 +41,8 @@ export default function HowItWorks() {
               convenience.
             </p>
           </article>
-          <article className="w-3/4 text-center">
-            <div className="w-20 h-20 bg-blue-100 text-center items-center rounded-lg text-3xl pt-6 mb-8 ml-[72px]">
+          <article className="w-full lg:w-3/4 text-center">
+            <div className="w-20 h-20 bg-blue-100 text-center items-center rounded-lg text-3xl pt-6 mb-8 mx-auto lg:ml-[72px]">
               <FontAwesomeIcon
                 icon={faClipboardCheck}
                 className="text-blue-600"
@@ -58,13 +58,13 @@ export default function HowItWorks() {
           </article>
         </div>
       </section>
-      <section className="mt-16">
+      <section className="mt-32 lg:mt-16">
         <h3 className="text-gray-700 text-3xl text-center font-semibold mb-16">
           Rent a Car
         </h3>
-        <div className="flex flex-row w-2/3 justify-between m-auto gap-40 text-gray-700">
-          <article className="w-3/4 text-center">
-            <div className="w-20 h-20 bg-blue-100 text-center items-center rounded-lg text-3xl pt-6 mb-8 ml-[72px]">
+        <div className="flex flex-col sm:flex-col lg:flex-row w-2/3 sm:w-full lg:w-2/3 justify-between m-auto gap-20 lg:gap-40 xl:gap-40 text-gray-700">
+          <article className="w-full lg:w-3/4 text-center">
+            <div className="w-20 h-20 bg-blue-100 text-center items-center rounded-lg text-3xl pt-6 mb-8 mx-auto lg:ml-[72px]">
               <FontAwesomeIcon icon={faCarSide} className="text-blue-600" />
             </div>
             <h3 className="text-2xl font-semibold mb-4">Choose Your Car</h3>
@@ -73,8 +73,8 @@ export default function HowItWorks() {
               needs.
             </p>
           </article>
-          <article className="w-3/4 text-center">
-            <div className="w-20 h-20 bg-blue-100 text-center rounded-lg text-3xl pt-6 mb-8 ml-16">
+          <article className="w-full lg:w-3/4 text-center">
+            <div className="w-20 h-20 bg-blue-100 text-center rounded-lg text-3xl pt-6 mb-8 mx-auto lg:ml-16">
               <FontAwesomeIcon
                 icon={faCalendarPlus}
                 className="text-blue-600"
@@ -86,8 +86,8 @@ export default function HowItWorks() {
               preferred rental dates.
             </p>
           </article>
-          <article className="w-3/4 text-center">
-            <div className="w-20 h-20 bg-blue-100 text-center items-center rounded-lg text-3xl pt-6 mb-8 ml-[72px]">
+          <article className="w-full lg:w-3/4 text-center">
+            <div className="w-20 h-20 bg-blue-100 text-center items-center rounded-lg text-3xl pt-6 mb-8 mx-auto lg:ml-[72px]">
               <FontAwesomeIcon
                 icon={faUserAlt}
                 className="text-blue-600"

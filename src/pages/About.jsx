@@ -7,7 +7,7 @@ export default function About() {
       <PageHeader title="About Premium Motors" />
       <div className="pt-6 w-2/3 mx-auto mb-32">
         <Title title="About Us" />
-        <div className="text-gray-600 text-xl font-semibold">
+        <div className="text-gray-600 text-xl font-semibold text-left md:text-center lg:text-left">
           <p className="my-10">
             Welcome to Premium Motors – Your Trusted Partner in Exceptional Cars
           </p>
@@ -18,7 +18,7 @@ export default function About() {
             redefine driving.
           </p>
         </div>
-        <div className="text-gray-700 mt-12">
+        <div className="text-gray-700 mt-12 text-left md:text-center lg:text-left">
           <h2 className="font-bold text-2xl mb-6">Our Mission</h2>
           <p className="text-xl">
             Our mission is to provide our customers with access to top-tier
@@ -28,7 +28,7 @@ export default function About() {
             ordinary.
           </p>
         </div>
-        <div className="text-gray-700 mt-12">
+        <div className="text-gray-700 mt-12 text-left md:text-center lg:text-left">
           <h2 className="font-bold text-2xl mb-6">Commitment to Excellence</h2>
           <p className="text-xl">
             What sets us apart is our unwavering commitment to excellence. From
@@ -39,7 +39,7 @@ export default function About() {
             preferences and lifestyle.
           </p>
         </div>
-        <div className="text-gray-700 mt-12">
+        <div className="text-gray-700 mt-12 text-left md:text-center lg:text-left">
           <h2 className="font-bold text-2xl mb-6">Quality Assurance</h2>
           <p className="text-xl">
             Each car in our collection undergoes rigorous inspection and
@@ -48,7 +48,7 @@ export default function About() {
             transparency and peace of mind to every customer.
           </p>
         </div>
-        <div className="text-gray-700 mt-12">
+        <div className="text-gray-700 mt-12 text-left md:text-center lg:text-left">
           <h2 className="font-bold text-2xl mb-6">Visit Us</h2>
           <p className="text-xl">
             Experience the difference at Premium Motors. Visit our showroom to

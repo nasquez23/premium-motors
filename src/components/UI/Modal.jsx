@@ -23,7 +23,7 @@ export default function Modal({ children, closeModal }) {
       />
       <dialog
         open
-        className="fixed z-50 w-1/2 mx-auto bg-white overflow-y-scroll h-[42rem] top-6 left-0"
+        className="fixed z-50 w-[80%] lg:w-1/2 xl:w-1/2 mx-auto bg-white overflow-y-scroll h-[42rem] top-6 left-0"
       >
         {children}
       </dialog>

@@ -13,14 +13,14 @@ export default function Testemonials() {
           backgroundImage: `url(${quotes})`,
           backgroundRepeat: "repeat",
           backgroundSize: "50% 30%",
-          backgroundPosition: 'center'
+          backgroundPosition: "center",
         }}
       ></div>
       <Title title="Testemonials" />
       <h2 className="text-3xl text-gray-700 font-semibold mt-4 mb-20 relative">
         What our customers say about us?
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-1 md:gap-y-12 lg:grid-cols-2 xl:grid-cols-2 justify-center relative w-[90%] mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-1 gap-y-12 md:gap-y-12 lg:gap-y-0 xl:gap-y-0 sm:gap-y-12 lg:grid-cols-2 xl:grid-cols-2 justify-center relative w-[90%] mx-auto">
         <TestemonialCard
           image={LebronJames}
           stars="5.0"
@@ -31,7 +31,7 @@ export default function Testemonials() {
         <TestemonialCard
           image={DonaldTrump}
           stars="4.5"
-          text="Exceptional service and a wide selection of top-notch cars at Premium Motors. The team made the car-buying process smooth, and I couldn't be happier with my new ride. Highly recommended!"
+          text="Exceptional service and a wide selection of top-notch cars at Premium Motors. The team made the car-buying process smooth, and I couldn't be happier with my new ride."
           name="Donald Trump"
           from="New York, New York"
         />

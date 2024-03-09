@@ -47,7 +47,7 @@ export default function CarCard({ car }) {
     <>
       {showModal && (
         <Modal closeModal={handleCloseModal}>
-          <div className="flex flex-row justify-between px-5 bg-blue-500 h-14">
+          <div className="flex flex-row justify-between px-5 bg-blue-500 h-14 w-full">
             <h2 className="uppercase font-semibold text-white text-2xl pt-3">
               Complete Reservation
             </h2>
@@ -58,8 +58,8 @@ export default function CarCard({ car }) {
               X
             </button>
           </div>
-          <div className="flex flex-row border-b border-gray-500 mt-8">
-            <div className="w-1/2 px-6 pb-10">
+          <div className="flex flex-col lg:flex-row xl:flex-row border-b border-gray-500 mt-8">
+            <div className="w-full lg:w-1/2 xl:w-1/2 px-6 pb-10">
               <h2 className="uppercase text-blue-500 text-xl font-semibold">
                 Location & Date
               </h2>
@@ -91,8 +91,8 @@ export default function CarCard({ car }) {
                 />
               </div>
             </div>
-            <div className="w-1/2 flex flex-col mx-auto items-center text-left">
-              <h2 className="text-gray-900 font-bold text-lg">
+            <div className="lg:w-1/2 xl:w-1/2 mb-10 lg:mb-0 xl:mb-0 flex flex-col mx-auto items-center text-left">
+              <h2 className="text-gray-900 font-bold text-lg mb-4 lg:mb-0 xl:mb-0">
                 Car -{" "}
                 <span className="text-blue-500">
                   {car.manufacturer} {car.model}
@@ -225,8 +225,8 @@ export default function CarCard({ car }) {
                   required
                 />
               </div>
-              <div className="flex justify-end">
-                <button className="h-16 bg-blue-500 text-white font-semibold rounded-md w-1/3 text-xl mt-10 shadow-md shadow-gray-500 hover:bg-blue-700 transition duration-300">
+              <div className="flex justify-center lg:justify-end xl:justify-end">
+                <button className="h-16 bg-blue-500 text-white font-semibold rounded-md w-2/3 lg:w-1/3 xl:w-1/3 text-xl mt-10 shadow-md shadow-gray-500 hover:bg-blue-700 transition duration-300">
                   Reserve
                 </button>
               </div>
@@ -234,6 +234,7 @@ export default function CarCard({ car }) {
           </div>
         </Modal>
       )}
+
       <div className="w-full h-[35rem] text-left rounded-lg overflow-hidden shadow-lg shadow-gray-500">
         <img
           src={carImage}
@@ -247,13 +248,13 @@ export default function CarCard({ car }) {
           <div className="flex gap-2 text-2xl pt-2 pb-6">
             <FontAwesomeIcon icon={faCalendar} className="h-6" />
             {car.year}
-            <FontAwesomeIcon icon={faWrench} className="h-6 ml-16" />{" "}
+            <FontAwesomeIcon icon={faWrench} className="h-6 ml-28 lg:ml-16 xl:ml-16" />{" "}
             {car.engine}
           </div>
           <div className="flex gap-2 text-2xl pb-6">
             <FontAwesomeIcon icon={faBolt} className="h-6" />
             {car.power}
-            <FontAwesomeIcon icon={faGear} className="h-6 ml-12" />
+            <FontAwesomeIcon icon={faGear} className="h-6 ml-24 lg:ml-12 xl:ml-12" />
             {car.gearbox}
           </div>
         </div>
@@ -268,7 +269,7 @@ export default function CarCard({ car }) {
         </div>
         <button
           onClick={() => setShowModal(true)}
-          className="text-white font-semibold text-xl h-12 w-[85%] mx-6 mt-5 bg-blue-500 rounded-lg hover:bg-blue-700 transition duration-300"
+          className="text-white font-semibold text-xl h-12 w-[90%] lg:w-[85%] xl:w-[85%] mx-6 mt-5 bg-blue-500 rounded-lg hover:bg-blue-700 transition duration-300"
         >
           {car.price ? "Book Test Drive" : "Rent Now"}
         </button>

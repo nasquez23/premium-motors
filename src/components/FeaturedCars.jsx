@@ -25,23 +25,23 @@ export default function FeaturedCars() {
   return (
     <section className="text-center mt-40 h-[50rem]">
       <Title title="Featured Cars" />
-      <h2 className="text-3xl font-semibold text-gray-700 mb-28">
+      <h2 className="text-3xl font-semibold text-gray-700 mb-14 lg:mb-28 xl:mb-28">
         Explore Our Inventory
       </h2>
       <div className="relative flex items-center justify-center h-96">
         <button
           onClick={handlePrevCar}
-          className="absolute text-white bg-blue-500 p-3 rounded-full top-[60%] left-[30%] hover:bg-blue-700 transition duration-200"
+          className="absolute text-white bg-blue-500 p-3 rounded-full top-[60%] left-4 lg:left-[30%] xl:left-[30%] hover:bg-blue-700 transition duration-200"
         >
           {"<"}
         </button>
         <button
           onClick={handleNextCar}
-          className="absolute text-white bg-blue-500 p-3 rounded-full top-[60%] right-[30%] hover:bg-blue-700 transition duration-200"
+          className="absolute text-white bg-blue-500 p-3 rounded-full top-[60%] right-4 lg:right-[30%] xl:right-[30%] hover:bg-blue-700 transition duration-200"
         >
           {">"}
         </button>
-        <div className="w-1/4 h-full">
+        <div className="w-3/4 lg:w-1/4 xl:w-1/4 h-full">
           <CarCard key={currentCar} car={allCars[currentCar]} />
           <button
             onClick={() => window.scrollTo(0, 0)}

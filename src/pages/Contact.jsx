@@ -16,14 +16,14 @@ export default function Contact() {
   return (
     <>
       <PageHeader title="Contact Premium Motors" />
-      <div className="pt-6 w-3/4 mx-auto">
+      <div className="pt-6 w-3/4 mx-auto md:w-full lg:w-3/4">
         <Title title="Contact Us" />
-        <div className="flex flex-row h-[32rem] mt-12 mb-32">
-          <div className="w-1/2">
+        <div className="flex flex-col md:flex-col lg:flex-row h-full md:h-full lg:h-[32rem] mt-12 mb-32">
+          <div className="w-full md:w-full lg:w-1/2 text-center md:text-center lg:text-left">
             <h2 className="text-4xl text-gray-800 font-semibold mb-10 mt-4">
               Get In Touch
             </h2>
-            <p className="text-xl text-gray-600 w-3/4 mb-10">
+            <p className="text-xl mx-auto text-gray-600 w-full md:w-4/5 md:mx-auto lg:mx-0 lg:w-3/4 mb-10">
               Have questions, feedback, or looking to explore our premium cars?
               Contact us using the details below, or fill out the form, and
               we'll get back to you.
@@ -59,7 +59,7 @@ export default function Contact() {
           </div>
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col w-1/2 text-gray-800 px-4 mt-4"
+            className="flex flex-col w-full md:w-full lg:w-1/2 text-gray-800 text-left md:text-center lg:text-left lg:px-4 xl:px-4 mt-20 lg:mt-4 xl:mt-4"
           >
             <label className="text-xl font-bold mb-4" htmlFor="name">
               Full Name
@@ -93,7 +93,7 @@ export default function Contact() {
               placeholder="Your Message"
               required
             />
-            <button className="mt-6 w-full bg-blue-600 h-20 text-xl font-semibold text-white rounded shadow-md shadow-blue-800 hover:shadow-lg hover:bg-blue-800 hover:shadow-blue-900 transition duration-300">
+            <button className="mt-6 w-full bg-blue-600 h-20 md:h-16 lg:h-20 text-xl font-semibold text-white rounded shadow-md shadow-blue-800 hover:shadow-lg hover:bg-blue-800 hover:shadow-blue-900 transition duration-300">
               <FontAwesomeIcon className="pr-4" icon={faPaperPlane} />
               Send Message
             </button>
