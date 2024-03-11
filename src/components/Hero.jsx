@@ -9,7 +9,7 @@ export default function Hero() {
         <h2 className="text-6xl text-gray-900 font-semibold mt-20 lg:mt-10 xl:mt-10">
           Find Your Perfect Ride
         </h2>
-        <p className="text-2xl text-gray-800 mt-10 xl:mt-6 lg:mt-6">
+        <p className="text-2xl text-gray-800 mt-10 xl:mt-6 lg:mt-6 max-lg:w-[90%] max-lg:mx-auto">
           Explore a wide range of high-quality cars at affordable prices. Your
           dream car awaits.
         </p>

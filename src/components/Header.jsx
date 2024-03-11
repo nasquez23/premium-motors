@@ -26,7 +26,7 @@ export default function Header() {
       </Link>
       <button
         onClick={toggleNavigaton}
-        className="block xl:hidden lg:hidden text-black pr-10 hover:text-blue-500"
+        className="block xl:hidden lg:hidden text-gray-800 pr-10 hover:text-blue-500"
       >
         <FontAwesomeIcon icon={faBars} className="w-full h-8" />
       </button>
