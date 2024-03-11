@@ -167,7 +167,7 @@ export default function CarCard({ car }) {
               <div className="flex flex-col">
                 <label
                   htmlFor="email"
-                  className="text-gray-500 font-semibold text-lg"
+                  className="text-gray-500 font-semibold text-lg text-left"
                 >
                   Email
                 </label>
@@ -182,7 +182,7 @@ export default function CarCard({ car }) {
 
                 <label
                   htmlFor="address"
-                  className="text-gray-500 font-semibold text-lg"
+                  className="text-gray-500 font-semibold text-lg text-left"
                 >
                   Address
                 </label>
@@ -198,13 +198,13 @@ export default function CarCard({ car }) {
               <div className="grid grid-cols-2 gap-x-6">
                 <label
                   htmlFor="city"
-                  className="text-gray-500 font-semibold text-lg"
+                  className="text-gray-500 font-semibold text-lg text-left"
                 >
                   City
                 </label>
                 <label
                   htmlFor="zip"
-                  className="text-gray-500 font-semibold text-lg"
+                  className="text-gray-500 font-semibold text-lg text-left"
                 >
                   Zip Code
                 </label>
@@ -254,7 +254,7 @@ export default function CarCard({ car }) {
           <div className="flex gap-2 text-2xl pb-6">
             <FontAwesomeIcon icon={faBolt} className="h-6" />
             {car.power}
-            <FontAwesomeIcon icon={faGear} className="h-6 ml-24 lg:ml-12 xl:ml-12" />
+            <FontAwesomeIcon icon={faGear} className="h-6 ml-[88px] lg:ml-10 xl:ml-10" />
             {car.gearbox}
           </div>
         </div>

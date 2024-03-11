@@ -33,7 +33,7 @@ export default function HowItWorks() {
             <div className="w-20 h-20 bg-blue-100 text-center rounded-lg text-3xl pt-6 mb-8 mx-auto lg:ml-16">
               <FontAwesomeIcon icon={faCalendarAlt} className="text-blue-600" />
             </div>
-            <h3 className="text-2xl font-semibold mb-12">
+            <h3 className="text-2xl font-semibold mb-4">
               Schedule a Test Drive
             </h3>
             <p className="w-full text-gray-600">

@@ -20,7 +20,7 @@ export default function Hero() {
       <img
         src={Koenigsegg}
         alt="Koenigsegg"
-        className="hidden lg:block h-2/3 w-2/3 -mr-24"
+        className="hidden lg:block h-2/3 w-2/3 -mr-32"
       />
     </section>
   );

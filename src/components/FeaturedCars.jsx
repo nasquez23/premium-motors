@@ -1,9 +1,10 @@
 import { useState } from "react";
 
+import { Link } from "react-router-dom";
+
 import Title from "./UI/Title";
 import { carsForSale, carsForRent } from "../data/cars.js";
 import CarCard from "./CarCard.jsx";
-import { Link } from "react-router-dom";
 
 export default function FeaturedCars() {
   const allCars = carsForSale.concat(carsForRent);
