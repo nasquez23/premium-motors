@@ -1,12 +1,15 @@
 import { useState } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import logo from "../assets/logo.png";
 
 export default function Header() {
+  const location = useLocation();
+
   const [openNav, setOpenNav] = useState(false);
 
   if (openNav) {
@@ -30,63 +33,91 @@ export default function Header() {
       >
         <FontAwesomeIcon icon={faBars} className="w-full h-8" />
       </button>
-      {openNav && (
-        <div className="top-0 left-0 w-full h-full bg-white z-50 fixed lg:hidden xl:hidden">
-          <div className="flex justify-end mx-10 mt-10">
-            <button
-              onClick={toggleNavigaton}
-              className="text-black text-4xl font-semibold hover:text-blue-500 transition duration-300"
-            >
-              <FontAwesomeIcon icon={faTimes} />
-            </button>
-          </div>
-          <ul className="text-center text-3xl text-gray-800 font-semibold mt-28">
-            <li className="py-4">
-              <Link
-                to="/"
+      <AnimatePresence>
+        {openNav && (
+          <motion.div
+            initial={{ x: -800 }}
+            animate={{ x: 0 }}
+            exit={{ x: -800, transition: { duration: 1 } }}
+            transition={{ duration: 0.8 }}
+            className="top-0 left-0 w-full h-full bg-white z-50 fixed lg:hidden xl:hidden"
+          >
+            <div className="flex justify-end mx-10 mt-10">
+              <button
                 onClick={toggleNavigaton}
-                className="hover:text-blue-500 transition duration-300"
+                className="text-black text-4xl font-semibold hover:text-blue-500 transition duration-300"
               >
-                Home
-              </Link>
-            </li>
-            <li className="py-4">
-              <Link
-                to="/about"
-                onClick={toggleNavigaton}
-                className="hover:text-blue-500 transition duration-300"
-              >
-                About
-              </Link>
-            </li>
-            <li className="py-4">
-              <Link
-                to="/cars"
-                onClick={toggleNavigaton}
-                className="hover:text-blue-500 transition duration-300"
-              >
-                Cars
-              </Link>
-            </li>
-            <li className="py-4">
-              <Link
-                to="/contact"
-                onClick={toggleNavigaton}
-                className="hover:text-blue-500 transition duration-300"
-              >
-                Contact
-              </Link>
-            </li>
-          </ul>
-        </div>
-      )}
+                <FontAwesomeIcon icon={faTimes} />
+              </button>
+            </div>
+            <ul className="text-center text-3xl text-gray-800 font-semibold mt-28">
+              <li className="py-4">
+                <Link
+                  to="/"
+                  onClick={toggleNavigaton}
+                  className={
+                    location.pathname === "/"
+                      ? "text-blue-500 hover:text-blue-600 transition duration-300"
+                      : "hover:text-blue-500 transition duration-300"
+                  }
+                >
+                  Home
+                </Link>
+              </li>
+              <li className="py-4">
+                <Link
+                  to="/about"
+                  onClick={toggleNavigaton}
+                  className={
+                    location.pathname === "/about"
+                      ? "text-blue-500 hover:text-blue-600 transition duration-300"
+                      : "hover:text-blue-500 transition duration-300"
+                  }
+                >
+                  About
+                </Link>
+              </li>
+              <li className="py-4">
+                <Link
+                  to="/cars"
+                  onClick={toggleNavigaton}
+                  className={
+                    location.pathname === "/cars"
+                      ? "text-blue-500 hover:text-blue-600 transition duration-300"
+                      : "hover:text-blue-500 transition duration-300"
+                  }
+                >
+                  Cars
+                </Link>
+              </li>
+              <li className="py-4">
+                <Link
+                  to="/contact"
+                  onClick={toggleNavigaton}
+                  className={
+                    location.pathname === "/contact"
+                      ? "text-blue-500 hover:text-blue-600 transition duration-300"
+                      : "hover:text-blue-500 transition duration-300"
+                  }
+                >
+                  Contact
+                </Link>
+              </li>
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <nav className="hidden xl:block lg:block">
         <ul className="flex flex-row gap-8 mr-4 text-xl text-gray-700 font-semibold">
           <li>
             <Link
               to="/"
-              className="hover:text-blue-500 transition duration-300"
+              className={
+                location.pathname === "/"
+                  ? "text-blue-500 hover:text-blue-600 transition duration-300"
+                  : "hover:text-blue-500 transition duration-300"
+              }
             >
               Home
             </Link>
@@ -94,7 +125,11 @@ export default function Header() {
           <li>
             <Link
               to="/about"
-              className="hover:text-blue-500 transition duration-300"
+              className={
+                location.pathname === "/about"
+                  ? "text-blue-500 hover:text-blue-600 transition duration-300"
+                  : "hover:text-blue-500 transition duration-300"
+              }
             >
               About
             </Link>
@@ -102,7 +137,11 @@ export default function Header() {
           <li>
             <Link
               to="/cars"
-              className="hover:text-blue-500 transition duration-300"
+              className={
+                location.pathname === "/cars"
+                  ? "text-blue-500 hover:text-blue-600 transition duration-300"
+                  : "hover:text-blue-500 transition duration-300"
+              }
             >
               Cars
             </Link>
@@ -110,7 +149,11 @@ export default function Header() {
           <li>
             <Link
               to="/contact"
-              className="hover:text-blue-500 transition duration-300"
+              className={
+                location.pathname === "/contact"
+                  ? "text-blue-500 hover:text-blue-600 transition duration-300"
+                  : "hover:text-blue-500 transition duration-300"
+              }
             >
               Contact
             </Link>

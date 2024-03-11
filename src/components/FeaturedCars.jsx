@@ -10,17 +10,20 @@ export default function FeaturedCars() {
   const allCars = carsForSale.concat(carsForRent);
 
   const [currentCar, setCurrentCar] = useState(0);
+  const [switchDirection, setSwitchDirection] = useState("");
 
   function handleNextCar() {
     setCurrentCar((prevState) =>
       prevState === allCars.length - 1 ? 0 : prevState + 1
     );
+    setSwitchDirection("right");
   }
 
   function handlePrevCar() {
     setCurrentCar((prevState) =>
       prevState === 0 ? allCars.length - 1 : prevState - 1
     );
+    setSwitchDirection("left");
   }
 
   return (
@@ -43,7 +46,11 @@ export default function FeaturedCars() {
           {">"}
         </button>
         <div className="w-3/4 lg:w-1/4 xl:w-1/4 h-full">
-          <CarCard key={currentCar} car={allCars[currentCar]} />
+          <CarCard
+            key={currentCar}
+            car={allCars[currentCar]}
+            direction={switchDirection}
+          />
           <button
             onClick={() => window.scrollTo(0, 0)}
             className="text-gray-600 font-semibold mt-16 h-12 w-[60%] border-gray-400 border rounded-lg pb-2 hover:text-gray-800 hover:border-gray-600 hover:border-2"
