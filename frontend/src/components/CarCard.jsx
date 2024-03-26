@@ -45,6 +45,21 @@ export default function CarCard({ car, direction }) {
     setShowModal(false);
   }
 
+  function handleSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+    data.car = `${car.manufacturer} ${car.model}`;
+
+    fetch("http://localhost:3000/reservation", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+  }
+
   return (
     <>
       <AnimatePresence>
@@ -61,186 +76,194 @@ export default function CarCard({ car, direction }) {
                 X
               </button>
             </div>
-            <div className="flex flex-col lg:flex-row xl:flex-row border-b border-gray-500 mt-8">
-              <div className="w-full lg:w-1/2 xl:w-1/2 px-6 pb-10">
+            <form onSubmit={handleSubmit}>
+              <div className="flex flex-col lg:flex-row xl:flex-row border-b border-gray-500 mt-8">
+                <div className="w-full lg:w-1/2 xl:w-1/2 px-6 pb-10">
+                  <h2 className="uppercase text-blue-500 text-xl font-semibold">
+                    Location & Date
+                  </h2>
+                  <div className="flex flex-col mt-4">
+                    <label
+                      htmlFor="location"
+                      className="text-gray-900 font-semibold text-lg mb-2"
+                    >
+                      <FontAwesomeIcon className="mr-2" icon={faMapMarkerAlt} />
+                      Pick-up Location
+                    </label>
+                    <input
+                      className="bg-gray-200 h-10 p-4 mb-6 focus:outline-blue-500 rounded"
+                      type="text"
+                      id="location"
+                      name="location"
+                      placeholder="Location"
+                      required
+                    />
+                    <label
+                      htmlFor="date-time"
+                      className="text-gray-900 font-semibold text-lg mb-2"
+                    >
+                      <FontAwesomeIcon className="mr-2" icon={faCalendar} />
+                      Pick-up Date & Time
+                    </label>
+                    <input
+                      className="bg-gray-200 h-10 p-4 focus:outline-blue-500 rounded"
+                      type="datetime-local"
+                      name="date"
+                      id="date-time"
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="lg:w-1/2 xl:w-1/2 mb-10 lg:mb-0 xl:mb-0 flex flex-col mx-auto items-center text-left">
+                  <h2 className="text-gray-900 font-bold text-lg mb-4 lg:mb-0 xl:mb-0">
+                    Car -{" "}
+                    <span className="text-blue-500">
+                      {car.manufacturer} {car.model}
+                    </span>
+                  </h2>
+                  <img src={carImage} className="size-[80%] object-contain" />
+                </div>
+              </div>
+              <div className="w-full mx-auto px-6 mt-6">
                 <h2 className="uppercase text-blue-500 text-xl font-semibold">
-                  Location & Date
+                  Personal Information
                 </h2>
-                <div className="flex flex-col mt-4">
-                  <label
-                    htmlFor="location"
-                    className="text-gray-900 font-semibold text-lg mb-2"
-                  >
-                    <FontAwesomeIcon className="mr-2" icon={faMapMarkerAlt} />
-                    Pick-up Location
-                  </label>
-                  <input
-                    className="bg-gray-200 h-10 p-4 mb-6 focus:outline-blue-500 rounded"
-                    type="text"
-                    id="location"
-                    placeholder="Location"
-                  />
-                  <label
-                    htmlFor="date-time"
-                    className="text-gray-900 font-semibold text-lg mb-2"
-                  >
-                    <FontAwesomeIcon className="mr-2" icon={faCalendar} />
-                    Pick-up Date & Time
-                  </label>
-                  <input
-                    className="bg-gray-200 h-10 p-4 focus:outline-blue-500 rounded"
-                    type="datetime-local"
-                    id="date-time"
-                  />
-                </div>
-              </div>
-              <div className="lg:w-1/2 xl:w-1/2 mb-10 lg:mb-0 xl:mb-0 flex flex-col mx-auto items-center text-left">
-                <h2 className="text-gray-900 font-bold text-lg mb-4 lg:mb-0 xl:mb-0">
-                  Car -{" "}
-                  <span className="text-blue-500">
-                    {car.manufacturer} {car.model}
-                  </span>
-                </h2>
-                <img src={carImage} className="size-[80%] object-contain" />
-              </div>
-            </div>
-            <div className="w-full mx-auto px-6 mt-6">
-              <h2 className="uppercase text-blue-500 text-xl font-semibold">
-                Personal Information
-              </h2>
-              <form className="mt-8 pb-10">
-                <div className="grid grid-cols-2 text-left gap-x-6">
-                  <label
-                    htmlFor="first-name"
-                    className="text-gray-500 font-semibold text-lg mb-2"
-                  >
-                    First Name
-                  </label>
-                  <label
-                    htmlFor="last-name"
-                    className="text-gray-500 font-semibold text-lg mb-2"
-                  >
-                    Last Name
-                  </label>
-                  <input
-                    className="bg-gray-200 h-12 p-4 focus:outline-blue-500 mb-4 rounded"
-                    id="first-name"
-                    name="first-name"
-                    type="text"
-                    placeholder="First Name"
-                    required
-                  />
-                  <input
-                    className="bg-gray-200 h-12 p-4 focus:outline-blue-500 mb-4 rounded"
-                    id="last-name"
-                    name="first-name"
-                    type="text"
-                    placeholder="Last Name"
-                    required
-                  />
-                  <label
-                    htmlFor="phone"
-                    className="text-gray-500 font-semibold text-lg"
-                  >
-                    Phone Number
-                  </label>
-                  <label
-                    htmlFor="age"
-                    className="text-gray-500 font-semibold text-lg"
-                  >
-                    Age
-                  </label>
-                  <input
-                    className="bg-gray-200 h-12 p-4 focus:outline-blue-500 mb-4 rounded"
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    placeholder="Phone Number"
-                    required
-                  />
-                  <input
-                    className="bg-gray-200 h-12 p-4 focus:outline-blue-500 rounded"
-                    id="age"
-                    name="age"
-                    type="number"
-                    placeholder="Age"
-                    required
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <label
-                    htmlFor="email"
-                    className="text-gray-500 font-semibold text-lg text-left"
-                  >
-                    Email
-                  </label>
-                  <input
-                    className="bg-gray-200 h-12 p-4 mb-4 focus:outline-blue-500 rounded"
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="Email Address"
-                    required
-                  />
+                <div className="mt-8 pb-10">
+                  <div className="grid grid-cols-2 text-left gap-x-6">
+                    <label
+                      htmlFor="first-name"
+                      className="text-gray-500 font-semibold text-lg mb-2"
+                    >
+                      First Name
+                    </label>
+                    <label
+                      htmlFor="last-name"
+                      className="text-gray-500 font-semibold text-lg mb-2"
+                    >
+                      Last Name
+                    </label>
+                    <input
+                      className="bg-gray-200 h-12 p-4 focus:outline-blue-500 mb-4 rounded"
+                      id="first-name"
+                      name="firstName"
+                      type="text"
+                      placeholder="First Name"
+                      required
+                    />
+                    <input
+                      className="bg-gray-200 h-12 p-4 focus:outline-blue-500 mb-4 rounded"
+                      id="last-name"
+                      name="lastName"
+                      type="text"
+                      placeholder="Last Name"
+                      required
+                    />
+                    <label
+                      htmlFor="phone"
+                      className="text-gray-500 font-semibold text-lg"
+                    >
+                      Phone Number
+                    </label>
+                    <label
+                      htmlFor="age"
+                      className="text-gray-500 font-semibold text-lg"
+                    >
+                      Age
+                    </label>
+                    <input
+                      className="bg-gray-200 h-12 p-4 focus:outline-blue-500 mb-4 rounded"
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      placeholder="Phone Number"
+                      required
+                    />
+                    <input
+                      className="bg-gray-200 h-12 p-4 focus:outline-blue-500 rounded"
+                      id="age"
+                      name="age"
+                      type="number"
+                      min={18}
+                      max={70}
+                      placeholder="Age"
+                      required
+                    />
+                  </div>
+                  <div className="flex flex-col">
+                    <label
+                      htmlFor="email"
+                      className="text-gray-500 font-semibold text-lg text-left"
+                    >
+                      Email
+                    </label>
+                    <input
+                      className="bg-gray-200 h-12 p-4 mb-4 focus:outline-blue-500 rounded"
+                      id="email"
+                      name="email"
+                      type="email"
+                      placeholder="Email Address"
+                      required
+                    />
 
-                  <label
-                    htmlFor="address"
-                    className="text-gray-500 font-semibold text-lg text-left"
-                  >
-                    Address
-                  </label>
-                  <input
-                    className="bg-gray-200 h-12 p-4 mb-4 focus:outline-blue-500 rounded"
-                    id="address"
-                    name="address"
-                    type="text"
-                    placeholder="Address"
-                    required
-                  />
+                    <label
+                      htmlFor="address"
+                      className="text-gray-500 font-semibold text-lg text-left"
+                    >
+                      Address
+                    </label>
+                    <input
+                      className="bg-gray-200 h-12 p-4 mb-4 focus:outline-blue-500 rounded"
+                      id="address"
+                      name="address"
+                      type="text"
+                      placeholder="Address"
+                      required
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 gap-x-6">
+                    <label
+                      htmlFor="city"
+                      className="text-gray-500 font-semibold text-lg text-left"
+                    >
+                      City
+                    </label>
+                    <label
+                      htmlFor="zip"
+                      className="text-gray-500 font-semibold text-lg text-left"
+                    >
+                      Zip Code
+                    </label>
+                    <input
+                      className="bg-gray-200 h-12 p-4 focus:outline-blue-500 rounded"
+                      id="city"
+                      name="city"
+                      type="text"
+                      placeholder="City"
+                      required
+                    />
+                    <input
+                      className="bg-gray-200 h-12 p-4 focus:outline-blue-500 rounded"
+                      id="zip"
+                      name="zip"
+                      type="text"
+                      placeholder="Zip Code"
+                      required
+                    />
+                  </div>
+                  <div className="flex justify-center lg:justify-end xl:justify-end">
+                    <button className="h-16 bg-blue-500 text-white font-semibold rounded-md w-2/3 lg:w-1/3 xl:w-1/3 text-xl mt-10 shadow-md shadow-gray-500 hover:bg-blue-700 transition duration-300">
+                      Reserve
+                    </button>
+                  </div>
                 </div>
-                <div className="grid grid-cols-2 gap-x-6">
-                  <label
-                    htmlFor="city"
-                    className="text-gray-500 font-semibold text-lg text-left"
-                  >
-                    City
-                  </label>
-                  <label
-                    htmlFor="zip"
-                    className="text-gray-500 font-semibold text-lg text-left"
-                  >
-                    Zip Code
-                  </label>
-                  <input
-                    className="bg-gray-200 h-12 p-4 focus:outline-blue-500 rounded"
-                    id="city"
-                    name="city"
-                    type="text"
-                    placeholder="City"
-                    required
-                  />
-                  <input
-                    className="bg-gray-200 h-12 p-4 focus:outline-blue-500 rounded"
-                    id="zip"
-                    name="zip"
-                    type="text"
-                    placeholder="Zip Code"
-                    required
-                  />
-                </div>
-                <div className="flex justify-center lg:justify-end xl:justify-end">
-                  <button className="h-16 bg-blue-500 text-white font-semibold rounded-md w-2/3 lg:w-1/3 xl:w-1/3 text-xl mt-10 shadow-md shadow-gray-500 hover:bg-blue-700 transition duration-300">
-                    Reserve
-                  </button>
-                </div>
-              </form>
-            </div>
+              </div>
+            </form>
           </Modal>
         )}
       </AnimatePresence>
 
       <motion.div
-        initial={{ opacity: 0, x: direction === "right" ? 30 : -30}}
+        initial={{ opacity: 0, x: direction === "right" ? 30 : -30 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
         className="w-full h-[35rem] text-left rounded-lg overflow-hidden shadow-lg shadow-gray-500"
