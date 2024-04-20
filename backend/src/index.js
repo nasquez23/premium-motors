@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const { config } = require("dotenv");
 const cors = require("cors");
 const reservationRoutes = require("./routes/reservation-routes");
+const userRoutes = require("./routes/user-routes");
 const HttpError = require("./models/http-error");
 
 config();
@@ -13,6 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/reservations", reservationRoutes);
+app.use("/api/users", userRoutes);
 
 app.use((req, res) => {
   throw new HttpError("Could not find this route", 404);
