@@ -1,24 +1,26 @@
+const HttpError = require("../models/http-error");
 const Reservation = require("../models/reservation");
 
-const addReservation = async (req, res) => {
+const addReservation = async (req, res, next) => {
+    const { car, firstName, lastName, phone, age, email, address, city, zip, location, date } = req.body;
     const newReservation = new Reservation({
-        car: req.body.car,
-        name: req.body.firstName + " " + req.body.lastName,
-        phone: req.body.phone,
-        age: req.body.age,
-        email: req.body.email,
-        address: req.body.address,
-        city: req.body.city,
-        zip: req.body.zip,
-        location: req.body.location,
-        date: req.body.date,
+        car,
+        name: firstName + " " + lastName,
+        phone,
+        age,
+        email,
+        address,
+        city,
+        zip,
+        location,
+        date
     });
 
     try {
         const savedReservation = await newReservation.save();
         res.json(savedReservation);
     } catch (error) {
-        res.json(error);
+        return next(new HttpError("Could not add reservation", 500));
     }
 };
 
@@ -27,7 +29,7 @@ const getReservations = async (req, res) => {
         const reservations = await Reservation.find();
         res.json(reservations);
     } catch (error) {
-        res.json(error);
+        return next(new HttpError("Could not fetch reservations", 500));
     }
 };
 
