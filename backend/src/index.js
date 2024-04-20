@@ -1,10 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const dotenv = require("dotenv");
+const { config } = require("dotenv");
 const cors = require("cors");
 const reservationRoutes = require("./routes/reservation-routes");
+const HttpError = require("./models/http-error");
 
-dotenv.config();
+config();
 
 const app = express();
 
@@ -12,6 +13,19 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/reservations", reservationRoutes);
+
+app.use((req, res) => {
+  throw new HttpError("Could not find this route", 404);
+});
+
+app.use((error, req, res, next) => {
+  if (res.headerSent) {
+    return next(error);
+  }
+
+  res.status(error.code || 500);
+  res.json({ message: error.message || 'An unknown error occurred!' });
+});
 
 mongoose.connect(process.env.MONGO_URL).then(() => {
   console.log("Connected to database");
