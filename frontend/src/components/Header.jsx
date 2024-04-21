@@ -23,7 +23,7 @@ export default function Header() {
   };
 
   return (
-    <header className="flex flex-row justify-between items-center px-0 lg:px-5 xl:px-5 mt-auto lg:mx-12 xl:mx-12 h-30 relative z-10">
+    <header className="flex flex-row items-center justify-between lg:px-5 xl:px-5 mt-auto lg:mx-12 xl:mx-12 h-30 relative z-10">
       <Link to="/">
         <img src={logo} alt="Premium Motors Logo" className="h-28" />
       </Link>
@@ -50,8 +50,8 @@ export default function Header() {
                 <FontAwesomeIcon icon={faTimes} />
               </button>
             </div>
-            <ul className="text-center text-3xl text-gray-800 font-semibold mt-28">
-              <li className="py-4">
+            <ul className="text-center text-3xl text-gray-800 font-semibold mt-28 flex flex-col gap-6">
+              <li>
                 <Link
                   to="/"
                   onClick={toggleNavigaton}
@@ -64,7 +64,7 @@ export default function Header() {
                   Home
                 </Link>
               </li>
-              <li className="py-4">
+              <li>
                 <Link
                   to="/about"
                   onClick={toggleNavigaton}
@@ -77,7 +77,7 @@ export default function Header() {
                   About
                 </Link>
               </li>
-              <li className="py-4">
+              <li>
                 <Link
                   to="/cars"
                   onClick={toggleNavigaton}
@@ -90,7 +90,7 @@ export default function Header() {
                   Cars
                 </Link>
               </li>
-              <li className="py-4">
+              <li>
                 <Link
                   to="/contact"
                   onClick={toggleNavigaton}
@@ -103,12 +103,38 @@ export default function Header() {
                   Contact
                 </Link>
               </li>
+              <li>
+                <Link
+                 to="/login" 
+                 onClick={toggleNavigaton} 
+                 className={
+                  location.pathname === "/login"
+                    ? "text-blue-500 hover:text-blue-600 transition duration-300"
+                    : "hover:text-blue-500 transition duration-300"
+                }
+                >
+                  Sign in
+                </Link>
+              </li>
+              <li>
+                <Link
+                 to="/signup" 
+                 onClick={toggleNavigaton} 
+                 className={
+                  location.pathname === "/signup"
+                    ? "text-blue-500 hover:text-blue-600 transition duration-300"
+                    : "hover:text-blue-500 transition duration-300"
+                }
+                >
+                  Sign up
+                </Link>
+              </li>
             </ul>
           </motion.div>
         )}
       </AnimatePresence>
 
-      <nav className="hidden xl:block lg:block">
+      <nav className="flex flex-row gap-20 max-lg:hidden h-full">
         <ul className="flex flex-row gap-8 mr-4 text-xl text-gray-700 font-semibold">
           <li>
             <Link
@@ -160,6 +186,10 @@ export default function Header() {
           </li>
         </ul>
       </nav>
+      <div className="text-xl w-1/5 font-semibold flex flex-row gap- max-lg:hidden">
+        <Link to="/login" className="text-gray-700 mr-6 hover:text-blue-600 transition duration-300 pt-4">Sign in</Link>
+        <Link to="/signup" className="text-white py-4 px-8 bg-blue-500 hover:bg-blue-700 transition duration-300 rounded-xl">Sign Up</Link>
+      </div>
     </header>
   );
 }
