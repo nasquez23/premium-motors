@@ -7,9 +7,11 @@ import PageHeader from "../components/UI/PageHeader";
 import Title from "../components/UI/Title";
 import Modal from "../components/UI/Modal";
 import { AnimatePresence } from "framer-motion";
+import LoadingSpinner from "../components/UI/LoadingSpinner";
 
 export default function Register() {
     const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
     const auth = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -26,6 +28,7 @@ export default function Register() {
         const { name, email, password } = data;
 
         try {
+            setIsLoading(true);
             const response = await fetch("http://localhost:3000/api/users/signup", {
                 method: "POST",
                 headers: {
@@ -35,6 +38,7 @@ export default function Register() {
             });
             const responseData = await response.json();
 
+            setIsLoading(false);
             if (!response.ok) {
                 throw new Error(responseData.message);
             }
@@ -88,7 +92,7 @@ export default function Register() {
                         <label htmlFor="confirmPassword" className="font-bold text-xl mb-2">Confirm Password</label>
                         <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Re-enter your password" required className="bg-gray-200 text-gray-700 p-4 rounded focus:outline-blue-500" />
                     </div>
-                    <button type="submit" className="mt-2 w-full bg-blue-600 h-14 sm:h-16 md:h-16 lg:h-14 text-xl font-semibold text-white rounded hover:bg-blue-800 transition duration-300">Register</button>
+                    {isLoading ? <div className="mt-8 flex justify-center"><LoadingSpinner /></div> : <button type="submit" className="mt-2 w-full bg-blue-600 h-14 sm:h-16 md:h-16 lg:h-14 text-xl font-semibold text-white rounded hover:bg-blue-800 transition duration-300">Register</button>}
                     <div>
                         <p className="mt-6 max-lg:mt-10 max-lg:text-xl">Already a member? <Link to="/login" className="text-blue-600 underline hover:text-blue-900 transition duration-300">Sign in</Link></p>
                     </div>

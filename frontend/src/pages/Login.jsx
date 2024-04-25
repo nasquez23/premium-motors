@@ -8,10 +8,12 @@ import Ferrari from '../assets/ferrari.jpeg';
 import Title from "../components/UI/Title";
 import { AnimatePresence } from "framer-motion";
 import Modal from "../components/UI/Modal";
+import LoadingSpinner from "../components/UI/LoadingSpinner";
 
 
 export default function Login() {
     const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
     const auth = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -22,6 +24,7 @@ export default function Login() {
         const data = Object.fromEntries(formData.entries());
 
         try {
+            setIsLoading(true);
             const response = await fetch("http://localhost:3000/api/users/login", {
                 method: "POST",
                 headers: {
@@ -31,10 +34,11 @@ export default function Login() {
             });
             const responseData = await response.json();
 
+            setIsLoading(false);
             if (!response.ok) {
                 throw new Error(responseData.message);
             }
-            
+
             auth.login(responseData.userId);
             navigate("/");
             window.scrollTo(0, 0);
@@ -79,7 +83,7 @@ export default function Login() {
                             <label htmlFor="password" className="text-xl font-bold mb-2">Password</label>
                             <input type="password" name="password" id="password" placeholder="Enter your password" required className="bg-gray-200 text-gray-700 p-4 rounded focus:outline-blue-500" />
                         </div>
-                        <button type="submit" className="mt-8 w-full bg-blue-600 h-14 sm:h-16 md:h-16 lg:h-14 text-xl font-semibold text-white rounded hover:bg-blue-800 transition duration-300">Sign in</button>
+                        {isLoading ? <div className="mt-8 flex justify-center"><LoadingSpinner /></div> : <button type="submit" className="mt-8 w-full bg-blue-600 h-14 sm:h-16 md:h-16 lg:h-14 text-xl font-semibold text-white rounded hover:bg-blue-800 transition duration-300">Sign in</button>}
                         <div className="mt-6 max-lg:mt-10 max-lg:mb-10 max-lg:text-xl">
                             <p className="mt-4">New to the site? <Link to="/signup" onClick={() => window.scrollTo(0, 0)} className="text-blue-600 underline hover:text-blue-900 transition duration-300">Create an account</Link></p>
                         </div>
