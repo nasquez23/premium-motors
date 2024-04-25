@@ -1,16 +1,20 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { Link, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faTimes, faUser, faUserAlt } from "@fortawesome/free-solid-svg-icons";
 import logo from "../assets/logo.png";
+import { AuthContext } from "../context/auth-context";
 
 export default function Header() {
+  const auth = useContext(AuthContext);
   const location = useLocation();
 
   const [openNav, setOpenNav] = useState(false);
+  const [showProfileNav, setShowProfileNav] = useState(false);
+  const [showLogoutMessage, setShowLogoutMessage] = useState(false);
 
   if (openNav) {
     document.body.style.overflow = "hidden";
@@ -20,6 +24,23 @@ export default function Header() {
 
   const toggleNavigaton = () => {
     setOpenNav((prevState) => !prevState);
+  };
+
+  const handleShowProfileNav = () => {
+    setShowProfileNav(true);
+  };
+
+  const handleHideProfileNav = () => {
+    setShowProfileNav(false);
+  };
+
+  const handleLogout = () => {
+    setShowProfileNav(false);
+    setShowLogoutMessage(true);
+    setTimeout(() => {
+      auth.logout();
+      setShowLogoutMessage(false);
+    }, 1500);
   };
 
   return (
@@ -105,26 +126,26 @@ export default function Header() {
               </li>
               <li>
                 <Link
-                 to="/login" 
-                 onClick={toggleNavigaton} 
-                 className={
-                  location.pathname === "/login"
-                    ? "text-blue-500 hover:text-blue-600 transition duration-300"
-                    : "hover:text-blue-500 transition duration-300"
-                }
+                  to="/login"
+                  onClick={toggleNavigaton}
+                  className={
+                    location.pathname === "/login"
+                      ? "text-blue-500 hover:text-blue-600 transition duration-300"
+                      : "hover:text-blue-500 transition duration-300"
+                  }
                 >
                   Sign in
                 </Link>
               </li>
               <li>
                 <Link
-                 to="/signup" 
-                 onClick={toggleNavigaton} 
-                 className={
-                  location.pathname === "/signup"
-                    ? "text-blue-500 hover:text-blue-600 transition duration-300"
-                    : "hover:text-blue-500 transition duration-300"
-                }
+                  to="/signup"
+                  onClick={toggleNavigaton}
+                  className={
+                    location.pathname === "/signup"
+                      ? "text-blue-500 hover:text-blue-600 transition duration-300"
+                      : "hover:text-blue-500 transition duration-300"
+                  }
                 >
                   Sign up
                 </Link>
@@ -186,9 +207,40 @@ export default function Header() {
           </li>
         </ul>
       </nav>
-      <div className="text-xl w-1/5 font-semibold flex flex-row gap- max-lg:hidden">
-        <Link to="/login" className="text-gray-700 mr-6 hover:text-blue-600 transition duration-300 pt-4">Sign in</Link>
-        <Link to="/signup" className="text-white py-4 px-8 bg-blue-500 hover:bg-blue-700 transition duration-300 rounded-xl">Sign Up</Link>
+      <div className="text-xl w-1/5 font-semibold flex flex-row max-lg:hidden">
+        {!auth.isLoggedIn && (
+          <Link to="/login" className="text-gray-700 mr-6 hover:text-blue-600 transition duration-300 pt-4">
+            Sign in
+          </Link>
+        )}
+        {!auth.isLoggedIn && (
+          <Link to="/signup" className="text-white py-4 px-8 bg-blue-500 hover:bg-blue-700 transition duration-300 rounded-xl">
+            Sign Up
+          </Link>
+        )}
+        {auth.isLoggedIn && !showLogoutMessage && (
+          <div className="ml-[50%]">
+            <button type="button" onMouseEnter={handleShowProfileNav} onMouseLeave={handleHideProfileNav} className="text-gray-700 mr-6 hover:text-blue-500 transition duration-300">
+              <FontAwesomeIcon icon={faUserAlt} className="text-2xl" />
+            </button>
+          </div>
+        )}
+        {auth.isLoggedIn && showLogoutMessage && (
+          <div className="absolute top-8 right-20 bg-white shadow-md shadow-gray-700 rounded-lg p-4 w-[10%]">
+            <p className="text-gray-700">Logging out...</p>
+          </div>
+        )}
+        {showProfileNav && (
+          <div onMouseEnter={handleShowProfileNav} onMouseLeave={handleHideProfileNav} className="absolute top-[4.5rem] right-20 bg-white shadow-md shadow-gray-700 rounded-lg p-4 w-[10%]">
+            <ul className="flex flex-col gap-4">
+              <li>
+                <button onClick={handleLogout} className="text-gray-700 hover:text-blue-500 transition duration-300">
+                  Logout
+                </button>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
     </header>
   );
