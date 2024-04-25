@@ -22,7 +22,7 @@ const signup = async (req, res, next) => {
     } catch (error) {
         return next(new HttpError("Could not create user, please try again.", 500));
     }
-    
+
     const createdUser = new User({
         name,
         email,
@@ -35,7 +35,7 @@ const signup = async (req, res, next) => {
         return next(new HttpError("Signing up failed, please try again later.", 500));
     }
 
-    res.status(201).json({ user: createdUser });
+    res.status(201).json({ userId: createdUser.id });
 };
 
 const login = async (req, res, next) => {
@@ -59,11 +59,11 @@ const login = async (req, res, next) => {
         return next(new HttpError("Could not log you in, please check your credentials and try again.", 500));
     }
 
-    if (!isValidPassword){
+    if (!isValidPassword) {
         return next(new HttpError("Invalid credentials, could not log you in.", 401));
     }
 
-    res.json({ message: "Logged in!" });
+    res.json({ userId: existingUser.id });
 };
 
 exports.signup = signup;
