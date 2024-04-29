@@ -28,16 +28,18 @@ const getCarById = async (req, res, next) => {
 };
 
 const addCar = async (req, res, next) => {
-    const { manufacturer, model, year, price, image, power, gearbox } = req.body;
+    const { manufacturer, model, year, engine, price, image, power, gearbox, isForSale } = req.body;
 
     const newCar = new Car({
         manufacturer,
         model,
         year,
+        engine,
         price,
         image,
         power,
-        gearbox
+        gearbox,
+        isForSale
     });
 
     try {
@@ -52,7 +54,7 @@ const addCar = async (req, res, next) => {
 const updateCar = async (req, res, next) => {
     const carId = req.params.id;
 
-    const { manufacturer, model, year, price, image, power, gearbox } = req.body;
+    const { manufacturer, model, year, engine, price, image, power, gearbox } = req.body;
 
     let carToUpdate;
     try {
@@ -68,6 +70,7 @@ const updateCar = async (req, res, next) => {
     carToUpdate.manufacturer = manufacturer;
     carToUpdate.model = model;
     carToUpdate.year = year;
+    carToUpdate.engine = engine;
     carToUpdate.price = price;
     carToUpdate.image = image;
     carToUpdate.power = power;

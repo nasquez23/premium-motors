@@ -41,7 +41,7 @@ export default function CarCard({ car, direction }) {
     "Volvo XC90": VolvoXC90,
   };
 
-  const carImage = carImages[`${car.manufacturer} ${car.model}`];
+  const image = carImages[`${car.manufacturer} ${car.model}`];
 
   const [showModal, setShowModal] = useState(false);
 
@@ -286,7 +286,7 @@ export default function CarCard({ car, direction }) {
         className="w-full h-[35rem] text-left rounded-lg overflow-hidden shadow-lg shadow-gray-500"
       >
         <img
-          src={carImage}
+          src={car.image || image}
           className="h-[40%] w-full object-cover"
           alt={`${car.manufacturer} ${car.model}`}
         />
@@ -305,7 +305,7 @@ export default function CarCard({ car, direction }) {
           </div>
           <div className="flex gap-2 text-2xl pb-6">
             <FontAwesomeIcon icon={faBolt} className="h-6" />
-            {car.power}
+            {car.power} hp
             <FontAwesomeIcon
               icon={faGear}
               className="h-6 ml-[88px] lg:ml-10 xl:ml-10"
@@ -316,8 +316,8 @@ export default function CarCard({ car, direction }) {
         <div className="flex justify-between mx-4 pt-4">
           <span className="text-gray-500 text-2xl font-semibold">Price</span>
           <span className="text-gray-700 text-2xl font-bold">
-            {car.price ?? car.pricePerDay}
-            {car.pricePerDay && (
+            {car.price ?? car.pricePerDay} €
+            {!car.isForSale && (
               <span className="text-gray-500 font-semibold"> /day</span>
             )}
           </span>
