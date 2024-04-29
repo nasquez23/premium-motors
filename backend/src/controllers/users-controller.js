@@ -1,6 +1,7 @@
 const HttpError = require("../models/http-error");
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const signup = async (req, res, next) => {
     const { name, email, password } = req.body;
@@ -35,7 +36,14 @@ const signup = async (req, res, next) => {
         return next(new HttpError("Signing up failed, please try again later.", 500));
     }
 
-    res.status(201).json({ userId: createdUser.id });
+    let token;
+    try {
+        token = jwt.sign({ userId: createdUser.id, email: createdUser.email }, "supersecret_dont_share", { expiresIn: "1h" });
+    } catch (error) {
+        return next(new HttpError("Signing up failed, please try again later.", 500));
+    }
+
+    res.status(201).json({ userId: createdUser.id, token });
 };
 
 const login = async (req, res, next) => {
@@ -63,7 +71,14 @@ const login = async (req, res, next) => {
         return next(new HttpError("Invalid credentials, could not log you in.", 401));
     }
 
-    res.json({ userId: existingUser.id });
+    let token;
+    try {
+        token = jwt.sign({ userId: existingUser.id, token }, "supersecret_dont_share", { expiresIn: "1h" });
+    } catch (error) {
+        return next(new HttpError("Logging in failed, please try again later.", 500));
+    }
+
+    res.json({ userId: existingUser.id, token });
 };
 
 exports.signup = signup;

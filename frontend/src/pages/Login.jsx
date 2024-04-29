@@ -38,7 +38,7 @@ export default function Login() {
                 throw new Error(responseData.message);
             }
 
-            auth.login(responseData.userId);
+            auth.login(responseData.userId, responseData.token);
             navigate("/");
             window.scrollTo(0, 0);
         } catch (err) {
