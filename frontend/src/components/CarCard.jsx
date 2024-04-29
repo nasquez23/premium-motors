@@ -23,6 +23,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Modal from "./UI/Modal";
 import LoadingSpinner from "./UI/LoadingSpinner";
+import { Link } from "react-router-dom";
 
 export default function CarCard({ car, direction }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -283,7 +284,7 @@ export default function CarCard({ car, direction }) {
         initial={{ opacity: 0, x: direction === "right" ? 30 : -30 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
-        className="w-full h-[35rem] text-left rounded-lg overflow-hidden shadow-lg shadow-gray-500"
+        className="w-full text-left rounded-lg shadow-lg shadow-gray-500"
       >
         <img
           src={car.image || image}
@@ -326,8 +327,9 @@ export default function CarCard({ car, direction }) {
           onClick={() => setShowModal(true)}
           className="text-white font-semibold text-xl h-12 w-[90%] lg:w-[85%] xl:w-[85%] mx-6 mt-5 bg-blue-500 rounded-lg hover:bg-blue-700 transition duration-300"
         >
-          {car.price ? "Book Test Drive" : "Rent Now"}
+          {car.isForSale ? "Book Test Drive" : "Rent Now"}
         </button>
+        <Link onClick={() => window.scrollTo(400, 400)} to={`${car._id}`} className="text-black">Go to</Link>
       </motion.div>
     </>
   );
