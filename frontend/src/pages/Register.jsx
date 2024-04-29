@@ -5,9 +5,9 @@ import { AuthContext } from "../context/auth-context";
 
 import PageHeader from "../components/UI/PageHeader";
 import Title from "../components/UI/Title";
-import Modal from "../components/UI/Modal";
 import { AnimatePresence } from "framer-motion";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
+import ErrorModal from "../components/UI/ErrorModal";
 
 export default function Register() {
     const [error, setError] = useState(null);
@@ -51,26 +51,15 @@ export default function Register() {
         }
     }
 
+    function handleCloseErrorModal() {
+        setError(null);
+    }
+
     return (
         <>
             <PageHeader title="Become a member" />
             <AnimatePresence>
-                {error && <Modal closeModal={() => setError(null)}>
-                    <div className="flex flex-row justify-between px-5 py-3 bg-blue-500 w-full">
-                        <h2 className="uppercase font-semibold text-white text-2xl pt-3">
-                            An error occured
-                        </h2>
-                        <button
-                            onClick={() => setError(null)}
-                            className="text-white text-2xl font-bold"
-                        >
-                            X
-                        </button>
-                    </div>
-                    <div>
-                        <p className="text-gray-800 text-lg p-8">{error}</p>
-                    </div>
-                </Modal>}
+                {error && <ErrorModal errorMessage={error} closeModal={handleCloseErrorModal} />}
             </AnimatePresence>
 
             <div className="shadow-lg shadow-gray-500 w-[80%] mx-auto px-[15%] mt-52 pt-4 rounded-lg">

@@ -17,14 +17,14 @@ const addReservation = async (req, res, next) => {
     });
 
     try {
-        const savedReservation = await newReservation.save();
-        res.json(savedReservation);
+        await newReservation.save();
+        res.json({ message: "Reservation added" });
     } catch (error) {
         return next(new HttpError("Could not add reservation", 500));
     }
 };
 
-const getReservations = async (req, res) => {
+const getReservations = async (req, res, next) => {
     try {
         const reservations = await Reservation.find();
         res.json(reservations);

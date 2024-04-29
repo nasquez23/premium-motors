@@ -7,9 +7,8 @@ import PageHeader from "../components/UI/PageHeader";
 import Ferrari from '../assets/ferrari.jpeg';
 import Title from "../components/UI/Title";
 import { AnimatePresence } from "framer-motion";
-import Modal from "../components/UI/Modal";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
-
+import ErrorModal from "../components/UI/ErrorModal";
 
 export default function Login() {
     const [error, setError] = useState(null);
@@ -47,26 +46,15 @@ export default function Login() {
         }
     }
 
+    function handleCloseErrorModal() {
+        setError(null);
+    }
+
     return (
         <>
             <PageHeader title="Member login" />
             <AnimatePresence>
-                {error && <Modal closeModal={() => setError(null)}>
-                    <div className="flex flex-row justify-between px-5 py-3 bg-blue-500 w-full">
-                        <h2 className="uppercase font-semibold text-white text-2xl pt-3">
-                            An error occured
-                        </h2>
-                        <button
-                            onClick={() => setError(null)}
-                            className="text-white text-2xl font-bold"
-                        >
-                            X
-                        </button>
-                    </div>
-                    <div>
-                        <p className="text-gray-800 text-lg p-8">{error}</p>
-                    </div>
-                </Modal>}
+                {error && <ErrorModal errorMessage={error} closeModal={handleCloseErrorModal} />}
             </AnimatePresence>
 
             <div className="flex flex-row w-[90%] mx-auto rounded-lg shadow-lg shadow-gray-500 overflow-hidden h-[40rem] max-lg:h-auto mb-20 mt-52 relative">

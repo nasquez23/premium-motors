@@ -22,8 +22,12 @@ import {
   faMapMarkerAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import Modal from "./UI/Modal";
+import LoadingSpinner from "./UI/LoadingSpinner";
 
 export default function CarCard({ car, direction }) {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   const carImages = {
     "Audi A5": AudiA5,
     "BMW 5 series": BMW5series,
@@ -45,20 +49,31 @@ export default function CarCard({ car, direction }) {
     setShowModal(false);
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
     data.car = `${car.manufacturer} ${car.model}`;
 
-    fetch("http://localhost:3000/reservation", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    try {
+      setIsLoading(true);
+      const response = await fetch("http://localhost:3000/api/reservations", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      const responseData = await response.json();
+
+      setIsLoading(false);
+      if (!response.ok) {
+        throw new Error(responseData.message);
+      }
+    } catch (err) {
+      setError(err.message);
+    }
   }
 
   return (
@@ -221,7 +236,7 @@ export default function CarCard({ car, direction }) {
                       required
                     />
                   </div>
-                  <div className="grid grid-cols-2 gap-x-6">
+                  <div className="grid grid-cols-2 gap-x-6 mb-6">
                     <label
                       htmlFor="city"
                       className="text-gray-500 font-semibold text-lg text-left"
@@ -251,10 +266,11 @@ export default function CarCard({ car, direction }) {
                       required
                     />
                   </div>
+                  {error && <p className="text-center text-red-500 mb-4">{error}</p>}
                   <div className="flex justify-center lg:justify-end xl:justify-end">
-                    <button className="h-16 bg-blue-500 text-white font-semibold rounded-md w-2/3 lg:w-1/3 xl:w-1/3 text-xl mt-10 shadow-md shadow-gray-500 hover:bg-blue-700 transition duration-300">
+                    {isLoading ? <div className="mr-[48%] max-lg:mr-0 mt-10"><LoadingSpinner /></div> : <button className="h-16 bg-blue-500 text-white font-semibold rounded-md w-2/3 lg:w-1/3 xl:w-1/3 text-xl shadow-md shadow-gray-500 hover:bg-blue-700 transition duration-300">
                       Reserve
-                    </button>
+                    </button>}
                   </div>
                 </div>
               </div>
