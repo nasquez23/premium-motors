@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 import PageHeader from "../components/UI/PageHeader";
-import Title from "../components/UI/Title";
 
 export default function CarDetails() {
     const { carId } = useParams();
@@ -40,15 +39,13 @@ export default function CarDetails() {
         return <h2 className="text-gray-700 text-center text-2xl font-semibold my-[10%] ml-[0%]">The car you are looking for could not be found.</h2>
     }
 
-    console.log(car);
-
     return (
         <>
             <PageHeader title="Car Details" />
             {!isLoading && car && <div className="flex flex-row max-lg:flex-col gap-x-5 w-[80%] mx-auto my-[15%] shadow-lg shadow-gray-700 p-10 max-lg:p-5 rounded-md">
-                <img src={car.image} className="object-cover rounded w-full lg:w-[50%] xl:w-[50%]" style={{ maxHeight: "500px" }} />
+                <img src={car.image} alt={`${car.manufacturer} ${car.model}`} className="object-cover rounded w-full lg:w-[50%] xl:w-[50%]" style={{ maxHeight: "500px" }} />
                 <div className="w-1/2 max-lg:w-full mx-auto divide-y-4 border-4 text-gray-700 font-semibold text-3xl max-lg:text-2xl max-lg:mt-10">
-                    <div className="flex flex-row divide-x-4 p-2">
+                    <div className="flex flex-row divide-x-4 p-2 max-lg:px-0">
                         <h2 className="text-center font-semibold w-1/2">Manufacturer</h2>
                         <h2 className="text-center text-blue-500 font-semibold px-4">{car.manufacturer}</h2>
                     </div>

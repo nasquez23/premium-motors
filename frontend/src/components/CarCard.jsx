@@ -2,17 +2,6 @@ import { useState } from "react";
 
 import { AnimatePresence, motion } from "framer-motion";
 
-import AudiA5 from "../assets/audi-a5.jpg";
-import BMW5series from "../assets/bmw-5series.jpeg";
-import MercedesCLS from "../assets/mercedes-cls.jpg";
-import VolkswagenPassat from "../assets/vw-passat.jpg";
-import PorschePanamera from "../assets/porsche-panamera.jpg";
-import FordMustang from "../assets/ford-mustang.jpg";
-import ChevroletCamaro from "../assets/chevrolet-camaro.jpg";
-import DodgeChallenger from "../assets/dodge-challenger.jpg";
-import RangeRoverVogue from "../assets/range-rover.jpg";
-import VolvoXC90 from "../assets/volvo-xc90.jpg";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendar,
@@ -28,22 +17,6 @@ import { Link } from "react-router-dom";
 export default function CarCard({ car, direction }) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  const carImages = {
-    "Audi A5": AudiA5,
-    "BMW 5 series": BMW5series,
-    "Mercedes CLS": MercedesCLS,
-    "Volkswagen Passat": VolkswagenPassat,
-    "Porsche Panamera": PorschePanamera,
-    "Ford Mustang": FordMustang,
-    "Chevrolet Camaro": ChevroletCamaro,
-    "Dodge Challenger": DodgeChallenger,
-    "Range Rover Vogue": RangeRoverVogue,
-    "Volvo XC90": VolvoXC90,
-  };
-
-  const image = carImages[`${car.manufacturer} ${car.model}`];
-
   const [showModal, setShowModal] = useState(false);
 
   function handleCloseModal() {
