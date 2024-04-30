@@ -56,7 +56,7 @@ export default function FeaturedCars() {
   }
 
   return (
-    <section className="text-center mt-40 h-[50rem]">
+    <section className="text-center mt-40 pb-[20%] max-lg:pb-[60%]">
       <Title title="Featured Cars" />
       <h2 className="text-3xl font-semibold text-gray-700 mb-14 lg:mb-28 xl:mb-28">
         Explore Our Inventory
@@ -80,7 +80,7 @@ export default function FeaturedCars() {
             direction={switchDirection}
           />
           <div className="mt-14">
-            <Link to="/cars" className="text-gray-600 font-semibold mt-16 h-12 w-[60%] border-gray-400 border rounded-lg p-4 hover:text-gray-800 hover:border-gray-600 hover:border-2"
+            <Link to="/cars" className="text-gray-600 font-semibold mt-16 h-12 w-[60%] border-gray-400 border rounded-lg p-4 hover:text-gray-800 hover:border-gray-600 hover:border-2 transition duration-300"
               onClick={() => window.scrollTo(0, 0)}>
               <span>Show All Vehicles</span>{" "}
               <span className="text-3xl">&rarr;</span>

@@ -7,7 +7,7 @@ export default function ErrorModal({ errorMessage, closeModal }) {
                 An error occured
             </h2>
             <button
-                onClick={() => setError(null)}
+                onClick={closeModal}
                 className="text-white text-2xl font-bold"
             >
                 X
