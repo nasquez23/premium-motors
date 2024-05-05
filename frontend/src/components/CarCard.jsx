@@ -47,7 +47,7 @@ export default function CarCard({ car, direction }) {
             {car.year}
             <FontAwesomeIcon
               icon={faWrench}
-              className="h-6 max-lg:ml-16"
+              className="h-6 ml-[18%] max-lg:ml-16"
             />{" "}
             {car.engine}
           </div>
@@ -56,7 +56,7 @@ export default function CarCard({ car, direction }) {
             {car.power} hp
             <FontAwesomeIcon
               icon={faGear}
-              className="h-6 max-lg:ml-8"
+              className="h-6 ml-[10%] max-lg:ml-8"
             />
             {car.gearbox}
           </div>

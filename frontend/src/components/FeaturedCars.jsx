@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 
 import Title from "./UI/Title";
 import CarCard from "./CarCard.jsx";
 import LoadingSpinner from "./UI/LoadingSpinner.jsx";
+import { AuthContext } from '../context/auth-context.jsx';
 
 export default function FeaturedCars() {
+  const auth = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const [cars, setCars] = useState([]);
 
@@ -44,7 +46,9 @@ export default function FeaturedCars() {
   if (isLoading) {
     return <div className="flex flex-col items-center justify-center">
       <Title title="Featured Cars" />
-      <LoadingSpinner />
+      <div className="mt-10">
+        <LoadingSpinner />
+      </div>
     </div>
   }
 
@@ -56,7 +60,7 @@ export default function FeaturedCars() {
   }
 
   return (
-    <section className="text-center mt-40 pb-[20%] max-lg:pb-[60%]">
+    <section className="text-center mt-40 mb-[30%] max-lg:mb-[80%]">
       <Title title="Featured Cars" />
       <h2 className="text-3xl font-semibold text-gray-700 mb-14 lg:mb-28 xl:mb-28">
         Explore Our Inventory
@@ -86,6 +90,12 @@ export default function FeaturedCars() {
               <span className="text-3xl">&rarr;</span>
             </Link>
           </div>
+          {auth.isLoggedIn && <div className="mt-8">
+            <Link to="/cars/new" className="text-white px-5 py-4 font-semibold bg-blue-500 h-12 w-[60%] rounded-lg hover:bg-blue-700 transition duration-300"
+              onClick={() => window.scrollTo(0, 0)} >
+              <span className="text-2xl">+</span> Add New Vehicle
+            </Link>
+          </div>}
         </div>
       </div>
     </section>

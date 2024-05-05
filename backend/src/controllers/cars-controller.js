@@ -54,7 +54,7 @@ const addCar = async (req, res, next) => {
 const updateCar = async (req, res, next) => {
     const carId = req.params.id;
 
-    const { manufacturer, model, year, engine, price, image, power, gearbox } = req.body;
+    const { manufacturer, model, year, engine, price, image, power, gearbox, isForSale } = req.body;
 
     let carToUpdate;
     try {
@@ -75,6 +75,7 @@ const updateCar = async (req, res, next) => {
     carToUpdate.image = image;
     carToUpdate.power = power;
     carToUpdate.gearbox = gearbox;
+    carToUpdate.isForSale = isForSale;
 
     try {
         await carToUpdate.save();

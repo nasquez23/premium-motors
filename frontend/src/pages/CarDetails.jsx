@@ -142,7 +142,7 @@ export default function CarDetails() {
                     </div>
                 </div>
                 {auth.isLoggedIn && <div className="flex gap-x-10 w-[40%] max-lg:w-[90%] mx-auto mt-10 text-center text-xl font-semibold text-neutral-100">
-                    <Link className="inline-block bg-blue-500 h-12 w-1/2 p-2 rounded-md hover:bg-blue-700 transition duration-300">Edit Car</Link>
+                    <Link to={`/cars/edit/${carId}`} onClick={() => window.scrollTo(0, 0)} className="inline-block bg-blue-500 h-12 w-1/2 p-2 rounded-md hover:bg-blue-700 transition duration-300">Edit Car</Link>
                     <button onClick={() => setShowConfirmationModal(true)} className="bg-red-500 h-12 w-1/2 p-2 rounded-md hover:bg-red-700 transition duration-300">Delete Car</button>
                 </div>}
             </div>}
