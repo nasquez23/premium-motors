@@ -5,6 +5,7 @@ const cors = require("cors");
 const reservationRoutes = require("./routes/reservation-routes");
 const userRoutes = require("./routes/user-routes");
 const carRoutes = require("./routes/car-routes");
+const testemonialRoutes = require("./routes/testemonial-routes");
 const HttpError = require("./models/http-error");
 
 config();
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use("/api/reservations", reservationRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/cars", carRoutes);
+app.use("/api/testemonials", testemonialRoutes);
 
 app.use((req, res) => {
   throw new HttpError("Could not find this route", 404);

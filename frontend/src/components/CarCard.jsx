@@ -41,7 +41,7 @@ export default function CarCard({ car, direction }) {
         <h3 className="text-gray-800 text-2xl font-semibold my-4 pl-6">
           {car.manufacturer} {car.model}
         </h3>
-        <div className="text-gray-500 border-b-2 mx-4 pb-2 pl-2">
+        <div className="text-gray-600 border-b-2 mx-4 pb-2 pl-2">
           <div className="flex gap-2 text-2xl pt-2 pb-6">
             <FontAwesomeIcon icon={faCalendar} className="h-6" />
             {car.year}
