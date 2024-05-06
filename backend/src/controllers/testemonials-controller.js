@@ -4,8 +4,8 @@ const HttpError = require('../models/http-error');
 
 const getTestemonials = async (req, res, next) => {
     try {
-        const testemonialToUpdates = await testemonialToUpdate.find();
-        res.json(testemonialToUpdates);
+        const testemonials = await Testemonial.find().populate('author', 'name');
+        res.json(testemonials);
     } catch (error) {
         return next(new HttpError('Could not fetch testemonials', 500));
     }
@@ -14,7 +14,7 @@ const getTestemonials = async (req, res, next) => {
 const addTestemonial = async (req, res, next) => {
     const { message, city, country, image, rating, author } = req.body;
 
-    const newtestemonialToUpdate = new testemonialToUpdate({
+    const newTestemonial = new Testemonial({
         message,
         city,
         country,
@@ -36,14 +36,14 @@ const addTestemonial = async (req, res, next) => {
     }
 
     try {
-        await newtestemonialToUpdate.save();
-        user.testemonialToUpdates.push(newtestemonialToUpdate);
+        await newTestemonial.save();
+        user.testemonials.push(newTestemonial);
         await user.save();
     } catch (error) {
         return next(new HttpError('Could not add testemonial', 500));
     }
 
-    res.status(201).json(newtestemonialToUpdate);
+    res.status(201).json(newTestemonial);
 };
 
 const getTestemonialsByUserId = async (req, res, next) => {
