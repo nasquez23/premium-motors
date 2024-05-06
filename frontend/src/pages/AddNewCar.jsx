@@ -1,7 +1,10 @@
 import CarForm from "../components/CarForm";
 import PageHeader from "../components/UI/PageHeader";
+import { checkAuth } from "../util/checkAuth";
 
 export default function AddNewCar() {
+    checkAuth(true, '/cars');
+
     return (
         <>
             <PageHeader title="Add New Car" />

@@ -93,7 +93,7 @@ export default function CarForm({ car }) {
                 </div>
                 <div className="flex flex-col mb-4">
                     <label htmlFor="power" className="font-bold text-xl mb-2">Power</label>
-                    <input type="number" id="power" name="power" value={carData.power} onChange={handleChange} required placeholder="Enter power" className="bg-gray-200 text-gray-700 p-3 rounded focus:outline-blue-500" />
+                    <input type="number" id="power" name="power" min={1} max={2000} value={carData.power} onChange={handleChange} required placeholder="Enter power" className="bg-gray-200 text-gray-700 p-3 rounded focus:outline-blue-500" />
                 </div>
                 <div className="flex flex-col mb-4">
                     <label htmlFor="gearbox" className="font-bold text-xl mb-2">Gearbox</label>
@@ -101,7 +101,7 @@ export default function CarForm({ car }) {
                 </div>
                 <div className="flex flex-col mb-4">
                     <label htmlFor="price" className="font-bold text-xl mb-2">Price</label>
-                    <input type="number" id="price" name="price" value={carData.price} onChange={handleChange} required placeholder="Enter price" className="bg-gray-200 text-gray-700 p-3 rounded focus:outline-blue-500" />
+                    <input type="number" id="price" name="price" min={1} max={5000000} value={carData.price} onChange={handleChange} required placeholder="Enter price" className="bg-gray-200 text-gray-700 p-3 rounded focus:outline-blue-500" />
                 </div>
                 <div className="flex flex-col mb-4">
                     <label htmlFor="image" className="font-bold text-xl mb-2">Image</label>

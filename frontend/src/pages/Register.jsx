@@ -1,20 +1,23 @@
 import { useContext, useState } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/auth-context";
-import { ToastContainer, toast } from "react-toastify";
 
+import { AuthContext } from "../context/auth-context";
+import { toast } from "react-toastify";
 import PageHeader from "../components/UI/PageHeader";
 import Title from "../components/UI/Title";
 import { AnimatePresence } from "framer-motion";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 import ErrorModal from "../components/UI/ErrorModal";
+import { checkAuth } from "../util/checkAuth";
 
 export default function Register() {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const auth = useContext(AuthContext);
     const navigate = useNavigate();
+
+    checkAuth(auth.isLoggedIn, "/");
 
     async function handleRegisterUser(event) {
         event.preventDefault();

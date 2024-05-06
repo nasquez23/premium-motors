@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Modal from "./UI/Modal";
 import { AnimatePresence } from "framer-motion";
 import LoadingSpinner from './UI/LoadingSpinner';
 import { toast } from "react-toastify";
 import TestemonialFormModal from "./TestemonialFormModal";
+import { AuthContext } from "../context/auth-context";
 
 export default function TestemonialCard({ testemonial }) {
+  const auth = useContext(AuthContext);
   const [showButtons, setShowButtons] = useState(false);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [errorWhileDeleting, setErrorWhileDeleting] = useState(null);
@@ -65,7 +67,7 @@ export default function TestemonialCard({ testemonial }) {
       </AnimatePresence>
 
       <div onMouseEnter={() => setShowButtons(true)} onMouseLeave={() => setShowButtons(false)} className="relative flex flex-row w-[85%] h-96 rounded-xl shadow-gray-500 shadow-lg overflow-hidden mx-auto bg-white">
-        {showButtons && <div className="absolute top-0 left-0 bg-black bg-opacity-80 w-full h-full">
+        {auth.isLoggedIn && showButtons && <div className="absolute top-0 left-0 bg-black bg-opacity-80 w-full h-full">
           <button onClick={() => setShowEditModal(true)} className="text-white text-lg font-semibold absolute top-1/3 left-[40%] bg-blue-500 h-12 w-[20%] max-lg:w-[25%] py-3 rounded-md">Edit</button>
           <button onClick={() => setShowConfirmationModal(true)} className="text-white text-lg font-semibold absolute top-[50%] max-lg:top-[55%] left-[40%] bg-red-500 h-12 w-[20%] max-lg:w-[25%] px-5 py-3 rounded-md">Delete</button>
         </div>}

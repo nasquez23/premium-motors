@@ -10,12 +10,15 @@ import { AnimatePresence } from "framer-motion";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 import ErrorModal from "../components/UI/ErrorModal";
 import { toast } from "react-toastify";
+import { checkAuth } from "../util/checkAuth";
 
 export default function Login() {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const auth = useContext(AuthContext);
     const navigate = useNavigate();
+
+    checkAuth(auth.isLoggedIn, "/");
 
     async function handleLoginUser(event) {
         event.preventDefault();

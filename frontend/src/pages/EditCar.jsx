@@ -5,12 +5,14 @@ import { useParams } from "react-router-dom";
 import CarForm from '../components/CarForm';
 import PageHeader from "../components/UI/PageHeader";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
+import { checkAuth } from "../util/checkAuth";
 
 export default function EditCar() {
     const { carId } = useParams();
     const [car, setCar] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
+    checkAuth(true, '/cars');
 
     useEffect(() => {
         async function fetchCarDetails() {
