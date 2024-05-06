@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import LoadingSpinner from "./UI/LoadingSpinner";
 import ErrorModal from "./UI/ErrorModal";
 import { AnimatePresence } from "framer-motion";
+import { toast } from "react-toastify";
 
 export default function CarForm({ car }) {
     const [error, setError] = useState(null);
@@ -36,6 +37,7 @@ export default function CarForm({ car }) {
         event.preventDefault();
         const method = pathname.includes('edit') ? 'PATCH' : 'POST';
         const route = pathname.includes('edit') ? `http://localhost:3000/api/cars/${car._id}` : 'http://localhost:3000/api/cars/add';
+        const toastMessage = pathname.includes('edit') ? 'Car updated successfully' : 'Car added successfully';
 
         try {
             setIsLoading(true);
@@ -56,6 +58,7 @@ export default function CarForm({ car }) {
 
             window.scrollTo(0, 0);
             navigate('/cars');
+            toast.success(toastMessage);
         } catch (err) {
             setError(err.message);
         }

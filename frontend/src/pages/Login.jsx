@@ -9,6 +9,7 @@ import Title from "../components/UI/Title";
 import { AnimatePresence } from "framer-motion";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 import ErrorModal from "../components/UI/ErrorModal";
+import { toast } from "react-toastify";
 
 export default function Login() {
     const [error, setError] = useState(null);
@@ -39,6 +40,7 @@ export default function Login() {
             }
 
             auth.login(responseData.userId, responseData.token);
+            toast.success("You have successfully logged in");
             navigate("/");
             window.scrollTo(0, 0);
         } catch (err) {

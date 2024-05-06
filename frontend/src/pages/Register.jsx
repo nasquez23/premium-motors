@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth-context";
+import { ToastContainer, toast } from "react-toastify";
 
 import PageHeader from "../components/UI/PageHeader";
 import Title from "../components/UI/Title";
@@ -44,6 +45,7 @@ export default function Register() {
             }
 
             auth.login(responseData.userId, responseData.token);
+            toast.success("You have successfully registered");
             navigate("/");
             window.scrollTo(0, 0);
         } catch (err) {
@@ -83,7 +85,7 @@ export default function Register() {
                     </div>
                     {isLoading ? <div className="mt-8 flex justify-center"><LoadingSpinner /></div> : <button type="submit" className="mt-2 w-full bg-blue-600 h-14 sm:h-16 md:h-16 lg:h-14 text-xl font-semibold text-white rounded hover:bg-blue-800 transition duration-300">Register</button>}
                     <div>
-                        <p className="mt-6 max-lg:mt-10 max-lg:text-xl">Already a member? <Link to="/login" className="text-blue-600 underline hover:text-blue-900 transition duration-300">Sign in</Link></p>
+                        <p className="mt-6 max-lg:mt-10 max-lg:text-xl">Already a member? <Link to="/login" onClick={() => window.scrollTo(0, 0)} className="text-blue-600 underline hover:text-blue-900 transition duration-300">Sign in</Link></p>
                     </div>
                 </form>
             </div>

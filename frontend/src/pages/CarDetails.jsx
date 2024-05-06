@@ -5,6 +5,7 @@ import PageHeader from "../components/UI/PageHeader";
 import { AuthContext } from "../context/auth-context";
 import Modal from "../components/UI/Modal";
 import { AnimatePresence } from "framer-motion";
+import { toast } from "react-toastify";
 
 export default function CarDetails() {
     const auth = useContext(AuthContext);
@@ -40,7 +41,7 @@ export default function CarDetails() {
     async function handleDeleteCar() {
         try {
             setIsDeleting(true);
-            const response = await fetch(`http://localhost:3000/api/carss/${carId}`, {
+            const response = await fetch(`http://localhost:3000/api/cars/${carId}`, {
                 method: 'DELETE',
             });
             const resData = await response.json();
@@ -52,6 +53,7 @@ export default function CarDetails() {
 
             window.scrollTo(0, 0);
             navigate('/cars');
+            toast.success("Car deleted successfully");
         } catch (err) {
             setIsErrorWhileDeleting(err.message);
         }

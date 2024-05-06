@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes, faUser, faUserAlt } from "@fortawesome/free-solid-svg-icons";
 import logo from "../assets/logo.png";
 import { AuthContext } from "../context/auth-context";
+import { toast } from "react-toastify";
 
 export default function Header() {
   const auth = useContext(AuthContext);
@@ -40,6 +41,7 @@ export default function Header() {
     setTimeout(() => {
       auth.logout();
       setShowLogoutMessage(false);
+      toast.success("Logged out successfully");
     }, 1500);
   };
 
@@ -226,8 +228,8 @@ export default function Header() {
           </div>
         )}
         {auth.isLoggedIn && showLogoutMessage && (
-          <div className="absolute top-8 right-20 bg-white shadow-md shadow-gray-700 rounded-lg p-4 w-[10%]">
-            <p className="text-gray-700">Logging out...</p>
+          <div className="absolute top-8 right-20 bg-blue-500 shadow-md shadow-gray-700 rounded-lg p-4 w-[10%]">
+            <p className="text-neutral-50">Logging out...</p>
           </div>
         )}
         {showProfileNav && (
