@@ -236,6 +236,11 @@ export default function Header() {
           <div onMouseEnter={handleShowProfileNav} onMouseLeave={handleHideProfileNav} className="absolute top-[4.5rem] right-20 bg-white shadow-md shadow-gray-700 rounded-lg p-4 w-[10%]">
             <ul className="flex flex-col gap-4">
               <li>
+                <Link to="/profile" onClick={() => window.scrollTo(0, 0)} className="text-gray-700 hover:text-blue-500 transition duration-300">
+                  Profile
+                </Link>
+              </li>
+              <li>
                 <button onClick={handleLogout} className="text-gray-700 hover:text-blue-500 transition duration-300">
                   Logout
                 </button>

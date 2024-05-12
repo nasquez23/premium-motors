@@ -1,20 +1,26 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import CarForm from '../components/CarForm';
 import PageHeader from "../components/UI/PageHeader";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
-import { checkAuth } from "../util/checkAuth";
+import { AuthContext } from "../context/auth-context";
 
 export default function EditCar() {
+    const auth = useContext(AuthContext);
     const { carId } = useParams();
     const [car, setCar] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
-    checkAuth(true, '/cars');
+    const navigate = useNavigate();
 
     useEffect(() => {
+        if (!auth.isLoggedIn) {
+            navigate("/cars");
+            return;
+        }
+
         async function fetchCarDetails() {
             try {
                 setIsLoading(true);
@@ -32,7 +38,7 @@ export default function EditCar() {
         }
 
         fetchCarDetails();
-    }, []);
+    }, [auth.isLoggedIn]);
 
     if (isLoading) {
         return <div className="flex flex-col items-center gap-y-8 justify-center my-[10%]">

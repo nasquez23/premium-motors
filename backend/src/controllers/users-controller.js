@@ -82,5 +82,20 @@ const login = async (req, res, next) => {
     res.json({ userId: existingUser.id, token });
 };
 
+const getUserById = async (req, res, next) => {
+    const userId = req.params.uid;
+
+    try {
+        const user = await User.findById(userId).select("-password").populate("testemonials");
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.json(user);
+    } catch (error) {
+        return res.status(500).json({ message: 'Fetching user failed' });
+    }
+};
+
 exports.signup = signup;
 exports.login = login;
+exports.getUserById = getUserById;

@@ -16,7 +16,6 @@ const sendConfirmationEmail = async (reservationData) => {
         }
     });
 
-
     const mailOptions = {
         from: process.env.EMAIL_USERNAME,
         to: email,

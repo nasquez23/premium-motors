@@ -18,7 +18,7 @@ export default function Login() {
     const auth = useContext(AuthContext);
     const navigate = useNavigate();
 
-    checkAuth(auth.isLoggedIn, "/");
+    checkAuth(auth.isLoggedIn, '/');
 
     async function handleLoginUser(event) {
         event.preventDefault();

@@ -43,7 +43,7 @@ export default function Contact() {
                 className="text-gray-800 font-semibold text-xl hover:text-blue-600 transition duration-300"
               >
                 <FontAwesomeIcon className="pr-4" icon={faEnvelope} />
-                premiummotors@gmail.com
+                premiummotors80@gmail.com
               </a>
             </p>
             <p className="text-gray-800 font-semibold text-xl">

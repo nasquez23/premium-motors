@@ -13,6 +13,7 @@ import EditCar from "./pages/EditCar";
 import AddNewCar from "./pages/AddNewCar";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route path="/cars/:carId" element={<CarDetails />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Register />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
