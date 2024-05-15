@@ -4,25 +4,19 @@ import LoadingSpinner from "../components/UI/LoadingSpinner";
 import { AuthContext } from "../context/auth-context";
 import ErrorModal from "../components/UI/ErrorModal";
 import { AnimatePresence } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 import PageHeader from "../components/UI/PageHeader";
 import Title from "../components/UI/Title";
 import TestemonialCard from "../components/TestemonialCard";
+import { checkAuth } from "../util/checkAuth";
 
 export default function Profile() {
     const auth = useContext(AuthContext);
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
-    const navigate = useNavigate();
 
+    checkAuth(!auth.isLoggedIn, '/');
     useEffect(() => {
-        if (!auth.isLoggedIn) {
-            navigate("/login");
-            window.scrollTo(0, 0);
-            return;
-        }
-
         async function fetchUserData() {
             try {
                 if (!auth.userId) {

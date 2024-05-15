@@ -1,9 +1,12 @@
+import { useContext } from "react";
 import CarForm from "../components/CarForm";
 import PageHeader from "../components/UI/PageHeader";
 import { checkAuth } from "../util/checkAuth";
+import { AuthContext } from "../context/auth-context";
 
 export default function AddNewCar() {
-    checkAuth(true, '/cars');
+    const auth = useContext(AuthContext);
+    checkAuth(!auth.isLoggedIn, '/cars');
 
     return (
         <>
