@@ -43,7 +43,11 @@ export default function CarDetails() {
             setIsDeleting(true);
             const response = await fetch(`http://localhost:3000/api/cars/${carId}`, {
                 method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${auth.token}`
+                }
             });
+            console.log(auth.token);
             const resData = await response.json();
 
             setIsDeleting(false);

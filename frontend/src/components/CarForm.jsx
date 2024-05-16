@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -6,8 +6,10 @@ import LoadingSpinner from "./UI/LoadingSpinner";
 import ErrorModal from "./UI/ErrorModal";
 import { AnimatePresence } from "framer-motion";
 import { toast } from "react-toastify";
+import { AuthContext } from "../context/auth-context";
 
 export default function CarForm({ car }) {
+    const auth = useContext(AuthContext);
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [carData, setCarData] = useState(car || {
@@ -44,12 +46,12 @@ export default function CarForm({ car }) {
             const response = await fetch(route, {
                 method: method,
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${auth.token}`
                 },
                 body: JSON.stringify(carData)
             });
             const responseData = await response.json();
-            console.log(responseData);
             setIsLoading(false);
 
             if (!response.ok) {

@@ -41,6 +41,7 @@ export default function TestemonialFormModal({ testemonial, closeModal }) {
                 method,
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${auth.token}`
                 },
                 body: JSON.stringify(testemonialData)
             });

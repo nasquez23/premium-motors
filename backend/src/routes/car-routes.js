@@ -2,11 +2,15 @@ const { Router } = require("express");
 
 const carsController = require('../controllers/cars-controller');
 
+const checkAuthorization = require('../middleware/check-auth');
+
 const router = Router();
 
 router.get('/', carsController.getCars);
 
 router.get('/:id', carsController.getCarById);
+
+router.use(checkAuthorization);
 
 router.post('/add', carsController.addCar);
 

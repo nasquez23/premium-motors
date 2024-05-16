@@ -21,7 +21,11 @@ export default function EditCar() {
         async function fetchCarDetails() {
             try {
                 setIsLoading(true);
-                const response = await fetch(`http://localhost:3000/api/cars/${carId}`);
+                const response = await fetch(`http://localhost:3000/api/cars/${carId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${auth.token}`
+                    }
+                });
 
                 setIsLoading(false);
                 if (!response.ok) {
@@ -35,7 +39,7 @@ export default function EditCar() {
         }
 
         fetchCarDetails();
-    }, [auth.isLoggedIn]);
+    }, []);
 
     if (isLoading) {
         return <div className="flex flex-col items-center gap-y-8 justify-center my-[10%]">

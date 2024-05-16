@@ -3,13 +3,14 @@ import { createContext, useEffect, useState } from 'react';
 export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
-  const [token, setToken] = useState(null);
+  const storedData = JSON.parse(localStorage.getItem("userData"));
+  const [token, setToken] = useState(() => {
+    return storedData ? storedData.token : null;
+  });
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
-    const storedData = JSON.parse(localStorage.getItem("userData"));
     return storedData ? true : false;
   });
   const [userId, setUserId] = useState(() => {
-    const storedData = JSON.parse(localStorage.getItem("userData"));
     return storedData ? storedData.userId : null;
   });
   
@@ -28,6 +29,7 @@ const AuthContextProvider = ({ children }) => {
   };
 
   const contextValue = {
+    token,
     isLoggedIn,
     userId,
     login,

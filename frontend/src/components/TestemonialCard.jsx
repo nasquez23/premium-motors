@@ -19,6 +19,9 @@ export default function TestemonialCard({ testemonial }) {
       setIsDeleting(true);
       const response = await fetch(`http://localhost:3000/api/testemonials/${testemonial._id}`, {
         method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${auth.token}`
+        }
       });
       const responseData = await response.json();
       setIsDeleting(false);

@@ -2,10 +2,14 @@ const { Router } = require('express');
 
 const reservationController = require('../controllers/reservations-controller');
 
+const checkAuthorization = require('../middleware/check-auth');
+
 const router = Router();
 
-router.get("/", reservationController.getReservations);
-
 router.post("/", reservationController.addReservation);
+
+router.use(checkAuthorization);
+
+router.get("/", reservationController.getReservations);
 
 module.exports = router;

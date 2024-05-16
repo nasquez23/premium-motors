@@ -24,7 +24,11 @@ export default function Profile() {
                 }
 
                 setIsLoading(true);
-                const response = await fetch(`http://localhost:3000/api/users/user/${auth.userId}`);
+                const response = await fetch(`http://localhost:3000/api/users/user/${auth.userId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${auth.token}`
+                    }
+                });
                 const responseData = await response.json();
 
                 setIsLoading(false);
