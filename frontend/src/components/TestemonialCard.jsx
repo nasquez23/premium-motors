@@ -17,7 +17,7 @@ export default function TestemonialCard({ testemonial }) {
   async function handleDeleteTestemonial() {
     try {
       setIsDeleting(true);
-      const response = await fetch(`http://localhost:3000/api/testemonials/${testemonial._id}`, {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/testemonials/${testemonial._id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${auth.token}`

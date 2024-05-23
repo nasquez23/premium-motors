@@ -33,7 +33,7 @@ export default function Register() {
 
         try {
             setIsLoading(true);
-            const response = await fetch("http://localhost:3000/api/users/signup", {
+            const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/users/signup", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

@@ -17,7 +17,7 @@ export default function Cars() {
     async function fetchCars() {
       try {
         setIsLoading(true);
-        const response = await fetch("http://localhost:3000/api/cars");
+        const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/cars");
         const resData = await response.json();
         setCars(resData);
         setIsLoading(false);

@@ -36,9 +36,10 @@ export default function CarForm({ car }) {
     }
 
     async function handleSubmit(event) {
+        console.log(auth.token)
         event.preventDefault();
         const method = pathname.includes('edit') ? 'PATCH' : 'POST';
-        const route = pathname.includes('edit') ? `http://localhost:3000/api/cars/${car._id}` : 'http://localhost:3000/api/cars/add';
+        const route = pathname.includes('edit') ? `${process.env.REACT_APP_BACKEND_URL}/cars/${car._id}` : `${process.env.REACT_APP_BACKEND_URL}/cars/add`;
         const toastMessage = pathname.includes('edit') ? 'Car updated successfully' : 'Car added successfully';
 
         try {

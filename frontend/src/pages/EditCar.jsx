@@ -21,7 +21,7 @@ export default function EditCar() {
         async function fetchCarDetails() {
             try {
                 setIsLoading(true);
-                const response = await fetch(`http://localhost:3000/api/cars/${carId}`, {
+                const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/cars/${carId}`, {
                     headers: {
                         'Authorization': `Bearer ${auth.token}`
                     }

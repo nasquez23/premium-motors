@@ -29,7 +29,7 @@ export default function TestemonialFormModal({ testemonial, closeModal }) {
     async function handleSubmit(event) {
         event.preventDefault();
         const method = testemonial ? 'PATCH' : 'POST';
-        const route = testemonial ? `http://localhost:3000/api/testemonials/${testemonial._id}` : 'http://localhost:3000/api/testemonials';
+        const route = testemonial ? `${process.env.REACT_APP_BACKEND_URL}/testemonials/${testemonial._id}` : `${process.env.REACT_APP_BACKEND_URL}/testemonials`;
         const toastMessage = testemonial ? 'Testemonial updated successfully' : 'Testemonial added successfully';
 
         testemonialData.author = auth.userId;
