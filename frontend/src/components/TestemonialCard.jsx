@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import TestemonialFormModal from "./TestemonialFormModal";
 import { AuthContext } from "../context/auth-context";
 
-export default function TestemonialCard({ testemonial }) {
+export default function TestemonialCard({ testemonial, forceUpdate, closeModal }) {
   const auth = useContext(AuthContext);
   const [showButtons, setShowButtons] = useState(false);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
@@ -32,6 +32,7 @@ export default function TestemonialCard({ testemonial }) {
 
       setShowConfirmationModal(false);
       toast.success("Testemonial deleted successfully");
+      forceUpdate();
     } catch (error) {
       setErrorWhileDeleting(error.message);
     }
@@ -66,7 +67,7 @@ export default function TestemonialCard({ testemonial }) {
             </div>
           </div>}
         </Modal>}
-        {showEditModal && <TestemonialFormModal closeModal={() => setShowEditModal(false)} testemonial={testemonial} />}
+        {showEditModal && <TestemonialFormModal forceUpdate={closeModal} closeModal={() => setShowEditModal(false)} testemonial={testemonial} />}
       </AnimatePresence>
 
       <div onMouseEnter={() => setShowButtons(true)} onMouseLeave={() => setShowButtons(false)} className="relative flex flex-row w-[85%] h-96 rounded-xl shadow-gray-500 shadow-lg overflow-hidden mx-auto bg-white">

@@ -5,7 +5,7 @@ import LoadingSpinner from "./UI/LoadingSpinner";
 import { AuthContext } from "../context/auth-context";
 import { toast } from "react-toastify";
 
-export default function TestemonialFormModal({ testemonial, closeModal }) {
+export default function TestemonialFormModal({ testemonial, closeModal, forceUpdate }) {
     const auth = useContext(AuthContext);
     const [testemonialData, setTestemonialData] = useState(testemonial || {
         message: '',
@@ -54,6 +54,7 @@ export default function TestemonialFormModal({ testemonial, closeModal }) {
 
             closeModal();
             toast.success(toastMessage);
+            forceUpdate();
         } catch (err) {
             setError(err.message);
         }
@@ -68,8 +69,8 @@ export default function TestemonialFormModal({ testemonial, closeModal }) {
         </div>
         <form onSubmit={handleSubmit} className="w-[90%] mx-auto mt-6 pb-12">
             <div className="flex flex-col mb-4">
-                <label htmlFor="message" className="font-bold text-xl mb-2">Message</label>
-                <textarea id="message" name="message" required placeholder="Enter message" onChange={handleChange} value={testemonialData.message} className="bg-gray-200 text-gray-700 p-3 rounded focus:outline-blue-500" />
+                <label htmlFor="message" className="font-bold text-xl mb-2">Message <span className="text-gray-400">(max. 150 characters)</span></label>
+                <textarea id="message" name="message" maxLength={150} required placeholder="Enter message" onChange={handleChange} value={testemonialData.message} className="bg-gray-200 text-gray-700 p-3 rounded focus:outline-blue-500" />
             </div>
             <div className="flex flex-col mb-4">
                 <label htmlFor="rating" className="font-bold text-xl mb-2">Rating</label>

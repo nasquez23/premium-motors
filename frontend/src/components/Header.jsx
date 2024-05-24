@@ -51,8 +51,8 @@ export default function Header() {
       auth.logout();
       setShowLogoutMessage(false);
       toast.success("Logged out successfully");
-      toggleNavigaton();
-      handleMobileProfileNav();
+      setOpenNav(false);
+      setMobileProfileNav(false);
     }, 1500);
   };
 
