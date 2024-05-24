@@ -70,7 +70,7 @@ export default function TestemonialCard({ testemonial, forceUpdate, closeModal }
         {showEditModal && <TestemonialFormModal forceUpdate={closeModal} closeModal={() => setShowEditModal(false)} testemonial={testemonial} />}
       </AnimatePresence>
 
-      <div onMouseEnter={() => setShowButtons(true)} onMouseLeave={() => setShowButtons(false)} className="relative flex flex-row w-[85%] h-96 rounded-xl shadow-gray-500 shadow-lg overflow-hidden mx-auto bg-white">
+      <div onMouseEnter={() => setShowButtons(true)} onMouseLeave={() => setShowButtons(false)} className="relative flex flex-row w-[85%] rounded-xl shadow-gray-500 shadow-lg overflow-hidden mx-auto bg-white">
         {auth.isLoggedIn && showButtons && <div className="absolute top-0 left-0 bg-black bg-opacity-80 w-full h-full">
           <button onClick={() => setShowEditModal(true)} className="text-white text-lg font-semibold absolute top-1/3 left-[40%] bg-blue-500 h-12 w-[20%] max-lg:w-[25%] py-3 rounded-md">Edit</button>
           <button onClick={() => setShowConfirmationModal(true)} className="text-white text-lg font-semibold absolute top-[50%] max-lg:top-[55%] left-[40%] bg-red-500 h-12 w-[20%] max-lg:w-[25%] px-5 py-3 rounded-md">Delete</button>
@@ -87,8 +87,8 @@ export default function TestemonialCard({ testemonial, forceUpdate, closeModal }
           <p className="text-gray-600 font-medium h-52 max-lg:h-[230px]">
             "{testemonial.message}"
           </p>
-          <p className="text-gray-800 font-semibold text-xl">{testemonial.author.name}</p>
-          <p className="text-gray-400 text-sm font-medium">From {testemonial.city}, {testemonial.country}</p>
+          <p className="text-gray-800 font-semibold text-xl max-lg:mt-2">{testemonial.author.name}</p>
+          <p className="text-gray-400 text-sm font-medium pb-4">From {testemonial.city}, {testemonial.country}</p>
         </div>
       </div>
     </>

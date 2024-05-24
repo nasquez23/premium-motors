@@ -62,7 +62,7 @@ export default function Testemonials() {
           }}
         />}
         <Title title="Testemonials" />
-        <h2 className="text-3xl text-gray-700 font-semibold mt-4 mb-20 relative">
+        <h2 className="text-3xl text-gray-700 font-semibold mt-4 mb-20 relative max-lg:w-[90%] max-lg:mx-auto">
           What our customers say about us?
         </h2>
 
