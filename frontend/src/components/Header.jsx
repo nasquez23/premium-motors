@@ -2,9 +2,8 @@ import { useContext, useState } from "react";
 
 import { Link, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faTimes, faUser, faUserAlt } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faTimes, faUserAlt } from "@fortawesome/free-solid-svg-icons";
 import logo from "../assets/logo.png";
 import { AuthContext } from "../context/auth-context";
 import { toast } from "react-toastify";
@@ -12,9 +11,9 @@ import { toast } from "react-toastify";
 export default function Header() {
   const auth = useContext(AuthContext);
   const location = useLocation();
-
   const [openNav, setOpenNav] = useState(false);
   const [showProfileNav, setShowProfileNav] = useState(false);
+  const [mobileProfileNav, setMobileProfileNav] = useState(false);
   const [showLogoutMessage, setShowLogoutMessage] = useState(false);
 
   if (openNav) {
@@ -27,12 +26,22 @@ export default function Header() {
     setOpenNav((prevState) => !prevState);
   };
 
+  const handleMobileProfileNav = () => {
+    setMobileProfileNav((prevState) => !prevState);
+  };
+
   const handleShowProfileNav = () => {
     setShowProfileNav(true);
   };
 
   const handleHideProfileNav = () => {
     setShowProfileNav(false);
+  };
+
+  const handleGoToProfile = () => {
+    toggleNavigaton();
+    handleMobileProfileNav();
+    window.scrollTo(0, 0);
   };
 
   const handleLogout = () => {
@@ -42,6 +51,8 @@ export default function Header() {
       auth.logout();
       setShowLogoutMessage(false);
       toast.success("Logged out successfully");
+      toggleNavigaton();
+      handleMobileProfileNav();
     }, 1500);
   };
 
@@ -73,7 +84,7 @@ export default function Header() {
                 <FontAwesomeIcon icon={faTimes} />
               </button>
             </div>
-            <ul className="text-center text-3xl text-gray-800 font-semibold mt-28 flex flex-col gap-6">
+            {!mobileProfileNav ? <ul className="text-center text-3xl text-gray-800 font-semibold mt-28 flex flex-col gap-6">
               <li>
                 <Link
                   to="/"
@@ -126,7 +137,7 @@ export default function Header() {
                   Contact
                 </Link>
               </li>
-              <li>
+              {!auth.isLoggedIn && <li>
                 <Link
                   to="/login"
                   onClick={toggleNavigaton}
@@ -138,8 +149,8 @@ export default function Header() {
                 >
                   Sign in
                 </Link>
-              </li>
-              <li>
+              </li>}
+              {!auth.isLoggedIn && <li>
                 <Link
                   to="/signup"
                   onClick={toggleNavigaton}
@@ -151,8 +162,33 @@ export default function Header() {
                 >
                   Sign up
                 </Link>
+              </li>}
+              {auth.isLoggedIn && <li>
+                <button
+                  onClick={handleMobileProfileNav}
+                  className={
+                    location.pathname === "/profile"
+                      ? "text-blue-500 hover:text-blue-600 transition duration-300"
+                      : "hover:text-blue-500 transition duration-300"
+                  }
+                >
+                  Profile
+                </button>
+              </li>}
+            </ul> : <ul className="text-center text-3xl text-gray-800 font-semibold mt-28 flex flex-col gap-6">
+              <li>
+                <Link
+                  to="/profile"
+                  onClick={handleGoToProfile}
+                  className="hover:text-blue-500 transition duration-300"
+                >
+                  Go to Profile
+                </Link>
               </li>
-            </ul>
+              <li>
+                <button onClick={handleLogout} className="hover:text-blue-500 duration-300">{showLogoutMessage ? 'Logging out...' : 'Logout'}</button>
+              </li>
+            </ul>}
           </motion.div>
         )}
       </AnimatePresence>
