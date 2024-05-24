@@ -19,7 +19,7 @@ export default function Contact() {
       <div className="pt-6 w-3/4 mx-auto md:w-full lg:w-3/4">
         <Title title="Contact Us" />
         <div className="flex flex-col md:flex-col lg:flex-row h-full md:h-full lg:h-[32rem] mt-12 mb-32">
-          <div className="w-full md:w-full lg:w-1/2 text-center md:text-center lg:text-left">
+          <div className="w-full md:w-full sm:w-full lg:w-1/2 text-center md:text-center lg:text-left xl:text-left">
             <h2 className="text-4xl text-gray-800 font-semibold mb-10 mt-4">
               Get In Touch
             </h2>
@@ -42,7 +42,7 @@ export default function Contact() {
                 href="mailto:premiummotors@gmail.com"
                 className="text-gray-800 font-semibold text-xl hover:text-blue-600 transition duration-300"
               >
-                <FontAwesomeIcon className="pr-4" icon={faEnvelope} />
+                <FontAwesomeIcon className="pr-4 max-lg:pr-4" icon={faEnvelope} />
                 premiummotors80@gmail.com
               </a>
             </p>
@@ -65,7 +65,7 @@ export default function Contact() {
               Full Name
             </label>
             <input
-              className="bg-gray-200 h-10 text-gray-700 focus:outline-blue-500 py-6 px-8 rounded"
+              className="bg-gray-200 h-10 text-gray-700 focus:outline-blue-500 py-6 max-lg:px-4 px-8 rounded"
               id="name"
               name="name"
               type="text"
@@ -76,7 +76,7 @@ export default function Contact() {
               Email
             </label>
             <input
-              className="bg-gray-200 h-10 text-gray-700 focus:outline-blue-500 py-6 px-8 rounded"
+              className="bg-gray-200 h-10 text-gray-700 focus:outline-blue-500 py-6 max-lg:px-4 px-8 rounded"
               id="email"
               name="email"
               type="email"
@@ -87,7 +87,7 @@ export default function Contact() {
               Tell Us More
             </label>
             <textarea
-              className="bg-gray-200 h-40 text-gray-700 focus:outline-blue-500 py-4 px-8 rounded"
+              className="bg-gray-200 h-40 text-gray-700 focus:outline-blue-500 py-4 max-lg:px-4 px-8 rounded"
               id="message"
               name="message"
               placeholder="Your Message"

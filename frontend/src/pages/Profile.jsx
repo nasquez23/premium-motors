@@ -58,7 +58,7 @@ export default function Profile() {
             </AnimatePresence>
 
             <PageHeader title="Profile Overview" />
-            <div className="mt-[10%] max-lg:mt-[30%]">
+            <div className="mt-[10%] max-lg:mt-[40%]">
                 <Title title="My account" />
                 <div className="w-[80%] mx-auto mb-[10%]">
                     <h2 className="text-3xl text-gray-700 font-semibold mt-4 mb-8">

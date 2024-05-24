@@ -1,7 +1,5 @@
 import { useContext, useState } from "react";
-
 import { useLocation, useNavigate } from "react-router-dom";
-
 import LoadingSpinner from "./UI/LoadingSpinner";
 import ErrorModal from "./UI/ErrorModal";
 import { AnimatePresence } from "framer-motion";
@@ -27,16 +25,14 @@ export default function CarForm({ car }) {
     const navigate = useNavigate();
 
     function handleChange(event) {
-        setCarData((prevCarData) => {
-            return {
-                ...prevCarData,
-                [event.target.name]: event.target.checked || event.target.value
-            };
-        });
+        const { name, value, type, checked } = event.target;
+        setCarData((prevCarData) => ({
+            ...prevCarData,
+            [name]: type === 'checkbox' ? checked : value
+        }));
     }
 
     async function handleSubmit(event) {
-        console.log(auth.token)
         event.preventDefault();
         const method = pathname.includes('edit') ? 'PATCH' : 'POST';
         const route = pathname.includes('edit') ? `${process.env.REACT_APP_BACKEND_URL}/cars/${car._id}` : `${process.env.REACT_APP_BACKEND_URL}/cars/add`;
@@ -77,7 +73,7 @@ export default function CarForm({ car }) {
                 {error && <ErrorModal errorMessage={error} closeModal={handleCloseErrorModal} />}
             </AnimatePresence>
 
-            <form onSubmit={handleSubmit} className="w-[70%] mx-auto text-gray-800 rounded-md shadow-lg shadow-gray-700 px-[10%] py-[5%]">
+            <form onSubmit={handleSubmit} className="w-[70%] mx-auto text-gray-800 rounded-md shadow-lg shadow-gray-700 px-[10%] py-[5%] max-lg:mt-[40%]">
                 <div className="flex flex-col mb-4">
                     <label htmlFor="manufacturer" className="font-bold text-xl mb-2">Manufacturer</label>
                     <input type="text" id="manufacturer" name="manufacturer" value={carData.manufacturer} onChange={handleChange} required placeholder="Enter manufacturer" className="bg-gray-200 text-gray-700 p-3 rounded focus:outline-blue-500" />
@@ -117,6 +113,5 @@ export default function CarForm({ car }) {
                 {isLoading ? <div className="mt-6 flex justify-center"><LoadingSpinner /></div> : <button type="submit" className="mt-2 w-full bg-blue-600 h-14 sm:h-16 md:h-16 lg:h-14 text-xl font-semibold text-white rounded hover:bg-blue-800 transition duration-300">Submit</button>}
             </form>
         </>
-
     );
 }

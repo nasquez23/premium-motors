@@ -51,7 +51,7 @@ export default function Testemonials() {
   return (
     <>
       {showModal && <TestemonialFormModal closeModal={handleCloseModal} />}
-      <section className="text-center pb-[5%] relative bg-gradient-to-b from-white to-blue-50 mt-48">
+      <section className="text-center pb-[5%] relative bg-gradient-to-b from-white to-blue-50 mt-[10%] max-lg:mt-[20%]">
         {testemonials && testemonials.length > 0 && <div
           className="absolute top-0 left-0 w-full h-full opacity-15 z-0"
           style={{
@@ -71,7 +71,7 @@ export default function Testemonials() {
           {testemonials.map((testemonial) => <TestemonialCard key={testemonial._id} testemonial={testemonial} forceUpdate={forceUpdate} closeModal={handleCloseModal} />)}
         </div>}
         {auth.isLoggedIn && <div className="mt-16 max-lg:mt-10 max-lg:pb-10">
-          <button onClick={() => setShowModal(true)} className="bg-blue-600 hover:bg-blue-700 text-white font-semibold h-14 w-[13%] pb-2 rounded-lg mt-10 z-10 relative">
+          <button onClick={() => setShowModal(true)} className="bg-blue-600 hover:bg-blue-700 text-white font-semibold h-14 w-[13%] max-lg:w-[40%] pb-2 rounded-lg mt-10 z-10 relative">
             <span className="text-2xl">+</span> Add Testemonial
           </button>
         </div>}

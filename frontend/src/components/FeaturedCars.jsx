@@ -60,20 +60,20 @@ export default function FeaturedCars() {
   }
 
   return (
-    <section className="text-center mt-40 mb-[30%] max-lg:mb-[80%]">
+    <section className="text-center mt-40">
       <Title title="Featured Cars" />
       <h2 className="text-3xl font-semibold text-gray-700 mb-14 lg:mb-28 xl:mb-28">
         Explore Our Inventory
       </h2>
-      <div className="relative flex items-center justify-center h-96">
+      <div className="relative flex items-center justify-center">
         {cars.length > 1 && <button
           onClick={handlePrevCar}
-          className="absolute text-white bg-blue-500 p-3 rounded-full top-[60%] left-4 lg:left-[30%] xl:left-[30%] hover:bg-blue-700 transition duration-200">
+          className="absolute text-white bg-blue-500 p-3 rounded-full top-[35%] left-4 lg:left-[30%] xl:left-[30%] hover:bg-blue-700 transition duration-200">
           {"<"}
         </button>}
         {cars.length > 1 && <button
           onClick={handleNextCar}
-          className="absolute text-white bg-blue-500 p-3 rounded-full top-[60%] right-4 lg:right-[30%] xl:right-[30%] hover:bg-blue-700 transition duration-200"
+          className="absolute text-white bg-blue-500 p-3 rounded-full top-[35%] right-4 lg:right-[30%] xl:right-[30%] hover:bg-blue-700 transition duration-200"
         >
           {">"}
         </button>}

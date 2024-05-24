@@ -47,7 +47,7 @@ export default function ReservationModal({ car, handleCloseModal }) {
     return <>
         {showConfirmationModal ? <Modal closeModal={handleCloseAllModals}>
             <div className="flex flex-row justify-between px-5 bg-blue-500 h-14 w-full">
-                <h2 className="uppercase font-semibold text-white text-2xl pt-3">
+                <h2 className="uppercase font-semibold text-white text-2xl max-lg:text-xl max-lg:pt-4 pt-3">
                     Reservation Complete
                 </h2>
                 <button onClick={handleCloseAllModals} className="text-white text-2xl font-bold">X</button>
@@ -60,7 +60,7 @@ export default function ReservationModal({ car, handleCloseModal }) {
         </Modal> :
         <Modal closeModal={handleCloseModal}>
             <div className="flex flex-row justify-between px-5 bg-blue-500 h-14 w-full">
-                <h2 className="uppercase font-semibold text-white text-2xl pt-3">
+                <h2 className="uppercase font-semibold text-white text-2xl max-lg:text-xl max-lg:pt-4 pt-3">
                     Complete Reservation
                 </h2>
                 <button

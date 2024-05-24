@@ -21,13 +21,13 @@ export default function WhyChooseUs() {
           We offer the best experience with our deals
         </h1>
         <div className="mb-20 lg:mb-10 xl:mb-10 flex flex-col lg:flex-row xl:flex-row">
-          <div className="w-[60px] max-lg:w-20 h-14 max-lg:h-20 text-3xl lg:text-base xl:text-base text-center mr-4 ml-60 xl:ml-0 lg:ml-0 mt-4 mb-8 xl:mb-0 lg:mb-0 pt-3 bg-blue-100 rounded-lg">
+          <div className="w-[60px] max-lg:w-20 h-14 max-lg:h-20 text-3xl lg:text-base xl:text-base text-center mx-auto xl:ml-0 lg:ml-0 mt-4 mb-8 xl:mb-0 lg:mb-0 pt-3 bg-blue-100 rounded-lg">
             <FontAwesomeIcon
               icon={faCheckCircle}
               className="text-blue-600 pt-3 xl:pt-1 lg:pt-1 lg:h-5 xl:h-5"
             />
           </div>
-          <div className="text-center lg:text-left xl:text-left">
+          <div className="text-center lg:text-left xl:text-left lg:ml-4 xl:ml-4">
             <h3 className="text-xl mb-4 lg:mb-1 xl:mb-1 font-bold text-gray-700">
               Quality Products
             </h3>
@@ -38,13 +38,13 @@ export default function WhyChooseUs() {
           </div>
         </div>
         <div className="mb-20 lg:mb-10 xl:mb-10 flex flex-col lg:flex-row xl:flex-row">
-          <div className="w-16 max-lg:w-20 h-14 max-lg:h-20 text-3xl lg:text-base xl:text-base text-center mr-4 ml-60 xl:ml-0 lg:ml-0 mt-4 mb-8 xl:mb-0 lg:mb-0 pt-3 bg-blue-100 rounded-lg">
+          <div className="w-16 max-lg:w-20 h-14 max-lg:h-20 text-3xl lg:text-base xl:text-base text-center mx-auto xl:ml-0 lg:ml-0 mt-4 mb-8 xl:mb-0 lg:mb-0 pt-3 bg-blue-100 rounded-lg">
             <FontAwesomeIcon
               icon={faHandshake}
               className="text-blue-600 pt-3 xl:pt-[6px] lg:pt-[6px] lg:h-5 xl:h-5"
             />
           </div>
-          <div className="text-center lg:text-left xl:text-left">
+          <div className="text-center lg:text-left xl:text-left lg:ml-4 xl:ml-4">
             <h3 className="text-xl mb-4 lg:mb-1 xl:mb-1 font-bold text-gray-700">
               Exceptional Service
             </h3>
@@ -55,13 +55,13 @@ export default function WhyChooseUs() {
           </div>
         </div>
         <div className="flex flex-col lg:flex-row xl:flex-row">
-          <div className="w-14 max-lg:w-20 h-14 max-lg:h-20 text-3xl lg:text-base xl:text-base text-center mr-4 ml-60 xl:ml-0 lg:ml-0 mt-4 mb-8 xl:mb-0 lg:mb-0 pt-3 bg-blue-100 rounded-lg">
+          <div className="w-14 max-lg:w-20 h-14 max-lg:h-20 text-3xl lg:text-base xl:text-base text-center mx-auto xl:ml-0 lg:ml-0 mt-4 mb-8 xl:mb-0 lg:mb-0 pt-3 bg-blue-100 rounded-lg">
             <FontAwesomeIcon
               icon={faTag}
               className="text-blue-600 pt-3 xl:pt-[6px] lg:pt-[6px] lg:h-5 xl:h-5"
             />
           </div>
-          <div className="text-center lg:text-left xl:text-left">
+          <div className="text-center lg:text-left xl:text-left lg:ml-4 xl:ml-4">
             <h3 className="text-xl mb-4 lg:mb-1 xl:mb-1 font-bold text-gray-700">
               Affordable Pricing
             </h3>
