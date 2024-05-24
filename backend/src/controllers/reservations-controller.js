@@ -1,5 +1,5 @@
 const HttpError = require("../models/http-error");
-const Reservation = require("../models/reservation");
+const Reservation = require("../models/Reservation");
 const nodemailer = require("nodemailer");
 
 const sendConfirmationEmail = async (reservationData) => {
