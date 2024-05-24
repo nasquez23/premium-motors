@@ -13,8 +13,7 @@ module.exports = (req, res, next) => {
             throw new Error('You are not authorized for this action.');
         }
 
-        const decodedToken = jwt.verify(token, 'supersecret_dont_share');
-        console.log(decodedToken);
+        const decodedToken = jwt.verify(token, process.env.JWT_KEY);
         next();
     }
     catch (err) {
