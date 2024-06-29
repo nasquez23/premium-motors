@@ -41,6 +41,10 @@ export default function EditCar() {
         fetchCarDetails();
     }, []);
 
+    if (car) {
+        car.image = `${process.env.REACT_APP_BACKEND_URL}/${car.image}`;
+    }
+
     if (isLoading) {
         return <div className="flex flex-col items-center gap-y-8 justify-center my-[10%]">
             <LoadingSpinner />

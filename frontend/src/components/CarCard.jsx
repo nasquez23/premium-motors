@@ -33,7 +33,7 @@ export default function CarCard({ car, direction }) {
       >
         <div className="h-[200px]">
           <img
-            src={car.image}
+            src={`${process.env.REACT_APP_BACKEND_URL}/${car.image}`}
             className="size-full object-cover"
             alt={`${car.manufacturer} ${car.model}`}
           />

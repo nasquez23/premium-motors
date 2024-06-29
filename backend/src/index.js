@@ -12,6 +12,8 @@ config();
 
 const app = express();
 
+app.use("/api/images", express.static("images"));
+
 app.use(cors());
 app.use(express.json());
 
@@ -20,16 +22,23 @@ app.use("/api/users", userRoutes);
 app.use("/api/cars", carRoutes);
 app.use("/api/testemonials", testemonialRoutes);
 
-app.use((req, res) => {
-  throw new HttpError("Could not find this route", 404);
+app.use((req, res, next) => {
+  next(new HttpError("Could not find this route", 404));
 });
 
 app.use((error, req, res, next) => {
-  if (res.headerSent) {
+  if (res.headersSent) {
     return next(error);
   }
 
-  res.status(error.code || 500);
+  let statusCode = error.code && typeof error.code === 'number' && error.code >= 400 && error.code < 600 ? error.code : 500;
+
+  if (statusCode === 500 && error.code === 'ENOENT') {
+    statusCode = 404;
+    error.message = 'File or directory not found';
+  }
+
+  res.status(statusCode);
   res.json({ message: error.message || 'An unknown error occurred!' });
 });
 

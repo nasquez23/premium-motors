@@ -1,5 +1,6 @@
 const HttpError = require('../models/http-error');
 const Car = require('../models/car');
+const fs = require('fs');
 
 const getCars = async (req, res, next) => {
     try {
@@ -28,7 +29,7 @@ const getCarById = async (req, res, next) => {
 };
 
 const addCar = async (req, res, next) => {
-    const { manufacturer, model, year, engine, price, image, power, gearbox, isForSale } = req.body;
+    const { manufacturer, model, year, engine, price, power, gearbox, isForSale } = req.body;
 
     const newCar = new Car({
         manufacturer,
@@ -36,7 +37,7 @@ const addCar = async (req, res, next) => {
         year,
         engine,
         price,
-        image,
+        image: req.file.path,
         power,
         gearbox,
         isForSale
@@ -53,9 +54,9 @@ const addCar = async (req, res, next) => {
 
 const updateCar = async (req, res, next) => {
     const carId = req.params.id;
-
-    const { manufacturer, model, year, engine, price, image, power, gearbox, isForSale } = req.body;
-
+    const { manufacturer, model, year, engine, price, power, gearbox, isForSale } = req.body;
+    const image = req.file ? req.file.path : req.body.image;
+    
     let carToUpdate;
     try {
         carToUpdate = await Car.findById(carId);
@@ -67,12 +68,19 @@ const updateCar = async (req, res, next) => {
         return next(new HttpError('Could not find car for the provided id', 404));
     }
 
+    if (req.file && carToUpdate.image) {
+        console.log(carToUpdate.image);
+        fs.unlink(carToUpdate.image, err => {
+            console.log(err);
+        });
+        carToUpdate.image = image;
+    }
+
     carToUpdate.manufacturer = manufacturer;
     carToUpdate.model = model;
     carToUpdate.year = year;
     carToUpdate.engine = engine;
     carToUpdate.price = price;
-    carToUpdate.image = image;
     carToUpdate.power = power;
     carToUpdate.gearbox = gearbox;
     carToUpdate.isForSale = isForSale;
@@ -99,6 +107,10 @@ const deleteCar = async (req, res, next) => {
     if (!car) {
         return next(new HttpError('Could not find car for the provided id', 404));
     }
+
+    fs.unlink(car.image, err => {
+        console.log(err);
+    });
 
     try {
         await Car.deleteOne({ _id: carId });
