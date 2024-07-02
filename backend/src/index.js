@@ -12,8 +12,6 @@ config();
 
 const app = express();
 
-app.use("/api/images", express.static("images"));
-
 app.use(cors());
 app.use(express.json());
 
@@ -44,5 +42,7 @@ app.use((error, req, res, next) => {
 
 mongoose.connect(process.env.MONGO_URL).then(() => {
   console.log("Connected to database");
-  app.listen(3000);
+  app.listen(3000, () => {
+    console.log("Server started on port 3000");
+  });
 });

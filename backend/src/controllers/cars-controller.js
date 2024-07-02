@@ -1,10 +1,14 @@
 const HttpError = require('../models/http-error');
 const Car = require('../models/car');
-const fs = require('fs');
+const { uploadFileToS3, getImageUrl, deleteFileFromS3 } = require('../middleware/file-upload');
 
 const getCars = async (req, res, next) => {
     try {
         const cars = await Car.find();
+        for (const car of cars) {
+            const imageUrl = await getImageUrl(car.image);
+            car.image = imageUrl;
+        }
         res.json(cars);
     } catch (error) {
         return next(new HttpError('Could not fetch cars', 500));
@@ -25,11 +29,17 @@ const getCarById = async (req, res, next) => {
         return next(new HttpError('Could not find car for the provided id', 404));
     }
 
+    const imageUrl = await getImageUrl(car.image);
+    car.image = imageUrl;
+
     res.json(car);
 };
 
 const addCar = async (req, res, next) => {
     const { manufacturer, model, year, engine, price, power, gearbox, isForSale } = req.body;
+
+    const image = await uploadFileToS3(req.file);
+    console.log(image);
 
     const newCar = new Car({
         manufacturer,
@@ -37,7 +47,7 @@ const addCar = async (req, res, next) => {
         year,
         engine,
         price,
-        image: req.file.path,
+        image,
         power,
         gearbox,
         isForSale
@@ -55,7 +65,6 @@ const addCar = async (req, res, next) => {
 const updateCar = async (req, res, next) => {
     const carId = req.params.id;
     const { manufacturer, model, year, engine, price, power, gearbox, isForSale } = req.body;
-    const image = req.file ? req.file.path : req.body.image;
     
     let carToUpdate;
     try {
@@ -69,11 +78,9 @@ const updateCar = async (req, res, next) => {
     }
 
     if (req.file && carToUpdate.image) {
-        console.log(carToUpdate.image);
-        fs.unlink(carToUpdate.image, err => {
-            console.log(err);
-        });
-        carToUpdate.image = image;
+        await deleteFileFromS3(carToUpdate.image);
+        const newImage = await uploadFileToS3(req.file);
+        carToUpdate.image = newImage;
     }
 
     carToUpdate.manufacturer = manufacturer;
@@ -108,12 +115,9 @@ const deleteCar = async (req, res, next) => {
         return next(new HttpError('Could not find car for the provided id', 404));
     }
 
-    fs.unlink(car.image, err => {
-        console.log(err);
-    });
-
     try {
         await Car.deleteOne({ _id: carId });
+        await deleteFileFromS3(car.image);
     } catch (error) {
         return next(new HttpError('Could not delete car', 500));
     }

@@ -112,7 +112,7 @@ export default function CarDetails() {
             <PageHeader title="Car Details" />
             {!isLoading && car && <div className="flex flex-col w-[80%] mx-auto my-[15%] shadow-lg shadow-gray-700 p-10 max-lg:p-5 rounded-md">
                 <div className="flex flex-row max-lg:flex-col gap-x-5">
-                    <img src={`${process.env.REACT_APP_BACKEND_URL}/${car.image}`} alt={`${car.manufacturer} ${car.model}`} className="object-cover rounded w-full lg:w-[50%] xl:w-[50%]" style={{ maxHeight: "500px" }} />
+                    <img src={car.image} alt={`${car.manufacturer} ${car.model}`} className="object-cover rounded w-full lg:w-[50%] xl:w-[50%]" style={{ maxHeight: "500px" }} />
                     <div className="w-1/2 max-lg:w-full mx-auto divide-y-4 border-4 text-gray-700 font-semibold text-3xl max-lg:text-2xl max-lg:mt-10">
                         <div className="flex flex-row divide-x-4 p-2 max-lg:px-0">
                             <h2 className="text-center font-semibold w-1/2">Manufacturer</h2>
