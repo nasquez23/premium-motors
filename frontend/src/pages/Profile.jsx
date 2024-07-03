@@ -49,8 +49,6 @@ export default function Profile() {
         return <div className="pt-[10%] pb-[25%] flex justify-center"><LoadingSpinner /></div>;
     }
 
-    console.log(user.testemonials);
-
     return (
         <>
             <AnimatePresence>

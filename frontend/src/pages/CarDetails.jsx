@@ -47,7 +47,6 @@ export default function CarDetails() {
                     'Authorization': `Bearer ${auth.token}`
                 }
             });
-            console.log(auth.token);
             const resData = await response.json();
 
             setIsDeleting(false);

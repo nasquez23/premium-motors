@@ -11,7 +11,7 @@ router.get('/', carsController.getCars);
 
 router.get('/:id', carsController.getCarById);
 
-// router.use(checkAuthorization);
+router.use(checkAuthorization);
 
 router.post('/add', upload.single("image"), carsController.addCar);
 

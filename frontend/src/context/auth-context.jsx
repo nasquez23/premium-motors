@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState, useCallback } from 'react';
 
 export const AuthContext = createContext();
 
@@ -13,20 +13,53 @@ const AuthContextProvider = ({ children }) => {
   const [userId, setUserId] = useState(() => {
     return storedData ? storedData.userId : null;
   });
-  
-  const login = (userId, token) => {
-    setToken(token);
-    localStorage.setItem("userData", JSON.stringify({ userId, token }));
-    setIsLoggedIn(true);
-    setUserId(userId);
-  };
+  const [logoutTimer, setLogoutTimer] = useState(null);
 
-  const logout = () => {
+  const logout = useCallback(() => {
     localStorage.removeItem("userData");
     setToken(null);
     setIsLoggedIn(false);
     setUserId(null);
-  };
+    if (logoutTimer) {
+      clearTimeout(logoutTimer);
+    }
+  }, [logoutTimer]);
+
+  const login = useCallback((userId, token, expirationDate) => {
+    setToken(token);
+    const logoutTime = expirationDate || new Date(new Date().getTime() + 3600000);
+    localStorage.setItem("userData", JSON.stringify({ userId, token, expirationDate: logoutTime.toISOString() }));
+    setIsLoggedIn(true);
+    setUserId(userId);
+
+    const remainingTime = new Date(logoutTime).getTime() - new Date().getTime();
+    
+    if (logoutTimer) {
+      clearTimeout(logoutTimer);
+    }
+
+    const timer = setTimeout(logout, remainingTime);
+    setLogoutTimer(timer);
+  }, [logout, logoutTimer]);
+
+  useEffect(() => {
+    const storedData = JSON.parse(localStorage.getItem("userData"));
+    if (storedData && storedData.token && storedData.expirationDate) {
+      if (new Date().getTime() < new Date(storedData.expirationDate).getTime()) {
+        login(storedData.userId, storedData.token, new Date(storedData.expirationDate));
+      } else {
+        logout();
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (logoutTimer) {
+        clearTimeout(logoutTimer);
+      }
+    };
+  }, [logoutTimer]);
 
   const contextValue = {
     token,
@@ -35,13 +68,6 @@ const AuthContextProvider = ({ children }) => {
     login,
     logout,
   };
-
-  useEffect(() => {
-    const storedData = JSON.parse(localStorage.getItem("userData"));
-    if (storedData && storedData.token) {
-      login(storedData.userId, storedData.token);
-    }
-  }, [login]);
 
   return (
     <AuthContext.Provider value={contextValue}>
