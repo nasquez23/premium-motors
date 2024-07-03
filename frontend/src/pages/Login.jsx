@@ -42,7 +42,7 @@ export default function Login() {
                 throw new Error(responseData.message);
             }
 
-            auth.login(responseData.userId, responseData.token);
+            auth.login(responseData.userId, responseData.token, null, responseData.userImage);
             toast.success("You have successfully logged in");
             navigate("/");
             window.scrollTo(0, 0);

@@ -14,22 +14,27 @@ const AuthContextProvider = ({ children }) => {
     return storedData ? storedData.userId : null;
   });
   const [logoutTimer, setLogoutTimer] = useState(null);
+  const [userImage, setUserImage] = useState(() => {
+    return storedData ? storedData.userImage : null;
+  });
 
   const logout = useCallback(() => {
     localStorage.removeItem("userData");
     setToken(null);
     setIsLoggedIn(false);
     setUserId(null);
+    setUserImage(null);
     if (logoutTimer) {
       clearTimeout(logoutTimer);
     }
   }, [logoutTimer]);
 
-  const login = useCallback((userId, token, expirationDate) => {
+  const login = useCallback((userId, token, expirationDate, userImage) => {
     setToken(token);
     const logoutTime = expirationDate || new Date(new Date().getTime() + 3600000);
-    localStorage.setItem("userData", JSON.stringify({ userId, token, expirationDate: logoutTime.toISOString() }));
+    localStorage.setItem("userData", JSON.stringify({ userId, token, expirationDate: logoutTime.toISOString(), userImage }));
     setIsLoggedIn(true);
+    setUserImage(userImage);
     setUserId(userId);
 
     const remainingTime = new Date(logoutTime).getTime() - new Date().getTime();
@@ -44,9 +49,9 @@ const AuthContextProvider = ({ children }) => {
 
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem("userData"));
-    if (storedData && storedData.token && storedData.expirationDate) {
+    if (storedData && storedData.token && storedData.expirationDate && storedData.userImage) {
       if (new Date().getTime() < new Date(storedData.expirationDate).getTime()) {
-        login(storedData.userId, storedData.token, new Date(storedData.expirationDate));
+        login(storedData.userId, storedData.token, new Date(storedData.expirationDate), storedData.userImage);
       } else {
         logout();
       }
@@ -65,6 +70,7 @@ const AuthContextProvider = ({ children }) => {
     token,
     isLoggedIn,
     userId,
+    userImage,
     login,
     logout,
   };

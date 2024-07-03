@@ -46,7 +46,9 @@ const signup = async (req, res, next) => {
         return next(new HttpError("Signing up failed, please try again later.", 500));
     }
 
-    res.status(201).json({ userId: createdUser.id, token });
+    const userImage = await getImageUrl(createdUser.image);
+
+    res.status(201).json({ userId: createdUser.id, token, userImage });
 };
 
 const login = async (req, res, next) => {
@@ -81,7 +83,9 @@ const login = async (req, res, next) => {
         return next(new HttpError("Logging in failed, please try again later.", 500));
     }
 
-    res.json({ userId: existingUser.id, token });
+    const userImage = await getImageUrl(existingUser.image);
+
+    res.json({ userId: existingUser.id, token, userImage });
 };
 
 const getUserById = async (req, res, next) => {
@@ -125,6 +129,7 @@ const updateUser = async (req, res, next) => {
         userToUpdate.name = name;
         userToUpdate.email = email;
         await userToUpdate.save();
+        userToUpdate.image = await getImageUrl(userToUpdate.image);
         res.json(userToUpdate);
     } catch (error) {
         return next(new HttpError("Updating user failed, please try again later.", 500));

@@ -259,7 +259,7 @@ export default function Header() {
         {auth.isLoggedIn && !showLogoutMessage && (
           <div className="ml-[50%]">
             <button type="button" onMouseEnter={handleShowProfileNav} onMouseLeave={handleHideProfileNav} className="text-gray-700 mr-6 hover:text-blue-500 transition duration-300">
-              <FontAwesomeIcon icon={faUserAlt} className="text-2xl" />
+              <img src={auth.userImage} alt={auth.userName} className="size-12 object-cover rounded-full" />
             </button>
           </div>
         )}
@@ -269,7 +269,7 @@ export default function Header() {
           </div>
         )}
         {showProfileNav && (
-          <div onMouseEnter={handleShowProfileNav} onMouseLeave={handleHideProfileNav} className="absolute top-[4.5rem] right-20 bg-white shadow-md shadow-gray-700 rounded-lg p-4 w-[10%]">
+          <div onMouseEnter={handleShowProfileNav} onMouseLeave={handleHideProfileNav} className="absolute top-[4.8rem] right-20 bg-white shadow-md shadow-gray-700 rounded-lg p-4 w-[10%]">
             <ul className="flex flex-col gap-4">
               <li>
                 <Link to="/profile" onClick={() => window.scrollTo(0, 0)} className="text-gray-700 hover:text-blue-500 transition duration-300">

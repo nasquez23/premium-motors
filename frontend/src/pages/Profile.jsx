@@ -80,6 +80,7 @@ export default function Profile() {
             setUser(responseData);
             setIsEditing(false);
             toast.success('Profile updated successfully!');
+            auth.login(auth.userId, auth.token, null, responseData.image);
         } catch (err) {
             setError(err.message);
             setIsLoading(false);

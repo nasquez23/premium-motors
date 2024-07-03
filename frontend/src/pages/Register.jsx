@@ -47,7 +47,7 @@ export default function Register() {
                 throw new Error(responseData.message);
             }
 
-            auth.login(responseData.userId, responseData.token);
+            auth.login(responseData.userId, responseData.token, null, resData.userImage);
             toast.success("You have successfully registered");
             navigate("/");
             window.scrollTo(0, 0);
