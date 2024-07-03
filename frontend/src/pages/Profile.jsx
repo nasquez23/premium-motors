@@ -114,7 +114,7 @@ export default function Profile() {
             <div className="mt-[10%] max-lg:mt-[40%]">
                 <Title title="My account" />
                 <div className="w-[80%] mt-[5%] mx-auto mb-[10%] flex flex-row max-lg:flex-col">
-                    <div className="w-1/4 max-lg:w-2/3 flex ml-[20%] mr-[5%] max-lg:mx-auto max-lg:mt-10 items-center flex-col">
+                    <div className="w-1/4 max-lg:w-2/3 flex ml-[15%] mr-[5%] max-lg:mx-auto max-lg:mt-10 items-center flex-col">
                         <img src={userImage} alt={user.name} className="rounded-full object-contain size-60" />
                         <input ref={fileInputRef} onChange={handleImageChange} type="file" id="image" name="image" accept=".jpg,.jpeg,.png" className="hidden" />
                         <button type="button" onClick={() => fileInputRef.current.click()} className="text-white mt-10 font-semibold rounded p-4 bg-blue-500 hover:bg-blue-700 transition duration-300">Change image</button>
@@ -164,7 +164,7 @@ export default function Profile() {
                                 Your testimonials
                             </h2>
                             {user.testemonials && user.testemonials.length === 0 && <p className="text-xl text-gray-800">You have not written any testemonials yet.</p>}
-                            {user.testemonials && user.testemonials.length > 0 && <div className="grid grid-cols-2 max-lg:grid-cols-1 gap-y-10 justify-center">
+                            {user.testemonials && user.testemonials.length > 0 && <div className="grid grid-cols-1 max-lg:grid-cols-1 gap-y-10 justify-center">
                                 {user.testemonials.map((testemonial) => <TestemonialCard key={testemonial._id} testemonial={testemonial} />)}
                             </div>}
                         </div>}

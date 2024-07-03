@@ -76,7 +76,7 @@ export default function TestemonialCard({ testemonial, forceUpdate, closeModal }
           <button onClick={() => setShowConfirmationModal(true)} className="text-white text-lg font-semibold absolute top-[50%] max-lg:top-[55%] left-[40%] bg-red-500 h-12 w-[20%] max-lg:w-[25%] px-5 py-3 rounded-md">Delete</button>
         </div>}
         <img
-          src={testemonial.image}
+          src={testemonial.author.image}
           className="h-full w-1/2 object-cover"
           alt="Testemonial image"
         />

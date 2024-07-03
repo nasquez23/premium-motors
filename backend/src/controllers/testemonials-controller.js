@@ -1,24 +1,36 @@
 const Testemonial = require('../models/testemonial');
 const User = require('../models/user');
 const HttpError = require('../models/http-error');
+const { getImageUrl } = require('../middleware/file-upload');
 
 const getTestemonials = async (req, res, next) => {
     try {
-        const testemonials = await Testemonial.find().populate('author', 'name');
-        res.json(testemonials);
+        const testemonials = await Testemonial.find().populate('author', 'name image').lean();
+
+        const updatedTestemonials = await Promise.all(testemonials.map(async (testemonial) => {
+            const imageUrl = await getImageUrl(testemonial.author.image);
+            return {
+                ...testemonial,
+                author: {
+                    ...testemonial.author,
+                    image: imageUrl,
+                },
+            };
+        }));
+
+        res.json(updatedTestemonials);
     } catch (error) {
         return next(new HttpError('Could not fetch testemonials', 500));
     }
 };
 
 const addTestemonial = async (req, res, next) => {
-    const { message, city, country, image, rating, author } = req.body;
+    const { message, city, country, rating, author } = req.body;
 
     const newTestemonial = new Testemonial({
         message,
         city,
         country,
-        image,
         rating,
         author
     });
@@ -52,22 +64,22 @@ const getTestemonialsByUserId = async (req, res, next) => {
     let user;
 
     try {
-        user = await User.findById(userId).populate('testemonials');
+        user = await User.findById(userId).select('-password').populate('testemonials');
     } catch (error) {
         return next(new HttpError('Could not fetch testemonials', 500));
     }
 
-    if (!user || user.testemonialToUpdates.length === 0) {
+    if (!user || user.testemonials.length === 0) {
         return next(new HttpError('Could not find testemonial for the provided user id', 404));
     }
 
-    res.json(user.testemonialToUpdates);
+    res.json(user.testemonials);
 }
 
 const updateTestemonial = async (req, res, next) => {
     const testemonialId = req.params.tid;
 
-    const { message, city, country, image, rating } = req.body;
+    const { message, city, country, rating } = req.body;
 
     let testemonialToUpdate;
 
@@ -84,7 +96,6 @@ const updateTestemonial = async (req, res, next) => {
     testemonialToUpdate.message = message;
     testemonialToUpdate.city = city;
     testemonialToUpdate.country = country;
-    testemonialToUpdate.image = image;
     testemonialToUpdate.rating = rating;
 
     try {

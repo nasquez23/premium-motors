@@ -12,7 +12,6 @@ export default function TestemonialFormModal({ testemonial, closeModal, forceUpd
         rating: '',
         city: '',
         country: '',
-        image: ''
     });
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -83,10 +82,6 @@ export default function TestemonialFormModal({ testemonial, closeModal, forceUpd
             <div className="flex flex-col mb-4">
                 <label htmlFor="country" className="font-bold text-xl mb-2">Country</label>
                 <input type="text" id="country" name="country" required placeholder="Enter country" onChange={handleChange} value={testemonialData.country} className="bg-gray-200 text-gray-700 p-3 rounded focus:outline-blue-500" />
-            </div>
-            <div className="flex flex-col mb-4">
-                <label htmlFor="image" className="font-bold text-xl mb-2">Image</label>
-                <input type="text" id="image" name="image" required placeholder="Enter image" onChange={handleChange} value={testemonialData.image} className="bg-gray-200 text-gray-700 p-3 rounded focus:outline-blue-500" />
             </div>
             {isLoading ? <div className="mt-6 flex justify-center"><LoadingSpinner /></div> : <button type="submit" className="mt-2 w-full bg-blue-600 h-14 sm:h-16 md:h-16 lg:h-14 text-xl font-semibold text-white rounded hover:bg-blue-800 transition duration-300">{testemonial ? 'Save changes' : 'Add Testemonial'}</button>}
         </form>

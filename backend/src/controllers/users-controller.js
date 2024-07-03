@@ -92,13 +92,22 @@ const getUserById = async (req, res, next) => {
     const userId = req.params.uid;
 
     try {
-        const user = await User.findById(userId).select("-password").populate("testemonials");
+        const user = await User.findById(userId).select("-password").populate({
+            path: 'testemonials',
+            populate: { path: 'author', select: 'name image' }
+        });        
+        
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
 
         const imageUrl = await getImageUrl(user.image);
         user.image = imageUrl;
+        
+        user.testemonials.forEach(testemonial => {
+            testemonial.author.image = imageUrl;
+        });
+
         res.json(user);
     } catch (error) {
         return next(new HttpError("Fetching user failed, please try again later.", 500));
