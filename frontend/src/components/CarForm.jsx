@@ -115,7 +115,11 @@ export default function CarForm({ car }) {
                 </div>
                 <div className="flex flex-col mb-4">
                     <label htmlFor="gearbox" className="font-bold text-xl mb-2">Gearbox</label>
-                    <input type="text" id="gearbox" name="gearbox" value={carData.gearbox} onChange={handleChange} required placeholder="Enter gearbox" className="bg-gray-200 text-gray-700 p-3 rounded focus:outline-blue-500" />
+                    <select id="gearbox" name="gearbox" value={carData.gearbox} required onChange={handleChange} className={`bg-gray-200 p-3 rounded focus:outline-blue-500 ${carData.gearbox === '' && 'text-gray-400'}`}>
+                        <option value="" className="text-gray-400">Select gearbox</option>
+                        <option value="Manual" className="text-gray-700">Manual</option>
+                        <option value="Automatic" className="text-gray-700">Automatic</option>
+                    </select>
                 </div>
                 <div className="flex flex-col mb-4">
                     <label htmlFor="price" className="font-bold text-xl mb-2">Price</label>

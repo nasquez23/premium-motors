@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faTimes, faUserAlt } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import logo from "../assets/logo.png";
 import { AuthContext } from "../context/auth-context";
 import { toast } from "react-toastify";

@@ -38,8 +38,11 @@ const getCarById = async (req, res, next) => {
 const addCar = async (req, res, next) => {
     const { manufacturer, model, year, engine, price, power, gearbox, isForSale } = req.body;
 
+    if (!req.file){
+        return next(new HttpError('Please select an image', 400));
+    }
+
     const image = await uploadFileToS3(req.file);
-    console.log(image);
 
     const newCar = new Car({
         manufacturer,
