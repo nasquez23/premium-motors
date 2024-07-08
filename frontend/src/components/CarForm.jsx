@@ -95,27 +95,27 @@ export default function CarForm({ car }) {
             <form onSubmit={handleSubmit} className="w-[70%] mx-auto text-gray-800 rounded-md shadow-lg shadow-gray-700 px-[10%] py-[5%] max-lg:mt-[40%]">
                 <div className="flex flex-col mb-4">
                     <label htmlFor="manufacturer" className="font-bold text-xl mb-2">Manufacturer</label>
-                    <input type="text" id="manufacturer" name="manufacturer" value={carData.manufacturer} onChange={handleChange} required placeholder="Enter manufacturer" className="bg-gray-200 text-gray-700 p-3 rounded focus:outline-blue-500" />
+                    <input type="text" id="manufacturer" name="manufacturer" value={carData.manufacturer} onChange={handleChange} required placeholder="Enter manufacturer" className="bg-gray-200 text-gray-700 p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300" />
                 </div>
                 <div className="flex flex-col mb-4">
                     <label htmlFor="model" className="font-bold text-xl mb-2">Model</label>
-                    <input type="text" id="model" name="model" value={carData.model} onChange={handleChange} required placeholder="Enter model" className="bg-gray-200 text-gray-700 p-3 rounded focus:outline-blue-500" />
+                    <input type="text" id="model" name="model" value={carData.model} onChange={handleChange} required placeholder="Enter model" className="bg-gray-200 text-gray-700 p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300" />
                 </div>
                 <div className="flex flex-col mb-4">
                     <label htmlFor="year" className="font-bold text-xl mb-2">Year</label>
-                    <input type="number" id="year" name="year" value={carData.year} onChange={handleChange} required placeholder="Enter year" className="bg-gray-200 text-gray-700 p-3 rounded focus:outline-blue-500" />
+                    <input type="number" id="year" name="year" value={carData.year} onChange={handleChange} required placeholder="Enter year" className="bg-gray-200 text-gray-700 p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300" />
                 </div>
                 <div className="flex flex-col mb-4">
                     <label htmlFor="engine" className="font-bold text-xl mb-2">Engine</label>
-                    <input type="text" id="engine" name="engine" value={carData.engine} onChange={handleChange} required placeholder="Enter engine" className="bg-gray-200 text-gray-700 p-3 rounded focus:outline-blue-500" />
+                    <input type="text" id="engine" name="engine" value={carData.engine} onChange={handleChange} required placeholder="Enter engine" className="bg-gray-200 text-gray-700 p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300" />
                 </div>
                 <div className="flex flex-col mb-4">
                     <label htmlFor="power" className="font-bold text-xl mb-2">Power</label>
-                    <input type="number" id="power" name="power" min={1} max={2000} value={carData.power} onChange={handleChange} required placeholder="Enter power" className="bg-gray-200 text-gray-700 p-3 rounded focus:outline-blue-500" />
+                    <input type="number" id="power" name="power" min={1} max={2000} value={carData.power} onChange={handleChange} required placeholder="Enter power" className="bg-gray-200 text-gray-700 p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300" />
                 </div>
                 <div className="flex flex-col mb-4">
                     <label htmlFor="gearbox" className="font-bold text-xl mb-2">Gearbox</label>
-                    <select id="gearbox" name="gearbox" value={carData.gearbox} required onChange={handleChange} className={`bg-gray-200 p-3 rounded focus:outline-blue-500 ${carData.gearbox === '' && 'text-gray-400'}`}>
+                    <select id="gearbox" name="gearbox" value={carData.gearbox} required onChange={handleChange} className={`bg-gray-200 p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300 ${carData.gearbox === '' && 'text-gray-400'}`}>
                         <option value="" className="text-gray-400">Select gearbox</option>
                         <option value="Manual" className="text-gray-700">Manual</option>
                         <option value="Automatic" className="text-gray-700">Automatic</option>
@@ -123,7 +123,7 @@ export default function CarForm({ car }) {
                 </div>
                 <div className="flex flex-col mb-4">
                     <label htmlFor="price" className="font-bold text-xl mb-2">Price</label>
-                    <input type="number" id="price" name="price" min={1} max={5000000} value={carData.price} onChange={handleChange} required placeholder="Enter price" className="bg-gray-200 text-gray-700 p-3 rounded focus:outline-blue-500" />
+                    <input type="number" id="price" name="price" min={1} max={5000000} value={carData.price} onChange={handleChange} required placeholder="Enter price" className="bg-gray-200 text-gray-700 p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300" />
                 </div>
                 <div className="flex flex-col mb-5">
                     {carData.image && <img src={imagePreview} alt="Car" className="flex w-3/4 max-lg:w-full h-[250px] max-lg:h-[200px] object-left object-contain max-lg:object-contain rounded-md" />}
