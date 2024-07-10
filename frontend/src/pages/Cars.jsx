@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import PageHeader from "../components/UI/PageHeader";
 import Title from "../components/UI/Title";
@@ -6,35 +7,37 @@ import CarCard from "../components/CarCard";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 import { AuthContext } from "../context/auth-context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faSync, faSyncAlt } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faSyncAlt } from "@fortawesome/free-solid-svg-icons";
+import { getCars } from "../api/cars";
+import ErrorModal from "../components/UI/ErrorModal";
+import { AnimatePresence } from "framer-motion";
 
 export default function Cars() {
   const auth = useContext(AuthContext);
-  const [isLoading, setIsLoading] = useState(false);
-  const [cars, setCars] = useState([]);
   const [selectedManufacturer, setSelectedManufacturer] = useState('');
   const [filteredCars, setFilteredCars] = useState([]);
   const [saleOrRentOnly, setSaleOrRentOnly] = useState('');
+  const [showErrorModal, setShowErrorModal] = useState(false);
+
+  const { data: cars, isLoading, isError, error } = useQuery({
+    queryKey: ['cars'],
+    queryFn: getCars,
+  });
 
   useEffect(() => {
-    async function fetchCars() {
-      try {
-        setIsLoading(true);
-        const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/cars");
-        const resData = await response.json();
-        setCars(resData);
-        setFilteredCars(resData);
-        setIsLoading(false);
-      } catch (error) {
-        console.error(error);
-      }
+    if (isError) {
+      setShowErrorModal(true);
     }
+  }, [isError]);
 
-    fetchCars();
-  }, []);
+  useEffect(() => {
+    if (cars) {
+      setFilteredCars(cars);
+    }
+  }, [cars]);
 
   const modelsByManufacturer = new Map();
-  cars.forEach(car => {
+  cars?.forEach(car => {
     if (!modelsByManufacturer.has(car.manufacturer))
       modelsByManufacturer.set(car.manufacturer, []);
 
@@ -95,6 +98,10 @@ export default function Cars() {
 
   return (
     <>
+      <AnimatePresence>
+        {showErrorModal && <ErrorModal errorMessage={error.message} closeModal={() => setShowErrorModal(false)} />}
+      </AnimatePresence>
+
       <PageHeader title="Discover Your Dream Ride" />
       <div className="relative pt-6">
         <form onSubmit={filterCars} onReset={resetForm} className="mb-[5%] max-lg:mb-[20%]">

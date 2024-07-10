@@ -25,20 +25,20 @@ const getTestemonials = async (req, res, next) => {
 };
 
 const addTestemonial = async (req, res, next) => {
-    const { message, city, country, rating, author } = req.body;
+    const { message, city, country, rating } = req.body;
 
     const newTestemonial = new Testemonial({
         message,
         city,
         country,
         rating,
-        author
+        author: req.userData.userId,
     });
 
     let user;
 
     try {
-        user = await User.findById(author);
+        user = await User.findById(req.userData.userId);
     } catch (error) {
         return next(new HttpError('Could not add testemonial', 500));
     }

@@ -1,7 +1,5 @@
 import { useContext, useState } from "react";
-
 import { Link, useNavigate } from "react-router-dom";
-
 import { AuthContext } from "../context/auth-context";
 import { toast } from "react-toastify";
 import PageHeader from "../components/UI/PageHeader";
@@ -10,16 +8,30 @@ import { AnimatePresence } from "framer-motion";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 import ErrorModal from "../components/UI/ErrorModal";
 import { checkAuth } from "../util/checkAuth";
+import { useMutation } from "@tanstack/react-query";
+import { registerUser } from "../api/users";
 
 export default function Register() {
     const [error, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
     const auth = useContext(AuthContext);
     const navigate = useNavigate();
 
     checkAuth(auth.isLoggedIn, "/");
 
-    async function handleRegisterUser(event) {
+    const { mutate, isPending: isLoading } = useMutation({
+        mutationFn: registerUser,
+        onSuccess: (data) => {
+            auth.login(data.userId, data.token, null, data.userImage);
+            toast.success("You have successfully registered");
+            navigate("/");
+            window.scrollTo(0, 0);
+        },
+        onError: (error) => {
+            setError(error.message);
+        }
+    });
+
+    function handleRegisterUser(event) {
         event.preventDefault();
 
         if (event.target.password.value !== event.target.confirmPassword.value) {
@@ -30,41 +42,14 @@ export default function Register() {
         const formData = new FormData(event.target);
         const data = Object.fromEntries(formData.entries());
         const { name, email, password } = data;
-
-        try {
-            setIsLoading(true);
-            const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/users/signup", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ name, email, password })
-            });
-            const responseData = await response.json();
-
-            setIsLoading(false);
-            if (!response.ok) {
-                throw new Error(responseData.message);
-            }
-
-            auth.login(responseData.userId, responseData.token, null, resData.userImage);
-            toast.success("You have successfully registered");
-            navigate("/");
-            window.scrollTo(0, 0);
-        } catch (err) {
-            setError(err.message);
-        }
-    }
-
-    function handleCloseErrorModal() {
-        setError(null);
+        mutate({ name, email, password });
     }
 
     return (
         <>
             <PageHeader title="Become a member" />
             <AnimatePresence>
-                {error && <ErrorModal errorMessage={error} closeModal={handleCloseErrorModal} />}
+                {error && <ErrorModal errorMessage={error} closeModal={() => setError(null)} />}
             </AnimatePresence>
 
             <div className="shadow-lg shadow-gray-500 w-[80%] mx-auto px-[15%] mt-52 pt-4 rounded-lg">

@@ -1,17 +1,18 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-
 import LoadingSpinner from "./UI/LoadingSpinner";
 import ErrorModal from "./UI/ErrorModal";
 import { AnimatePresence } from "framer-motion";
 import { toast } from "react-toastify";
 import { AuthContext } from "../context/auth-context";
+import { useMutation } from "@tanstack/react-query";
+import { addCar, updateCar } from "../api/cars";
+import { queryClient } from "../main";
 
 export default function CarForm({ car }) {
     const auth = useContext(AuthContext);
     const fileInputRef = useRef();
-    const [error, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
+    const [showErrorModal, setShowErrorModal] = useState(false);
     const [imagePreview, setImagePreview] = useState(car ? car.image : null);
     const [carData, setCarData] = useState(car || {
         manufacturer: '',
@@ -47,49 +48,31 @@ export default function CarForm({ car }) {
         }
     }
 
-    async function handleSubmit(event) {
-        event.preventDefault();
-        const method = pathname.includes('edit') ? 'PATCH' : 'POST';
-        const route = pathname.includes('edit') ? `${process.env.REACT_APP_BACKEND_URL}/cars/${car._id}` : `${process.env.REACT_APP_BACKEND_URL}/cars/add`;
-        const toastMessage = pathname.includes('edit') ? 'Car updated successfully' : 'Car added successfully';
-
-        const formData = new FormData();
-        for (const key in carData) {
-            formData.append(key, carData[key]);
-        }
-
-        try {
-            setIsLoading(true);
-            const response = await fetch(route, {
-                method: method,
-                headers: {
-                    'Authorization': `Bearer ${auth.token}`
-                },
-                body: formData
-            });
-            const responseData = await response.json();
-            setIsLoading(false);
-
-            if (!response.ok) {
-                throw new Error(responseData.message);
-            }
-
+    const { mutate, isPending: isLoading, isError, error } = useMutation({
+        mutationFn: pathname.includes('edit') ? updateCar : addCar,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['cars'] });
             window.scrollTo(0, 0);
             navigate('/cars');
-            toast.success(toastMessage);
-        } catch (err) {
-            setError(err.message);
-        }
-    }
+            toast.success(pathname.includes('edit') ? 'Car updated successfully' : 'Car added successfully');
+        },
+    });
 
-    function handleCloseErrorModal() {
-        setError(null);
+    useEffect(() => {
+        if (isError) {
+            setShowErrorModal(true);
+        }
+    }, [isError]);
+
+    function handleSubmit(event) {
+        event.preventDefault();
+        mutate({ ...carData, token: auth.token });
     }
 
     return (
         <>
             <AnimatePresence>
-                {error && <ErrorModal errorMessage={error} closeModal={handleCloseErrorModal} />}
+                {showErrorModal && <ErrorModal errorMessage={error.message} closeModal={() => setShowErrorModal(false)} />}
             </AnimatePresence>
 
             <form onSubmit={handleSubmit} className="w-[70%] mx-auto text-gray-800 rounded-md shadow-lg shadow-gray-700 px-[10%] py-[5%] max-lg:mt-[40%]">

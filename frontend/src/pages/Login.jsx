@@ -11,55 +11,42 @@ import LoadingSpinner from "../components/UI/LoadingSpinner";
 import ErrorModal from "../components/UI/ErrorModal";
 import { toast } from "react-toastify";
 import { checkAuth } from "../util/checkAuth";
+import { useMutation } from "@tanstack/react-query";
+import { loginUser } from "../api/users";
 
 export default function Login() {
     const [error, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
     const auth = useContext(AuthContext);
     const navigate = useNavigate();
 
     checkAuth(auth.isLoggedIn, '/');
 
-    async function handleLoginUser(event) {
+    const { mutate, isPending: isLoading } = useMutation({
+        mutationFn: loginUser,
+        onSuccess: (data) => {
+            auth.login(data.userId, data.token, null, data.userImage);
+            toast.success('You have successfully logged in');
+            navigate('/');
+            window.scrollTo(0, 0);
+        },
+        onError: (error) => {
+            setError(error.message);
+        }
+    })
+
+    function handleLoginUser(event) {
         event.preventDefault();
 
         const formData = new FormData(event.target);
         const data = Object.fromEntries(formData.entries());
-
-        try {
-            setIsLoading(true);
-            const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/users/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(data)
-            });
-            const responseData = await response.json();
-
-            setIsLoading(false);
-            if (!response.ok) {
-                throw new Error(responseData.message);
-            }
-
-            auth.login(responseData.userId, responseData.token, null, responseData.userImage);
-            toast.success("You have successfully logged in");
-            navigate("/");
-            window.scrollTo(0, 0);
-        } catch (err) {
-            setError(err.message);
-        }
-    }
-
-    function handleCloseErrorModal() {
-        setError(null);
+        mutate(data);
     }
 
     return (
         <>
             <PageHeader title="Member login" />
             <AnimatePresence>
-                {error && <ErrorModal errorMessage={error} closeModal={handleCloseErrorModal} />}
+                {error && <ErrorModal errorMessage={error} closeModal={() => setError(null)} />}
             </AnimatePresence>
 
             <div className="flex flex-row w-[90%] mx-auto rounded-lg shadow-lg shadow-gray-500 overflow-hidden h-[40rem] max-lg:h-auto mb-20 mt-52 relative">

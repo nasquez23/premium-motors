@@ -6,60 +6,40 @@ import { AuthContext } from "../context/auth-context";
 import Modal from "../components/UI/Modal";
 import { AnimatePresence } from "framer-motion";
 import { toast } from "react-toastify";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { deleteCar, getCarById } from "../api/cars";
+import { queryClient } from "../main";
 
 export default function CarDetails() {
     const auth = useContext(AuthContext);
     const navigate = useNavigate();
     const { carId } = useParams();
-    const [car, setCar] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
-    const [isDeleting, setIsDeleting] = useState(false);
-    const [error, setError] = useState(null);
-    const [errorWhileDeleting, setIsErrorWhileDeleting] = useState(null);
     const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(null);
 
-    useEffect(() => {
-        async function fetchCarDetails() {
-            try {
-                setIsLoading(true);
-                const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/cars/${carId}`);
+    const { data: car, isLoading, isError } = useQuery({
+        queryKey: ['cars', carId],
+        queryFn: () => getCarById(carId)
+    });
 
-                setIsLoading(false);
-                if (!response.ok) {
-                    throw new Error('Something went wrong!');
-                }
-                const resData = await response.json();
-                setCar(resData);
-            } catch (err) {
-                setError(err.message);
-            }
-        }
-
-        fetchCarDetails();
-    }, []);
-
-    async function handleDeleteCar() {
-        try {
-            setIsDeleting(true);
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/cars/${carId}`, {
-                method: 'DELETE',
-                headers: {
-                    'Authorization': `Bearer ${auth.token}`
-                }
-            });
-            const resData = await response.json();
-
-            setIsDeleting(false);
-            if (!response.ok) {
-                throw new Error(resData.message);
-            }
-
+    const { mutate, isPending: isDeleting, isError: errorWhileDeleting, error } = useMutation({
+        mutationFn: deleteCar,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['cars'] });
             window.scrollTo(0, 0);
             navigate('/cars');
             toast.success("Car deleted successfully");
-        } catch (err) {
-            setIsErrorWhileDeleting(err.message);
         }
+    });
+
+    useEffect(() => {
+        if (errorWhileDeleting) {
+            setErrorMessage(error.message);
+        }
+    }, [errorWhileDeleting]);
+
+    function handleDeleteCar() {
+        mutate({ carId, token: auth.token });
     }
 
     if (isLoading) {
@@ -68,13 +48,13 @@ export default function CarDetails() {
         </div>
     }
 
-    if (error) {
+    if (isError) {
         return <h2 className="text-gray-700 text-center text-2xl font-semibold my-[10%] ml-[0%]">The car you are looking for could not be found.</h2>
     }
 
     function handleCloseConfirmationModal() {
         setShowConfirmationModal(false);
-        setIsErrorWhileDeleting(null);
+        setErrorMessage(null);
     }
 
     return (
@@ -93,10 +73,10 @@ export default function CarDetails() {
                         </button>
                     </div>
                     {isDeleting && <div className="flex justify-center py-20"><LoadingSpinner /></div>}
-                    {errorWhileDeleting && <div className="flex justify-center">
-                        <h2 className="text-red-500 text-2xl font-semibold my-10">{errorWhileDeleting}</h2>
+                    {errorMessage && <div className="flex justify-center">
+                        <h2 className="text-red-500 text-2xl font-semibold my-10">{errorMessage}</h2>
                     </div>}
-                    {!isDeleting && !errorWhileDeleting && <div>
+                    {!isDeleting && !errorMessage && <div>
                         <div>
                             <h2 className="text-gray-700 text-center text-2xl font-semibold my-10">Are you sure you want to delete this car?</h2>
                         </div>

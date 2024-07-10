@@ -1,7 +1,5 @@
 import { useState } from "react";
-
 import { AnimatePresence, motion } from "framer-motion";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendar,
@@ -15,14 +13,10 @@ import ReservationModal from "./ReservationModal";
 export default function CarCard({ car, direction }) {
   const [showModal, setShowModal] = useState(false);
 
-  function handleCloseModal() {
-    setShowModal(false);
-  }
-
   return (
     <>
       <AnimatePresence>
-        {showModal && <ReservationModal car={car} handleCloseModal={handleCloseModal} />}
+        {showModal && <ReservationModal car={car} handleCloseModal={() => setShowModal(false)} />}
       </AnimatePresence>
 
       <motion.div

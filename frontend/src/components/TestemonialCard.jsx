@@ -1,53 +1,56 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Modal from "./UI/Modal";
 import { AnimatePresence } from "framer-motion";
 import LoadingSpinner from './UI/LoadingSpinner';
 import { toast } from "react-toastify";
 import TestemonialFormModal from "./TestemonialFormModal";
 import { AuthContext } from "../context/auth-context";
+import { useMutation } from "@tanstack/react-query";
+import { deleteTestemonial } from "../api/testemonials";
+import { queryClient } from "../main";
 
-export default function TestemonialCard({ testemonial, forceUpdate, closeModal }) {
+export default function TestemonialCard({ testemonial, closeModal }) {
   const auth = useContext(AuthContext);
   const [showButtons, setShowButtons] = useState(false);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [errorWhileDeleting, setErrorWhileDeleting] = useState(null);
-  const [isDeleting, setIsDeleting] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
 
-  async function handleDeleteTestemonial() {
-    try {
-      setIsDeleting(true);
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/testemonials/${testemonial._id}`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${auth.token}`
-        }
-      });
-      const responseData = await response.json();
-      setIsDeleting(false);
-
-      if (!response.ok) {
-        throw new Error(responseData.message);
-      }
-
+  const { mutate, isPending: isDeleting, isError, error } = useMutation({
+    mutationFn: deleteTestemonial,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['testemonials'] });
+      closeModal();
       setShowConfirmationModal(false);
       toast.success("Testemonial deleted successfully");
-      forceUpdate();
-    } catch (error) {
+    },
+  });
+
+  useEffect(() => {
+    if (isError) {
       setErrorWhileDeleting(error.message);
     }
+  }, [isError]);
+
+  function handleDeleteTestemonial() {
+    mutate({ ...testemonial, token: auth.token });
   };
+
+  function handleCloseConfirmationModal() {
+    setShowConfirmationModal(false);
+    setErrorWhileDeleting(null);
+  }
 
   return (
     <>
       <AnimatePresence>
-        {showConfirmationModal && <Modal closeModal={() => setShowConfirmationModal(false)}>
+        {showConfirmationModal && <Modal closeModal={handleCloseConfirmationModal}>
           <div className="flex flex-row justify-between px-5 bg-blue-500 h-14 w-full">
             <h2 className="uppercase font-semibold text-white text-2xl pt-3">
               Delete Testemonial
             </h2>
             <button
-              onClick={() => setShowConfirmationModal(false)}
+              onClick={handleCloseConfirmationModal}
               className="text-white text-2xl font-bold"
             >
               X
@@ -62,12 +65,12 @@ export default function TestemonialCard({ testemonial, forceUpdate, closeModal }
               <h2 className="text-gray-700 text-center text-2xl font-semibold my-10">Are you sure you want to delete this testemonial?</h2>
             </div>
             <div className="flex justify-end max-lg:justify-center pr-12 max-lg:pr-0 gap-x-6 pb-10 text-xl font-semibold">
-              <button onClick={() => setShowConfirmationModal(false)} className="text-gray-700 hover:text-gray-900 transition duration-300">Cancel</button>
+              <button onClick={handleCloseConfirmationModal} className="text-gray-700 hover:text-gray-900 transition duration-300">Cancel</button>
               <button onClick={handleDeleteTestemonial} className="bg-red-500 text-neutral-100 hover:bg-red-700 transition duration-300 rounded-md px-4 py-2">Delete</button>
             </div>
           </div>}
         </Modal>}
-        {showEditModal && <TestemonialFormModal forceUpdate={closeModal} closeModal={() => setShowEditModal(false)} testemonial={testemonial} />}
+        {showEditModal && <TestemonialFormModal closeModal={() => setShowEditModal(false)} testemonial={testemonial} />}
       </AnimatePresence>
 
       <div onMouseEnter={() => setShowButtons(true)} onMouseLeave={() => setShowButtons(false)} className="relative flex flex-row w-[85%] rounded-xl shadow-gray-500 shadow-lg overflow-hidden mx-auto bg-white">
