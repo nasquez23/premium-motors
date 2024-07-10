@@ -78,7 +78,6 @@ const getTestemonialsByUserId = async (req, res, next) => {
 
 const updateTestemonial = async (req, res, next) => {
     const testemonialId = req.params.tid;
-
     const { message, city, country, rating } = req.body;
 
     let testemonialToUpdate;
@@ -91,6 +90,10 @@ const updateTestemonial = async (req, res, next) => {
 
     if (!testemonialToUpdate) {
         return next(new HttpError('Could not find testemonial for provided id', 404));
+    }
+
+    if (testemonialToUpdate.author.toString() !== req.userData.userId) {
+        return next(new HttpError('You are not allowed to edit this testemonial', 401));
     }
 
     testemonialToUpdate.message = message;
@@ -119,6 +122,10 @@ const deleteTestemonial = async (req, res, next) => {
     
     if (!testemonialToDelete) {
         return next(new HttpError('Could not find testemonial for provided id', 404));
+    }
+
+    if (testemonialToDelete.author.toString() !== req.userData.userId) {
+        return next(new HttpError('You are not allowed to delete this testemonial', 401));
     }
 
     let user;

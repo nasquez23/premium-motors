@@ -8,6 +8,7 @@ import { AuthContext } from "../context/auth-context";
 import { useMutation } from "@tanstack/react-query";
 import { deleteTestemonial } from "../api/testemonials";
 import { queryClient } from "../main";
+import { useLocation } from "react-router-dom";
 
 export default function TestemonialCard({ testemonial, closeModal }) {
   const auth = useContext(AuthContext);
@@ -15,12 +16,16 @@ export default function TestemonialCard({ testemonial, closeModal }) {
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [errorWhileDeleting, setErrorWhileDeleting] = useState(null);
   const [showEditModal, setShowEditModal] = useState(false);
+  const location = useLocation();
 
   const { mutate, isPending: isDeleting, isError, error } = useMutation({
     mutationFn: deleteTestemonial,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['testemonials'] });
-      closeModal();
+      if (location.pathname === '/profile') {
+        queryClient.invalidateQueries({ queryKey: ['user', auth.userId] });
+      } else {
+        queryClient.invalidateQueries({ queryKey: ['testemonials'] });
+      }
       setShowConfirmationModal(false);
       toast.success("Testemonial deleted successfully");
     },
@@ -39,7 +44,7 @@ export default function TestemonialCard({ testemonial, closeModal }) {
   function handleCloseConfirmationModal() {
     setShowConfirmationModal(false);
     setErrorWhileDeleting(null);
-  }
+  };
 
   return (
     <>
@@ -74,7 +79,7 @@ export default function TestemonialCard({ testemonial, closeModal }) {
       </AnimatePresence>
 
       <div onMouseEnter={() => setShowButtons(true)} onMouseLeave={() => setShowButtons(false)} className="relative flex flex-row w-[85%] rounded-xl shadow-gray-500 shadow-lg overflow-hidden mx-auto bg-white">
-        {auth.isLoggedIn && showButtons && <div className="absolute top-0 left-0 bg-black bg-opacity-80 w-full h-full">
+        {auth.isLoggedIn && auth.userId === testemonial.author._id && showButtons && <div className="absolute top-0 left-0 bg-black bg-opacity-80 w-full h-full">
           <button onClick={() => setShowEditModal(true)} className="text-white text-lg font-semibold absolute top-1/3 left-[40%] bg-blue-500 h-12 w-[20%] max-lg:w-[25%] py-3 rounded-md">Edit</button>
           <button onClick={() => setShowConfirmationModal(true)} className="text-white text-lg font-semibold absolute top-[50%] max-lg:top-[55%] left-[40%] bg-red-500 h-12 w-[20%] max-lg:w-[25%] px-5 py-3 rounded-md">Delete</button>
         </div>}
