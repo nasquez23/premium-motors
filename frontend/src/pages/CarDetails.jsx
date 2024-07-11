@@ -89,36 +89,36 @@ export default function CarDetails() {
             </AnimatePresence>
 
             <PageHeader title="Car Details" />
-            {!isLoading && car && <div className="flex flex-col w-[80%] mx-auto my-[15%] shadow-lg shadow-gray-700 p-10 max-lg:p-5 rounded-md">
+            {!isLoading && car && <div className="flex flex-col w-[80%] mx-auto my-[15%] max-lg:mt-[35%] max-lg:mb-[25%] shadow-lg shadow-gray-700 p-10 max-lg:p-5 rounded-md">
                 <div className="flex flex-row max-lg:flex-col gap-x-5">
                     <img src={car.image} alt={`${car.manufacturer} ${car.model}`} className="object-cover rounded w-full lg:w-[50%] xl:w-[50%]" style={{ maxHeight: "500px" }} />
                     <div className="w-1/2 max-lg:w-full mx-auto divide-y-4 border-4 text-gray-700 font-semibold text-3xl max-lg:text-2xl max-lg:mt-10">
-                        <div className="flex flex-row divide-x-4 p-2 max-lg:px-0">
-                            <h2 className="text-center font-semibold w-1/2">Manufacturer</h2>
+                        <div className="flex flex-row max-lg:flex-col divide-x-4 max-lg:divide-x-0 p-2 max-lg:px-0">
+                            <h2 className="text-center font-semibold w-1/2 max-lg:w-full max-lg:mb-1">Manufacturer</h2>
                             <h2 className="text-center text-blue-500 font-semibold px-4">{car.manufacturer}</h2>
                         </div>
-                        <div className="flex flex-row divide-x-4 p-2">
-                            <h2 className="text-center font-semibold w-1/2">Model</h2>
+                        <div className="flex flex-row max-lg:flex-col divide-x-4 max-lg:divide-x-0 p-2">
+                            <h2 className="text-center font-semibold w-1/2 max-lg:w-full max-lg:mb-1">Model</h2>
                             <h2 className="text-center text-blue-500 font-semibold px-4">{car.model}</h2>
                         </div>
-                        <div className="flex flex-row divide-x-4 p-2">
-                            <h2 className="text-center font-semibold w-1/2">Year</h2>
+                        <div className="flex flex-row max-lg:flex-col divide-x-4 max-lg:divide-x-0 p-2">
+                            <h2 className="text-center font-semibold w-1/2 max-lg:w-full max-lg:mb-1">Year</h2>
                             <h2 className="text-center text-blue-500 font-semibold px-4">{car.year}</h2>
                         </div>
-                        <div className="flex flex-row divide-x-4 p-2">
-                            <h2 className="text-center font-semibold w-1/2">Engine</h2>
+                        <div className="flex flex-row max-lg:flex-col divide-x-4 max-lg:divide-x-0 p-2">
+                            <h2 className="text-center font-semibold w-1/2 max-lg:w-full max-lg:mb-1">Engine</h2>
                             <h2 className="text-center text-blue-500 font-semibold px-4">{car.engine}</h2>
                         </div>
-                        <div className="flex flex-row divide-x-4 p-2">
-                            <h2 className="text-center font-semibold w-1/2">Power</h2>
+                        <div className="flex flex-row max-lg:flex-col divide-x-4 max-lg:divide-x-0 p-2">
+                            <h2 className="text-center font-semibold w-1/2 max-lg:w-full max-lg:mb-1">Power</h2>
                             <h2 className="text-center text-blue-500 font-semibold px-4">{car.power} hp</h2>
                         </div>
-                        <div className="flex flex-row divide-x-4 p-2">
-                            <h2 className="text-center font-semibold w-1/2">Gearbox</h2>
+                        <div className="flex flex-row max-lg:flex-col divide-x-4 max-lg:divide-x-0 p-2">
+                            <h2 className="text-center font-semibold w-1/2 max-lg:w-full max-lg:mb-1">Gearbox</h2>
                             <h2 className="text-center text-blue-500 font-semibold px-4">{car.gearbox}</h2>
                         </div>
-                        <div className="flex flex-row divide-x-4 p-2">
-                            <h2 className="text-center font-semibold w-1/2">Price</h2>
+                        <div className="flex flex-row max-lg:flex-col divide-x-4 max-lg:divide-x-0 p-2">
+                            <h2 className="text-center font-semibold w-1/2 max-lg:w-full max-lg:mb-1">Price</h2>
                             <h2 className="text-center text-blue-500 font-semibold px-4">{car.price} €</h2>
                         </div>
                         <div>
@@ -126,9 +126,9 @@ export default function CarDetails() {
                         </div>
                     </div>
                 </div>
-                {auth.isLoggedIn && <div className="flex gap-x-10 w-[40%] max-lg:w-[90%] mx-auto mt-10 text-center text-xl font-semibold text-neutral-100">
-                    <Link to={`/cars/edit/${carId}`} onClick={() => window.scrollTo(0, 0)} className="inline-block bg-blue-500 h-12 w-1/2 p-2 rounded-md hover:bg-blue-700 transition duration-300">Edit Car</Link>
-                    <button onClick={() => setShowConfirmationModal(true)} className="bg-red-500 h-12 w-1/2 p-2 rounded-md hover:bg-red-700 transition duration-300">Delete Car</button>
+                {auth.isLoggedIn && <div className="flex max-lg:flex-col max-lg:gap-y-4 gap-x-10 w-[40%] max-lg:w-[90%] mx-auto mt-10 text-center text-xl font-semibold text-neutral-100">
+                    <Link to={`/cars/edit/${carId}`} onClick={() => window.scrollTo(0, 0)} className="inline-block bg-blue-500 h-12 w-1/2 max-lg:w-full p-2 rounded-md hover:bg-blue-700 transition duration-300">Edit Car</Link>
+                    <button onClick={() => setShowConfirmationModal(true)} className="bg-red-500 h-12 w-1/2 max-lg:w-full p-2 rounded-md hover:bg-red-700 transition duration-300">Delete Car</button>
                 </div>}
             </div>}
         </>

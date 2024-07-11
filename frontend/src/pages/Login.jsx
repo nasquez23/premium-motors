@@ -49,10 +49,10 @@ export default function Login() {
                 {error && <ErrorModal errorMessage={error} closeModal={() => setError(null)} />}
             </AnimatePresence>
 
-            <div className="flex flex-row w-[90%] mx-auto rounded-lg shadow-lg shadow-gray-500 overflow-hidden h-[40rem] max-lg:h-auto mb-20 mt-52 relative">
-                <h3 className="text-gray-900 font-bold text-6xl w-[40%] max-lg:w-[80%] absolute ml-[7%] max-lg:ml-[20%] mt-[13%] max-lg:mt-10 z-10 max-lg:z-0">Welcome Back! Log in to Your Account</h3>
+            <div className="flex flex-row w-[85%] mx-auto rounded-lg shadow-lg shadow-gray-500 overflow-hidden h-[40rem] max-lg:h-auto mb-20 mt-52 relative">
+                <h3 className="text-gray-900 font-bold text-6xl w-[40%] max-lg:w-[80%] absolute ml-[7%] max-lg:ml-[18%] mt-[13%] max-lg:mt-10 z-10 max-lg:z-0">Welcome Back! Log in to Your Account</h3>
                 <img src={Ferrari} className="w-1/2 h-full object-cover opacity-40 block max-lg:hidden" />
-                <div className="w-1/2 px-20 mt-10 max-lg:mt-60 max-lg:w-full">
+                <div className="w-1/2 px-20 max-lg:px-[7%] mt-10 max-lg:mt-60 max-lg:w-full">
                     <Title title="Sign in" />
                     <form className="text-gray-800" onSubmit={handleLoginUser}>
                         <div className="flex flex-col mt-10">

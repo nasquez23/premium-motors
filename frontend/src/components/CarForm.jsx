@@ -75,7 +75,7 @@ export default function CarForm({ car }) {
                 {showErrorModal && <ErrorModal errorMessage={error.message} closeModal={() => setShowErrorModal(false)} />}
             </AnimatePresence>
 
-            <form onSubmit={handleSubmit} className="w-[70%] mx-auto text-gray-800 rounded-md shadow-lg shadow-gray-700 px-[10%] py-[5%] max-lg:mt-[40%]">
+            <form onSubmit={handleSubmit} className="w-[70%] max-lg:w-[85%] mx-auto text-gray-800 rounded-md shadow-lg shadow-gray-700 px-[10%] max-lg:px-[7%] py-[5%] max-lg:mt-[40%]">
                 <div className="flex flex-col mb-4">
                     <label htmlFor="manufacturer" className="font-bold text-xl mb-2">Manufacturer</label>
                     <input type="text" id="manufacturer" name="manufacturer" value={carData.manufacturer} onChange={handleChange} required placeholder="Enter manufacturer" className="bg-gray-200 text-gray-700 p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300" />

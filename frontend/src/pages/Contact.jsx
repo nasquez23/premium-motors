@@ -16,10 +16,10 @@ export default function Contact() {
   return (
     <>
       <PageHeader title="Contact Premium Motors" />
-      <div className="pt-6 w-3/4 mx-auto md:w-full lg:w-3/4">
+      <div className="pt-6 w-3/4 mx-auto md:w-full lg:w-3/4 xl:w-3/4">
         <Title title="Contact Us" />
         <div className="flex flex-col md:flex-col lg:flex-row h-full md:h-full lg:h-[32rem] mt-12 mb-32">
-          <div className="w-full md:w-full sm:w-full lg:w-1/2 text-center md:text-center lg:text-left xl:text-left">
+          <div className="w-1/2 max-lg:w-full text-center md:text-center lg:text-left xl:text-left">
             <h2 className="text-4xl text-gray-800 font-semibold mb-10 mt-4">
               Get In Touch
             </h2>
@@ -31,18 +31,18 @@ export default function Contact() {
             <p className="mb-4">
               <a
                 href="tel:+389000000000"
-                className="text-gray-800 font-semibold text-xl hover:text-blue-600 transition duration-300"
+                className="text-gray-800 max-lg:flex max-lg:flex-col font-semibold text-xl hover:text-blue-600 transition duration-300"
               >
-                <FontAwesomeIcon className="pr-4" icon={faPhone} />
+                <FontAwesomeIcon className="pr-4 max-lg:mb-2" icon={faPhone} />
                 +389 00 000 000
               </a>
             </p>
             <p className="mb-4">
               <a
                 href="mailto:premiummotors@gmail.com"
-                className="text-gray-800 font-semibold text-xl hover:text-blue-600 transition duration-300"
+                className="text-gray-800 max-lg:flex max-lg:flex-col font-semibold text-xl hover:text-blue-600 transition duration-300"
               >
-                <FontAwesomeIcon className="pr-4 max-lg:pr-4" icon={faEnvelope} />
+                <FontAwesomeIcon className="pr-4 max-lg:pr-4 max-lg:mb-2" icon={faEnvelope} />
                 premiummotors80@gmail.com
               </a>
             </p>
@@ -50,9 +50,9 @@ export default function Contact() {
               <a
                 href="https://maps.google.com/?q=2220+Sveti+Nikole,+Macedonia"
                 target="_blank"
-                className="hover:text-blue-600 transition duration-300"
+                className="hover:text-blue-600 max-lg:flex max-lg:flex-col transition duration-300"
               >
-                <FontAwesomeIcon className="pr-4" icon={faMapMarkerAlt} />
+                <FontAwesomeIcon className="pr-4 max-lg:mb-2" icon={faMapMarkerAlt} />
                 2220 Sveti Nikole, Macedonia
               </a>
             </p>

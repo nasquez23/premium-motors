@@ -5,7 +5,7 @@ export default function About() {
   return (
     <>
       <PageHeader title="About Premium Motors" />
-      <div className="pt-6 w-2/3 mx-auto mb-32">
+      <div className="pt-6 w-2/3 max-lg:w-[80%] mx-auto mb-32">
         <Title title="About Us" />
         <div className="text-gray-600 text-xl font-semibold text-left md:text-center lg:text-left">
           <p className="my-10">

@@ -4,7 +4,7 @@ import Koenigsegg from "../assets/koenigsegg.jpg";
 
 export default function Hero() {
   return (
-    <section className="flex flex-row lg:overflow-x-hidden mt-10 w-full sm:w-full md:w-full h-[28rem] lg:h-auto xl:h-auto">
+    <section className="flex flex-row lg:overflow-x-hidden mt-10 w-full sm:w-full md:w-full h-[65vh] lg:h-auto xl:h-auto">
       <div className="w-full ml-0 sm:ml-0 lg:ml-20 sm:w-full md:w-full lg:w-1/2 text-center sm:text-center md:text-center lg:text-left">
         <h2 className="text-6xl text-gray-900 font-semibold mt-20 lg:mt-10 xl:mt-10">
           Find Your <span className="text-blue-600">Perfect</span> Ride

@@ -20,7 +20,7 @@ export default function CarCard({ car, direction }) {
       </AnimatePresence>
 
       <motion.div
-        initial={{ opacity: 0, x: direction === "right" ? 30 : -30 }}
+        initial={{ opacity: 0, x: direction === "right" ? 50 : -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
         className="w-full text-left rounded-lg shadow-lg shadow-gray-500 overflow-hidden"
@@ -35,24 +35,26 @@ export default function CarCard({ car, direction }) {
         <h3 className="text-gray-800 text-2xl font-semibold my-4 pl-6">
           {car.manufacturer} {car.model}
         </h3>
-        <div className="text-gray-600 border-b-2 mx-4 pb-2 pl-2">
+        <div className="text-gray-600 border-b-2 mx-4 pb-2">
           <div className="flex gap-2 text-2xl pt-2 pb-6">
-            <FontAwesomeIcon icon={faCalendar} className="h-6" />
-            {car.year}
-            <FontAwesomeIcon
-              icon={faWrench}
-              className="h-6 ml-[18%] max-lg:ml-16"
-            />{" "}
-            {car.engine}
+            <label className="w-1/2 px-2 max-lg:px-0 max-lg:w-[40%] max-lg:mr-5">
+              <FontAwesomeIcon icon={faCalendar} className="h-6 pr-3 max-lg:pr-2" />
+              {car.year}
+            </label>
+            <label className="w-1/2 max-lg:w-[60%]">
+              <FontAwesomeIcon icon={faWrench} className="h-6 pr-3 max-lg:pr-2" />
+              {car.engine}
+            </label>
           </div>
-          <div className="flex gap-2 text-2xl pb-6">
-            <FontAwesomeIcon icon={faBolt} className="h-6" />
-            {car.power} hp
-            <FontAwesomeIcon
-              icon={faGear}
-              className="h-6 ml-[10%] max-lg:ml-8"
-            />
-            {car.gearbox}
+          <div className="flex text-2xl pb-6">
+            <label className="w-1/2 px-2 max-lg:px-0 max-lg:w-[40%] max-lg:mr-5">
+              <FontAwesomeIcon icon={faBolt} className="h-6 pr-3 max-lg:pr-1" />
+              {car.power} hp
+            </label>
+            <label className="w-1/2 max-lg:w-[60%]">
+              <FontAwesomeIcon icon={faGear} className="h-6 pr-3 max-lg:pr-2"/>
+              {car.gearbox}
+            </label>
           </div>
         </div>
         <div className="flex justify-between mx-4 pt-4">
@@ -71,7 +73,7 @@ export default function CarCard({ car, direction }) {
           >
             {car.isForSale ? "Book Test Drive" : "Rent Now"}
           </button>
-          <Link onClick={() => window.scrollTo(400, 400)} to={`/cars/${car._id}`} className="block w-[85%] max-lg:w-[90%] text-gray-600 rounded-lg mx-6 my-4 h-12 text-center text-xl font-semibold border-2 p-2 hover:border-black transition duration-300">View Details</Link>
+          <Link onClick={() => window.scrollTo(300, 300)} to={`/cars/${car._id}`} className="block w-[85%] max-lg:w-[90%] text-gray-600 rounded-lg mx-6 my-4 h-12 text-center text-xl font-semibold border-2 p-2 hover:border-black transition duration-300">View Details</Link>
         </div>
       </motion.div>
     </>
